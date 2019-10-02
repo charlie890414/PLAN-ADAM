@@ -1,6 +1,6 @@
 /* Init Parse SDK */
-Parse.initialize("YOUR_APP_ID", "YOUR_JAVASCRIPT_KEY");
-Parse.serverURL = 'http://YOUR_PARSE_SERVER:1337/parse';
+Parse.initialize("NASA_2019_SEAL", "SBsm7FTJdh4TdgDt");
+Parse.serverURL = 'http://140.115.50.100:1337/parse';
 
 /* Init PIXI JS */
 let type = "WebGL"
