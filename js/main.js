@@ -11,10 +11,14 @@ if(!PIXI.utils.isWebGLSupported()){
 PIXI.utils.sayHello(type)
 
 let app = new PIXI.Application({ 
-    width: 256,
-    height: 256,
+    width: window.innerWidth,
+    height: window.innerHeight,
     antialias: true,
     transparent: false,
     resolution: 1
   }
 );
+document.body.appendChild(app.view);
+
+/* Setup game */
+setupInterface();
