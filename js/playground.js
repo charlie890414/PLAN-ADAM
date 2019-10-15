@@ -1,14 +1,14 @@
-class Playground extends PIXI.Container{
-    constructor(){
+class Playground extends PIXI.Container {
+    constructor() {
         super();
         // Chainable `add` to enqueue a resource
         PIXI.Loader.shared
-        .add('basemap','mat/basemap.jpg')
+            .add('basemap', 'mat/basemap.jpg')
 
         this.player = new Player();
     }
 
-    loaded(resources){
+    loaded(resources) {
         let map = new PIXI.Sprite(resources.basemap.texture);
         this.addChild(map);
 
@@ -16,7 +16,7 @@ class Playground extends PIXI.Container{
         this.addChild(this.player);
     }
 
-    setTicker(ticker){
+    setTicker(ticker) {
         this.player.setTicker(ticker);
     }
 }

@@ -1,9 +1,9 @@
-class HUD extends PIXI.Container{
-    constructor(){
+class HUD extends PIXI.Container {
+    constructor() {
         super();
     }
 
-    loaded(resources){
-        
+    loaded(resources) {
+
     }
 }
