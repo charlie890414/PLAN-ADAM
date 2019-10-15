@@ -1,14 +1,13 @@
-function setupInterface(){
-    const loader = PIXI.Loader.shared;
+class Playground extends PIXI.Container{
+    constructor(){
+        super();
+        // Chainable `add` to enqueue a resource
+        PIXI.Loader.shared
+        .add('basemap','mat/basemap.jpg');
+    }
 
-    // Chainable `add` to enqueue a resource
-    loader
-    .add('basemap','mat/basemap.jpg');
-
-    // The `load` method loads the queue of resources, and calls the passed in callback called once all
-    // resources have loaded.
-    loader.load((loader, resources) => {
+    loaded(resources){
         let map = new PIXI.Sprite(resources.basemap.texture);
-        app.stage.addChild(map);
-    });
+        this.addChild(map);
+    }
 }

@@ -20,5 +20,18 @@ let app = new PIXI.Application({
 );
 document.body.appendChild(app.view);
 
+
 /* Setup game */
-setupInterface();
+let ground = new Playground();
+let panel = new HUD();
+
+app.stage.addChild(ground);
+app.stage.addChild(panel);
+
+/* Load resources */
+const loader = PIXI.Loader.shared;
+
+loader.load((loader, resources) => {
+  ground.loaded(resources);
+  panel.loaded(resources);
+});
