@@ -25,9 +25,6 @@ document.body.appendChild(app.view);
 let ground = new Playground();
 let panel = new HUD();
 
-app.stage.addChild(ground);
-app.stage.addChild(panel);
-
 /* Load resources */
 const loader = PIXI.Loader.shared;
 
@@ -35,3 +32,7 @@ loader.load((loader, resources) => {
   ground.loaded(resources);
   panel.loaded(resources);
 });
+
+/* Start game */
+app.stage.addChild(ground);
+app.stage.addChild(panel);
