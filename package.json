@@ -17,9 +17,11 @@
     "file-loader": "^4.2.0",
     "gh-pages": "^2.1.1",
     "parse": "^2.8.0",
+    "pixi-filters": "^3.0.3",
     "pixi.js": "^5.1.5",
     "webpack": "^4.41.2",
     "webpack-cli": "^3.3.9",
     "webpack-dev-server": "^3.8.2"
-  }
+  },
+  "dependencies": {}
 }
