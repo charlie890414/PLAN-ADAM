@@ -1,3 +1,8 @@
+const Parse = require('parse');
+import * as PIXI from 'pixi.js';
+import Playground from './playground';
+import HUD from './hud';
+
 /* Init Parse SDK */
 Parse.initialize("NASA_2019_SEAL", "SBsm7FTJdh4TdgDt");
 Parse.serverURL = 'http://140.115.50.100:1337/parse';
@@ -10,7 +15,7 @@ if (!PIXI.utils.isWebGLSupported()) {
 
 PIXI.utils.sayHello(type);
 
-let app = new PIXI.Application({
+const app = global.app = new PIXI.Application({
     antialias: true,
     transparent: false,
     resolution: 1,
@@ -20,8 +25,8 @@ document.body.appendChild(app.view);
 
 
 /* Setup game */
-let ground = new Playground();
-let panel = new HUD();
+const ground = global.ground = new Playground();
+const panel = global.panel = new HUD();
 app.stage.addChild(ground);
 app.stage.addChild(panel);
 
