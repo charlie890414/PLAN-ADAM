@@ -1,9 +1,12 @@
-class Playground extends PIXI.Container {
+import * as PIXI from 'pixi.js';
+import Player from './player';
+
+export default class extends PIXI.Container {
     constructor() {
         super();
         // Chainable `add` to enqueue a resource
         PIXI.Loader.shared
-            .add('basemap', 'mat/basemap.jpg')
+            .add('basemap', 'basemap.jpg')
 
         this.player = new Player();
     }

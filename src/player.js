@@ -1,9 +1,11 @@
-class Player extends PIXI.Sprite {
+import * as PIXI from 'pixi.js';
+
+export default class extends PIXI.Sprite {
     constructor() {
         super();
 
         PIXI.Loader.shared
-            .add('astronaut_0', 'mat/astronaut_0.png')
+            .add('astronaut_0', 'astronaut_0.png')
     }
 
     loaded(resources) {
