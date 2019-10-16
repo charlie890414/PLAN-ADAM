@@ -11,13 +11,11 @@ if (!PIXI.utils.isWebGLSupported()) {
 PIXI.utils.sayHello(type);
 
 let app = new PIXI.Application({
-  width: window.innerWidth,
-  height: window.innerHeight,
   antialias: true,
   transparent: false,
-  resolution: 1
-}
-);
+  resolution: 1,
+  resizeTo: window
+});
 document.body.appendChild(app.view);
 
 
