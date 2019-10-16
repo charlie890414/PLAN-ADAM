@@ -7,13 +7,15 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "watch": "webpack --watch",
     "start": "webpack-dev-server",
-    "build": "webpack"
+    "build": "webpack",
+    "deploy": "node ghpage-deploy.js"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "devDependencies": {
     "file-loader": "^4.2.0",
+    "gh-pages": "^2.1.1",
     "parse": "^2.8.0",
     "pixi.js": "^5.1.5",
     "webpack": "^4.41.2",
