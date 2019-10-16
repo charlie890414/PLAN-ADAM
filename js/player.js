@@ -16,10 +16,8 @@ class Player extends PIXI.Sprite {
     setTicker(ticker) {
         ticker.add(() => {
             const mouse = app.renderer.plugins.interaction.mouse.global;
-            const bound = this.getBounds();
-            const centerX = (bound.left + bound.right) / 2;
-            const centerY = (bound.top + bound.bottom) / 2;
-            this.rotation = Math.atan2(centerY - mouse.y, centerX - mouse.x);
+            var position = this.toGlobal(panel);
+            this.rotation = Math.atan2(position.y - mouse.y, position.x - mouse.x);
         });
     }
 }

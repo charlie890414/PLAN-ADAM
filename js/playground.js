@@ -18,5 +18,11 @@ class Playground extends PIXI.Container {
 
     setTicker(ticker) {
         this.player.setTicker(ticker);
+
+        ticker.add(() => {
+            var position = this.player.toGlobal(panel);
+            this.x -= position.x - window.innerWidth / 2;
+            this.y -= position.y - window.innerHeight / 2;
+        });
     }
 }
