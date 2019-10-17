@@ -1,5 +1,6 @@
 import * as PIXI from 'pixi.js';
-const Keyboard = require('pixi.js-keyboard');
+import Parse from 'parse';
+import Keyboard from 'pixi.js-keyboard';
 
 export default class extends PIXI.Sprite {
     constructor() {
@@ -31,16 +32,24 @@ export default class extends PIXI.Sprite {
 
     walk() {
         const speed = 5;
+        var nextX = this.x, nextY = this.y;
 
-        // Keyboard
         if (Keyboard.isKeyDown('ArrowLeft', 'KeyA'))
-            this.x -= speed;
+            nextX -= speed;
         if (Keyboard.isKeyDown('ArrowRight', 'KeyD'))
-            this.x += speed;
-
+            nextX += speed;
         if (Keyboard.isKeyDown('ArrowUp', 'KeyW'))
-            this.y -= speed;
+            nextY -= speed;
         if (Keyboard.isKeyDown('ArrowDown', 'KeyS'))
-            this.y += speed;
+            nextY += speed;
+
+        if (nextX != this.x || nextY != this.y) {
+            this.x = nextX;
+            this.y = nextY;
+
+            currentPlayer.set("x", this.x);
+            currentPlayer.set("y", this.y);
+            currentPlayer.save();
+        }
     }
 }

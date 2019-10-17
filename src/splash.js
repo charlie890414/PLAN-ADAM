@@ -43,7 +43,7 @@ export default class Splash extends PIXI.Container {
         login.buttonMode = true;
 
         login.on('pointerdown', () => {
-            if (true) {
+            if (this.login(namefield.text)) {
                 this.destroy();
                 ground.show();
                 panel.show();
@@ -61,7 +61,8 @@ export default class Splash extends PIXI.Container {
         var Player = Parse.Object.extend("Player");
         var current = new Player();
         current.set("nickname", name);
-        current.set("position", new Parse.GeoPoint({ latitude: 0.0, longitude: 0.0 }));
+        current.set("x", 0);
+        current.set("y", 0);
         current.save();
         global.currentPlayer = current;
 
