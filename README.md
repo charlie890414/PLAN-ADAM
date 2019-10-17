@@ -1,5 +1,7 @@
 # PLAN-ADAM
 
+![dependencies badge](https://david-dm.org/charlie890414/PLAN-ADAM.svg)
+
 This is a IO game with *very realistic simulation*.
 
 The environment setting in this game is at the 50th anniversary of human migration to moon...
