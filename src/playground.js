@@ -24,8 +24,8 @@ export default class extends PIXI.Container {
 
         ticker.add(() => {
             var position = this.player.toGlobal(panel);
-            this.x -= position.x - window.innerWidth / 2;
-            this.y -= position.y - window.innerHeight / 2;
+            this.x -= position.x - app.screen.width / 2;
+            this.y -= position.y - app.screen.height / 2;
         });
     }
 }
