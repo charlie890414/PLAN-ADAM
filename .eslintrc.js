@@ -6,14 +6,14 @@ module.exports = {
     node: true,
   },
   extends: [
-    'airbnb-base',
   ],
   globals: {
     Atomics: 'readonly',
     SharedArrayBuffer: 'readonly',
   },
   parserOptions: {
-    ecmaVersion: 2018,
+    ecmaVersion: 2020,
+    sourceType: "module",
   },
   rules: {
   },
