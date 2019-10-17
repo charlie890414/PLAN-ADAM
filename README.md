@@ -6,6 +6,19 @@ The environment setting in this game is at the 50th anniversary of human migrati
 
 The simulator is powered by [PixiJS](https://www.pixijs.com/) and [Parse](https://docs.parseplatform.org/js/guide/)
 
+## Development
+
+This project use webpack.
+
+To run webpack-dev-server:
+`npm run start`
+
+To compile webpack:
+`npm run build`
+
+If you want automatically deploy to Github Page when push:
+`git config core.hooksPath .githooks`
+
 ## Feature Checklist
 
  - [ ] Start game by landing
