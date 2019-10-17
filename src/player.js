@@ -9,11 +9,13 @@ export default class extends PIXI.Sprite {
             .add('astronaut_0', 'astronaut_0.png')
     }
 
-    loaded(resources) {
+    show() {
         this.texture = resources.astronaut_0.texture;
         this.height = 100;
         this.width = 100;
         this.anchor.set(0.5);
+
+        this.setTicker(app.ticker);
     }
 
     setTicker(ticker) {

@@ -6,7 +6,7 @@ export default class Splash extends PIXI.Container {
     constructor() {
         super();
 
-        this.loading = new PIXI.Text();
+        this.loading = new PIXI.Text('Traveling to moon... ', { fill: 0xffffff });
         this.loaded = 0;
     }
 
@@ -19,14 +19,10 @@ export default class Splash extends PIXI.Container {
             this.loaded++;
             this.loading.text = 'Traveling to moon... ' + this.loaded + " days";
         });
-
-        loader.onComplete.add(() => {
-            this.loading.destroy();
-            this.showLogin();
-        });
     }
 
     showLogin() {
+        this.loading.destroy();
         const namefield = new TextInput({
             input: {
                 color: '#26272E'
@@ -47,16 +43,19 @@ export default class Splash extends PIXI.Container {
         login.buttonMode = true;
 
         login.on('pointerdown', () => {
-            this.onLogin(namefield.text)
-            this.destroy();
+            if (true) {
+                this.destroy();
+                ground.show();
+                panel.show();
+            }
         });
 
         this.addChild(login);
     }
 
-    onLogin(name) {
+    login(name) {
         if (name === "") {
-            return;
+            return false;
         }
 
         var Player = Parse.Object.extend("Player");
@@ -65,5 +64,7 @@ export default class Splash extends PIXI.Container {
         current.set("position", new Parse.GeoPoint({ latitude: 0.0, longitude: 0.0 }));
         current.save();
         global.currentPlayer = current;
+
+        return true;
     }
 }

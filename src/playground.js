@@ -11,17 +11,17 @@ export default class extends PIXI.Container {
         this.player = new Player();
     }
 
-    loaded(resources) {
+    show() {
         let map = new PIXI.Sprite(resources.basemap.texture);
         this.addChild(map);
 
-        this.player.loaded(resources);
         this.addChild(this.player);
+        this.player.show();
+
+        this.setTicker(app.ticker);
     }
 
     setTicker(ticker) {
-        this.player.setTicker(ticker);
-
         ticker.add(() => {
             var position = this.player.toGlobal(panel);
             this.x -= position.x - app.screen.width / 2;

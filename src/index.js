@@ -26,22 +26,19 @@ document.body.appendChild(app.view);
 
 
 /* Setup game */
-const ground = global.ground = new Playground();
-const panel = global.panel = new HUD();
-const splash = new Splash();
+global.ground = new Playground();
+global.panel = new HUD();
 
 app.stage.addChild(ground);
 app.stage.addChild(panel);
+
+const splash = new Splash();
 app.stage.addChild(splash);
 
 /* Load resources */
 const loader = PIXI.Loader.shared;
-
-splash.register(loader);
 loader.load((loader, resources) => {
-    ground.loaded(resources);
-    panel.loaded(resources);
-
-    ground.setTicker(app.ticker);
-    panel.setTicker(app.ticker);
+    global.resources = resources;
+    splash.showLogin();
 });
+splash.register(loader);

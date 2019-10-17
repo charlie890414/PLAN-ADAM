@@ -27,7 +27,7 @@ export default class HUD extends PIXI.Container {
     this.tester();
   }
 
-  loaded(resources) {
+  show() {
     this.helmet.loadIcon(resources);
     this.battery.loadIcon(resources);
     this.oxygen.loadIcon(resources);
