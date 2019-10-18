@@ -1,21 +1,21 @@
 import * as $ from 'jquery';
-import {PreviewSolar, PreviewPlanet} from './preview';
+import { Solar, Planet } from './';
 
 export default class welcome {
   static welcome(app) {
-    var rangeSlider = function(){
-        var slider = $('.range-slider'),
-            range = $('.range-slider input[type="range"]'),
-            value = $('.range-value');
-        slider.each(function(){
-            value.each(function(){
-                var value = $(this).prev().attr('value');
-                $(this).html(value);
-            });
-            range.on('input', function(){
-                $(this).next(value).html(this.value);
-            });
+    var rangeSlider = function () {
+      var slider = $('.range-slider'),
+        range = $('.range-slider input[type="range"]'),
+        value = $('.range-value');
+      slider.each(function () {
+        value.each(function () {
+          var value = $(this).prev().attr('value');
+          $(this).html(value);
         });
+        range.on('input', function () {
+          $(this).next(value).html(this.value);
+        });
+      });
     };
     rangeSlider();
 

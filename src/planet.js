@@ -1,12 +1,12 @@
 import * as PIXI from 'pixi.js';
 
-export class PreviewSolar extends  PIXI.Application {
+export class Star extends PIXI.Application {
     /**
      *
      * @param {number} w - 寬度
      * @param {number} h - 高度
      */
-    constructor(w,h){
+    constructor(w, h) {
         super({
             width: w,
             height: h,
@@ -25,18 +25,22 @@ export class PreviewSolar extends  PIXI.Application {
      * @param {number} param.temperature - 溫度
      * @param {number} param.spin - 自轉速度
      */
-    update(param) {
-        console.log(param);
+    static update(param) {
+        this.param = param;
+    }
+
+    static fetch() {
+        return this.param;
     }
 }
 
-export class PreviewPlanet extends  PIXI.Application {
+export class Planet extends PIXI.Application {
     /**
      *
      * @param {number} w - 寬度
      * @param {number} h - 高度
      */
-    constructor(w,h){
+    constructor(w, h) {
         super({
             width: w,
             height: h,
@@ -63,7 +67,11 @@ export class PreviewPlanet extends  PIXI.Application {
      * @param {number} param.spin - 自轉速度
      * @param {number} param.water - 水
      */
-    update(param) {
-        console.log(param);
+    static update(param) {
+        this.param = param;
+    }
+
+    static fetch() {
+        return this.param;
     }
 }
