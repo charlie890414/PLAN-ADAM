@@ -1,5 +1,5 @@
 import * as $ from 'jquery';
-import { Solar, Planet } from './';
+import { Star, Planet } from './planet';
 
 export default class welcome {
   static welcome(app) {
@@ -20,8 +20,8 @@ export default class welcome {
     rangeSlider();
 
     this.preview = {
-      star: new PreviewSolar({w: 500, h: 250}),
-      planet: new PreviewPlanet({w: 500, h: 250})
+      star: new Star({ w: 500, h: 250 }),
+      planet: new Planet({ w: 500, h: 250 })
     }
 
     let el1 = document.createElement('canvas');
