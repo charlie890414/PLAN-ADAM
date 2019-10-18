@@ -14,7 +14,8 @@ export default class extends PIXI.Container {
         this.player.x = this.land.width / 4;
         this.player.y = this.land.height / 2;
     }
-    maskmove() {
+    maskmove(delta) {
+        this.mask_mx = (this.width / ((this.hour / this.timespeed) * 3600)) / delta / 60;
         this.mask_pos_x += this.mask_mx;
         if (this.mask_pos_x > this.land.width + (this.land.width * 1) / 4) this.mask_pos_x = -(this.land.width * 1) / 4;
         if ((this.land.width / 4) > Math.abs(this.player.x - this.mask_pos_x)) {
@@ -32,7 +33,6 @@ export default class extends PIXI.Container {
         this.sunmask.alpha = 0;
         this.hour = 1;
         this.timespeed = 360;
-        this.mask_mx = (this.width / ((this.hour / this.timespeed) * 3600)) / 60;
         this.mask_pos_x = (this.land.width * 3) / 4;
         this.addChild(this.sunmask);
     }
@@ -47,11 +47,13 @@ export default class extends PIXI.Container {
 
     setTicker(ticker) {
         ticker.add(() => {
-            this.maskmove();
             var position = this.player.toGlobal(panel);
             this.x -= position.x - app.screen.width / 2;
             this.y -= position.y - app.screen.height / 2;
             panel.meta.update({ speed: this.x, omega: this.y, period: 100 });
+        });
+        ticker.add((delta) => {
+            this.maskmove(delta);
         });
     }
 }
