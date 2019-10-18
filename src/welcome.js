@@ -20,9 +20,16 @@ export default class welcome {
     rangeSlider();
 
     this.preview = {
-      star: new PreviewSolar(),
-      planet: new PreviewPlanet()
+      star: new PreviewSolar({w: 500, h: 250}),
+      planet: new PreviewPlanet({w: 500, h: 250})
     }
+
+    let el1 = document.createElement('canvas');
+    let el2 = document.createElement('canvas');
+    $('#star .model').append(el1);
+    $('#planet .model').append(el2);
+    el1.width = el2.width = 500;
+    el1.height = el2.height = 250;
 
     $('#star').on('input', 'input[type=range]', () => {
       this.preview.star.update({
@@ -30,7 +37,8 @@ export default class welcome {
         mass: $('#star-mass').val(),
         water: $('#star-water').val(),
         temperature: $('#star-temperature').val(),
-        spin: $('#star-spin').val()
+        spin: $('#star-spin').val(),
+        el: el1
       })
     })
 
@@ -48,8 +56,14 @@ export default class welcome {
         methane: $('#planet-methane').val(),
         iron: $('#planet-iron').val(),
         copper: $('#planet-copper').val(),
-        spin: $('#planet-spin').val()
+        spin: $('#planet-spin').val(),
+        el: el2
       })
+    })
+
+    $('#submit').on('click', function () {
+      $('#app').remove();
+      app();
     })
   }
 }

@@ -126,3 +126,10 @@ html, body {
   position: relative;
   transform: scale(0.8);
 }
+
+.buttons {
+  position: absolute;
+  bottom: 10px;
+  left: 50%;
+  transform: translateX(-50%);
+}
