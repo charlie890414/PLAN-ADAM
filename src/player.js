@@ -1,5 +1,4 @@
 import * as PIXI from 'pixi.js';
-import Parse from 'parse';
 import Keyboard from 'pixi.js-keyboard';
 
 export default class extends PIXI.Sprite {
@@ -8,6 +7,7 @@ export default class extends PIXI.Sprite {
 
         PIXI.Loader.shared
             .add('astronaut_0', 'astronaut_0.png')
+        this.nx = this.ny = 0;
     }
 
     show(resources) {
@@ -32,21 +32,21 @@ export default class extends PIXI.Sprite {
     }
 
     walk() {
-        const speed = 5;
-        var nextX = this.x, nextY = this.y;
+        const speed = 100;
 
         if (Keyboard.isKeyDown('ArrowLeft', 'KeyA'))
-            nextX -= speed;
+            this.nx -= speed;
         if (Keyboard.isKeyDown('ArrowRight', 'KeyD'))
-            nextX += speed;
+            this.nx += speed;
         if (Keyboard.isKeyDown('ArrowUp', 'KeyW'))
-            nextY -= speed;
+            this.ny -= speed;
         if (Keyboard.isKeyDown('ArrowDown', 'KeyS'))
-            nextY += speed;
+            this.ny += speed;
 
-        if (nextX != this.x || nextY != this.y) {
-            this.x = nextX;
-            this.y = nextY;
-        }
+        this.x += this.nx;
+        this.y += this.ny;
+
+        this.nx /= 980;
+        this.ny /= 980;
     }
 }
