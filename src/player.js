@@ -7,7 +7,7 @@ export default class extends PIXI.Sprite {
 
         PIXI.Loader.shared
             .add('astronaut_0', 'astronaut_0.png')
-        this.nx = this.ny = 0;
+        this.vx = this.vy = 0;
     }
 
     show(resources) {
@@ -21,32 +21,29 @@ export default class extends PIXI.Sprite {
     }
 
     setTicker(ticker) {
-        ticker.add(() => {
+        ticker.add((delta) => {
             const mouse = app.renderer.plugins.interaction.mouse.global;
             var position = this.toGlobal(panel);
             this.rotation = Math.atan2(position.y - mouse.y, position.x - mouse.x);
 
-            this.walk();
+            this.walk(delta);
             Keyboard.update();
         });
     }
 
-    walk() {
-        const speed = 100;
+    walk(delta) {
+        const speed = 100 / delta / 60;
 
         if (Keyboard.isKeyDown('ArrowLeft', 'KeyA'))
-            this.nx -= speed;
+            this.vx -= speed;
         if (Keyboard.isKeyDown('ArrowRight', 'KeyD'))
-            this.nx += speed;
+            this.vx += speed;
         if (Keyboard.isKeyDown('ArrowUp', 'KeyW'))
-            this.ny -= speed;
+            this.vy -= speed;
         if (Keyboard.isKeyDown('ArrowDown', 'KeyS'))
-            this.ny += speed;
+            this.vy += speed;
 
-        this.x += this.nx;
-        this.y += this.ny;
-
-        this.nx /= 980;
-        this.ny /= 980;
+        this.x += this.vx / delta / 60;
+        this.y += this.vy / delta / 60;
     }
 }
