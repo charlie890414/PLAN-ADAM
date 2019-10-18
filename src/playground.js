@@ -13,15 +13,12 @@ export default class extends PIXI.Container {
         this.HUD = HUD;
     }
 
-    loader(resources) {
+    show(resources) {
         this.map = new PIXI.Sprite(resources.basemap.texture);
-        this.player.loader(resources);
         this.addChild(this.map);
-    }
 
-    show() {
         this.addChild(this.player);
-        this.player.show();
+        this.player.show(resources);
 
         this.setTicker(this.app.ticker);
     }

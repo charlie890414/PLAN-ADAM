@@ -2,49 +2,38 @@ const Parse = require('parse');
 import * as PIXI from 'pixi.js';
 import Playground from './playground';
 import HUD from './hud';
-import Splash from './splash';
 
-class Game {
-    constructor() {
-        /* Init Parse SDK */
-        Parse.initialize("NASA_2019_SEAL", "SBsm7FTJdh4TdgDt");
-        Parse.serverURL = 'http://140.115.50.100:1337/parse';
+function startGame() {
+    /* Init Parse SDK */
+    Parse.initialize("NASA_2019_SEAL", "SBsm7FTJdh4TdgDt");
+    Parse.serverURL = 'http://140.115.50.100:1337/parse';
 
-        /* Init PIXI JS */
-        this.type = PIXI.utils.isWebGLSupported() ? 'WebGL' : 'canvas';
-        this.app = new PIXI.Application({
-            antialias: true,
-            transparent: false,
-            resolution: 1,
-            resizeTo: window
-        });
+    /* Init PIXI JS */
+    this.type = PIXI.utils.isWebGLSupported() ? 'WebGL' : 'canvas';
+    PIXI.utils.sayHello(this.type);
 
-        PIXI.utils.sayHello(this.type);
-        document.body.appendChild(this.app.view);
+    this.app = new PIXI.Application({
+        antialias: true,
+        transparent: false,
+        resolution: 1,
+        resizeTo: window
+    });
 
-        /* Setup game */
-        this.HUD = new HUD(this.app);
-        this.splash = new Splash(this.app);
-        this.ground = new Playground(this.app, this.HUD);
+    document.body.appendChild(this.app.view);
 
-        this.app.stage.addChild(this.HUD);
-        this.app.stage.addChild(this.splash);
-        this.app.stage.addChild(this.ground);
+    /* Setup game */
+    this.HUD = new HUD(this.app);
+    this.ground = new Playground(this.app, this.HUD);
 
-        /* Load resources */
-        const loader = PIXI.Loader.shared;
-        loader.load((loader, resources) => {
-            this.HUD.loader(resources);
-            this.ground.loader(resources);
-        });
-    }
+    this.app.stage.addChild(this.ground);
+    this.app.stage.addChild(this.HUD);
 
-    start() {
-        this.HUD.show();
-        this.ground.show();
-    }
+    /* Load resources */
+    const loader = PIXI.Loader.shared;
+    loader.load((loader, resources) => {
+        this.HUD.show(resources);
+        this.ground.show(resources);
+    });
 }
 
-let game = new Game();
-
-game.start();
+startGame();

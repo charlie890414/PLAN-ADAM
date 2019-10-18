@@ -24,13 +24,10 @@ export default class HUD extends PIXI.Container {
 
   }
 
-  loader(resources) {
+  show(resources) {
     this.helmet.loadIcon(resources);
     this.battery.loadIcon(resources);
     this.oxygen.loadIcon(resources);
-  }
-
-  show() {
 
     this.addChild(
       this.helmet.view,

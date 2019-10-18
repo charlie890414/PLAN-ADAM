@@ -13,11 +13,9 @@ export default class extends PIXI.Sprite {
         this.HUD = HUD;
     }
 
-    loader(resources) {
+    show(resources) {
         this.texture = resources.astronaut_0.texture;
-    }
 
-    show() {
         this.height = 100;
         this.width = 100;
         this.anchor.set(0.5);
@@ -52,10 +50,6 @@ export default class extends PIXI.Sprite {
         if (nextX != this.x || nextY != this.y) {
             this.x = nextX;
             this.y = nextY;
-
-            currentPlayer.set("x", this.x);
-            currentPlayer.set("y", this.y);
-            currentPlayer.save();
         }
     }
 }
