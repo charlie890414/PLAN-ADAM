@@ -1,4 +1,10 @@
 import * as PIXI from 'pixi.js';
+import {
+    MIX_COLOR
+} from './color';
+import {
+    Application
+} from './draw';
 
 export class Star extends PIXI.Application {
     /**
@@ -71,6 +77,9 @@ export class Planet extends PIXI.Application {
     static update(param) {
         this.param = param;
         console.log(param);
+        let SOLID_COLOR, LIQUID_COLOR, GAS_COLOR = MIX_COLOR(param);
+        let pic = new Application();
+        pic.update();
     }
 
     static fetch() {

@@ -12,13 +12,14 @@ module.exports = {
         contentBase: './dist',
     },
     module: {
-        rules: [
-            {
-                test: /\.(png|svg|jpg|gif)$/,
-                use: [
-                    'file-loader',
-                ],
-            }
-        ]
+        rules: [{
+            test: /\.(png|svg|jpg|gif)$/,
+            use: [
+                'file-loader',
+            ],
+        }]
+    },
+    node: {
+        fs: 'empty'
     }
 };
