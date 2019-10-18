@@ -4,16 +4,17 @@ import Player from './player';
 export default class extends PIXI.Container {
     constructor() {
         super();
-        // Chainable `add` to enqueue a resource
-        PIXI.Loader.shared
-            .add('basemap', 'basemap.jpg')
+
+        this.land = new PIXI.Sprite(PIXI.Texture.WHITE)
+        this.land.width = 16000;
+        this.land.height = 4000;
+        this.land.tint = 0xcd7f32;
 
         this.player = new Player();
     }
 
     show(resources) {
-        this.map = new PIXI.Sprite(resources.basemap.texture);
-        this.addChild(this.map);
+        this.addChild(this.land);
 
         this.addChild(this.player);
         this.player.show(resources);
