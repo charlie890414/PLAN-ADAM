@@ -4,18 +4,168 @@
 <head>
     <meta charset="utf-8">
     <title>PLAN-ADAM</title>
-    <style>
-        body {
-            height: 100%;
-            overflow: hidden;
-            margin: 0;
-            padding: 0;
-        }
-    </style>
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/range.css">
+    <link rel="stylesheet" href="css/main.css">
 </head>
 
 <body>
+    <div id="app">
+        <div id="welcome">
+            <div id="star" class="ball">
+                <div class="model"></div>
+                <div class="configs">
+                    <div class="config">
+                        <label for="star-radius">半徑</label>
+                        <div class="range-slider">
+                            <input id="star-radius" type="range" value="55" min="1" max="100000">
+                            <span class="range-value" style="width: 150px;">0</span><span class="unit">KM</span>
+                        </div>
+                    </div>
+                    <div class="config">
+                        <label for="star-mass">質量</label>
+                        <div class="range-slider">
+                            <input id="star-mass" type="range" value="55" min="1" max="265">
+                            <span class="range-value" style="width: 130px;">0</span><span class="unit">M☉</span>
+                        </div>
+                    </div>
+                    <div class="config">
+                        <label for="star-water">水</label>
+                        <div class="range-slider">
+                            <input id="star-water" type="range" value="55" min="0" max="100">
+                            <span class="range-value">0</span><span class="unit">%</span>
+                        </div>
+                    </div>
+                    <div class="config">
+                        <label for="star-temperature">溫度</label>
+                        <div class="range-slider">
+                            <input id="star-temperature" type="range" value="55" min="2200" max="33000">
+                            <span class="range-value" style="width: 150px;">0</span><span class="unit">K</span>
+                        </div>
+                    </div>
+                    <div class="config">
+                        <label for="star-spin">自轉速度</label>
+                        <div class="range-slider">
+                            <input id="star-spin" type="range" value="55" min="0" max="100">
+                            <span class="range-value">0</span><span class="unit">%</span>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+            <div id="division">
+
+            </div>
+            <div id="planet" class="ball">
+                <div class="model"></div>
+                <div class="configs">
+                    <div class="config config-g">
+                        <label for="planet-radius">半徑</label>
+                        <div class="range-slider  range-slider-g">
+                            <input id="planet-radius" type="range" value="55" min="1" max="100000">
+                            <span class="range-value" style="width: 150px;">0</span><span class="unit">KM</span>
+                        </div>
+                    </div>
+                    <div class="config config-g">
+                        <label for="planet-mass">質量</label>
+                        <div class="range-slider  range-slider-g">
+                            <input id="planet-mass" type="range" value="55" min="1" max="265">
+                            <span class="range-value" style="width: 130px;">0</span><span class="unit">M☉</span>
+                        </div>
+                    </div>
+                    <div class="config config-g">
+                        <label for="planet-water">水</label>
+                        <div class="range-slider  range-slider-g">
+                            <input id="planet-water" type="range" value="55" min="0" max="100">
+                            <span class="range-value">0</span><span class="unit">%</span>
+                        </div>
+                    </div>
+                    <div class="config config-g">
+                        <label for="">氣體</label>
+                        <div class="ver-division ver-division-g"></div>
+                        <div class="config config-g config-next">
+                            <label for="planet-oxygen">氧</label>
+                            <div class="range-slider  range-slider-g">
+                                <input id="planet-oxygen" type="range" value="55" min="0" max="100">
+                                <span class="range-value">0</span><span class="unit">%</span>
+                            </div>
+                        </div>
+                        <div class="config config-g config-next">
+                            <label for="planet-nitro">氮</label>
+                            <div class="range-slider  range-slider-g">
+                                <input id="planet-nitro" type="range" value="55" min="0" max="100">
+                                <span class="range-value">0</span><span class="unit">%</span>
+                            </div>
+                        </div>
+                        <div class="config config-g config-next">
+                            <label for="planet-hydrogen">氫</label>
+                            <div class="range-slider  range-slider-g">
+                                <input id="planet-hydrogen" type="range" value="55" min="0" max="100">
+                                <span class="range-value">0</span><span class="unit">%</span>
+                            </div>
+                        </div>
+                        <div class="config config-g config-next">
+                            <label for="planet-chlorine">氯</label>
+                            <div class="range-slider  range-slider-g">
+                                <input id="planet-chlorine" type="range" value="55" min="0" max="100">
+                                <span class="range-value">0</span><span class="unit">%</span>
+                            </div>
+                        </div>
+                        <div class="config config-g config-next">
+                            <label for="planet-nto">二氧化氮</label>
+                            <div class="range-slider  range-slider-g">
+                                <input id="planet-nto" type="range" value="55" min="0" max="100">
+                                <span class="range-value">0</span><span class="unit">%</span>
+                            </div>
+                        </div>
+                        <div class="config config-g config-next">
+                            <label for="planet-cot">二氧化碳</label>
+                            <div class="range-slider  range-slider-g">
+                                <input id="planet-cot" type="range" value="55" min="0" max="100">
+                                <span class="range-value">0</span><span class="unit">%</span>
+                            </div>
+                        </div>
+                        <div class="config config-g config-next">
+                            <label for="planet-methane">甲烷</label>
+                            <div class="range-slider  range-slider-g">
+                                <input id="planet-methane" type="range" value="55" min="0" max="100">
+                                <span class="range-value">0</span><span class="unit">%</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="config config-g">
+                        <label for="">金屬</label>
+                        <div class="ver-division ver-division-g"></div>
+                        <div class="config config-g config-next">
+                            <label for="planet-iron">鐵</label>
+                            <div class="range-slider  range-slider-g">
+                                <input id="planet-iron" type="range" value="55" min="0" max="100">
+                                <span class="range-value">0</span><span class="unit">%</span>
+                            </div>
+                        </div>
+                        <div class="config config-g config-next">
+                            <label for="planet-copper">銅</label>
+                            <div class="range-slider  range-slider-g">
+                                <input id="planet-copper" type="range" value="55" min="0" max="100">
+                                <span class="range-value">0</span><span class="unit">%</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="config config-g">
+                        <label for="planet-spin">自轉速度</label>
+                        <div class="range-slider  range-slider-g">
+                            <input id="planet-spin" type="range" value="55" min="0" max="100">
+                            <span class="range-value">0</span><span class="unit">%</span>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+    </div>
     <script src="bundle.js" type="text/javascript"></script>
+    <script src="js/bootstrap.min.js"></script>
 </body>
 
 </html>

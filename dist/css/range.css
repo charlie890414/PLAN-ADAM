@@ -1,0 +1,83 @@
+:root{
+  --white: #fff;
+  --main-color: #d63031;
+  --mc2: #10ac84;
+}
+.demo{ background-color: #63e8c4; padding: 2em 0}
+.range-slider{
+  background-color: var(--white);
+  border-radius: 15px;
+  padding: 27px 0 0 20px;
+  margin: 30px 0 0 0;
+  display: inline-block;
+}
+.range-slider input[type="range"]{
+  background: var(--main-color);
+  width: calc(100% - (85px));
+  height: 7px;
+  border-radius: 5px;
+  outline: none;
+  float: left;
+  -webkit-appearance: none;
+  position: relative;
+}
+.range-slider-g input[type="range"]{
+  background: var(--mc2);
+}
+.range-slider input[type="range"]::-webkit-slider-thumb{
+  background: var(--white);
+  width: 32px;
+  height: 32px;
+  border: 4px solid var(--main-color);
+  border-radius: 50%;
+  cursor: pointer;
+  transition: all 0.15s ease-in-out 0s;
+  -webkit-appearance: none;
+  appearance: none;
+}
+.range-slider-g input[type="range"]::-webkit-slider-thumb{
+  border: 4px solid var(--mc2);
+}
+.range-slider input[type="range"]::-webkit-slider-thumb:hover,
+.range-slider input[type="range"]:active::-webkit-slider-thumb{
+  box-shadow: 0 0 0 2px var(--white), 0 0 10px #000;
+}
+.range-slider input[type="range"]::-moz-range-thumb{
+  background: var(--white);
+  width: 25px;
+  height: 25px;
+  cursor: pointer;
+  border: 4px solid var(--main-color);
+  border-radius: 50%;
+  transition: all 0.15s ease-in-out 0s;
+}
+
+.range-slider input[type="range"]::-moz-range-thumb:hover,
+.range-slider input[type="range"]:active::-moz-range-thumb{
+  box-shadow: 0 0 0 2px var(--white), 0 0 10px #000;
+}
+.range-slider .range-value{
+  color: var(--white);
+  background: var(--main-color);
+  font-size: 20px;
+  font-weight: 600;
+  text-align: left;
+  line-height: 35px;
+  width: 110px;
+  height: 35px;
+  padding: 0 15px 0 10px;
+  margin-left: 5px;
+  border-radius: 15px;
+  display: inline-block;
+  position: relative;
+  top: -14px;
+  -webkit-clip-path: polygon(0% 0%, 75% 0%, 100% 50%, 75% 100%, 0% 100%);
+  clip-path: polygon(0% 0%, 75% 0%, 100% 50%, 75% 100%, 0% 100%);
+}
+.range-slider-g .range-value{
+  background: var(--mc2);
+}
+::-moz-range-track{
+  background: transparent;
+  border: 0;
+}

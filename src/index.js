@@ -1,6 +1,7 @@
 import * as PIXI from 'pixi.js';
 import Playground from './playground';
 import HUD from './hud';
+import Welcome from './welcome';
 
 function startGame() {
 
@@ -32,4 +33,4 @@ function startGame() {
     });
 }
 
-startGame();
+Welcome.welcome(startGame);
