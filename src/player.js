@@ -2,14 +2,11 @@ import * as PIXI from 'pixi.js';
 import Keyboard from 'pixi.js-keyboard';
 
 export default class extends PIXI.Sprite {
-    constructor(app, HUD) {
+    constructor() {
         super();
 
         PIXI.Loader.shared
             .add('astronaut_0', 'astronaut_0.png')
-
-        this.app = app;
-        this.HUD = HUD;
     }
 
     show(resources) {
@@ -19,13 +16,13 @@ export default class extends PIXI.Sprite {
         this.width = 100;
         this.anchor.set(0.5);
 
-        this.setTicker(this.app.ticker);
+        this.setTicker(app.ticker);
     }
 
     setTicker(ticker) {
         ticker.add(() => {
-            const mouse = this.app.renderer.plugins.interaction.mouse.global;
-            var position = this.toGlobal(this.HUD);
+            const mouse = app.renderer.plugins.interaction.mouse.global;
+            var position = this.toGlobal(panel);
             this.rotation = Math.atan2(position.y - mouse.y, position.x - mouse.x);
 
             this.walk();

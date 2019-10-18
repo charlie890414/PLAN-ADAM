@@ -5,30 +5,30 @@ import HUD from './hud';
 function startGame() {
 
     /* Init PIXI JS */
-    this.type = PIXI.utils.isWebGLSupported() ? 'WebGL' : 'canvas';
-    PIXI.utils.sayHello(this.type);
+    const type = PIXI.utils.isWebGLSupported() ? 'WebGL' : 'canvas';
+    PIXI.utils.sayHello(type);
 
-    this.app = new PIXI.Application({
+    global.app = new PIXI.Application({
         antialias: true,
         transparent: false,
         resolution: 1,
         resizeTo: window
     });
 
-    document.body.appendChild(this.app.view);
+    document.body.appendChild(app.view);
 
     /* Setup game */
-    this.HUD = new HUD(this.app);
-    this.ground = new Playground(this.app, this.HUD);
+    global.panel = new HUD();
+    global.ground = new Playground();
 
-    this.app.stage.addChild(this.ground);
-    this.app.stage.addChild(this.HUD);
+    app.stage.addChild(ground);
+    app.stage.addChild(panel);
 
     /* Load resources */
     const loader = PIXI.Loader.shared;
     loader.load((loader, resources) => {
-        this.HUD.show(resources);
-        this.ground.show(resources);
+        panel.show(resources);
+        ground.show(resources);
     });
 }
 

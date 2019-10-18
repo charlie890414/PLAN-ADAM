@@ -2,15 +2,13 @@ import * as PIXI from 'pixi.js';
 import Player from './player';
 
 export default class extends PIXI.Container {
-    constructor(app, HUD) {
+    constructor() {
         super();
         // Chainable `add` to enqueue a resource
         PIXI.Loader.shared
             .add('basemap', 'basemap.jpg')
 
-        this.player = new Player(app, HUD);
-        this.app = app;
-        this.HUD = HUD;
+        this.player = new Player();
     }
 
     show(resources) {
@@ -20,14 +18,14 @@ export default class extends PIXI.Container {
         this.addChild(this.player);
         this.player.show(resources);
 
-        this.setTicker(this.app.ticker);
+        this.setTicker(app.ticker);
     }
 
     setTicker(ticker) {
         ticker.add(() => {
-            var position = this.player.toGlobal(this.HUD);
-            this.x -= position.x - this.app.screen.width / 2;
-            this.y -= position.y - this.app.screen.height / 2;
+            var position = this.player.toGlobal(panel);
+            this.x -= position.x - app.screen.width / 2;
+            this.y -= position.y - app.screen.height / 2;
         });
     }
 }

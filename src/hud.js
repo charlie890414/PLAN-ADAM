@@ -3,14 +3,12 @@ import * as PIXI from 'pixi.js'
 import { DropShadowFilter } from 'pixi-filters'
 
 export default class HUD extends PIXI.Container {
-  constructor(app) {
+  constructor() {
     super();
 
     PIXI.Loader.shared.add('helmet', 'helmet.png');
     PIXI.Loader.shared.add('battery', 'battery-full.png');
     PIXI.Loader.shared.add('oxygen', 'diving.png');
-
-    this.app = app;
 
     this.unit = { w: app.screen.width / 16, h: app.screen.height / 16 };
     this.helmet = this.newBar({ x: -460, y: -200, icon: 'helmet' });
@@ -42,7 +40,6 @@ export default class HUD extends PIXI.Container {
 
   newBar(param = {}) {
     const { x, y, width = 200, height = 30, color = 0x3498db, alpha = 0.7, icon } = param;
-    const app = this.app;
     return new (function () {
       let value = 100;
 
@@ -136,7 +133,6 @@ export default class HUD extends PIXI.Container {
   newAlert(param = {}) {
     const { color = 0xe74c3c } = param;
     const HUD = this;
-    const app = this.app;
     return new (function () {
       this.init = function () {
         this.view = new PIXI.Graphics();
