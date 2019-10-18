@@ -32,7 +32,7 @@ export default class welcome {
     el1.height = el2.height = 250;
 
     $('#star').on('input', 'input[type=range]', () => {
-      this.preview.star.update({
+      Star.update({
         radius: $('#star-radius').val(),
         mass: $('#star-mass').val(),
         water: $('#star-water').val(),
@@ -43,7 +43,7 @@ export default class welcome {
     })
 
     $('#planet input[type=range]').on('input', () => {
-      this.preview.planet.update({
+      Planet.update({
         radius: $('#planet-radius').val(),
         mass: $('#planet-mass').val(),
         water: $('#planet-water').val(),

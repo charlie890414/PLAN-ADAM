@@ -27,6 +27,7 @@ export class Star extends PIXI.Application {
      */
     static update(param) {
         this.param = param;
+        console.log(param);
     }
 
     static fetch() {
@@ -69,6 +70,7 @@ export class Planet extends PIXI.Application {
      */
     static update(param) {
         this.param = param;
+        console.log(param);
     }
 
     static fetch() {
