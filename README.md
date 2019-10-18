@@ -6,7 +6,7 @@ This is a IO game with *very realistic simulation*.
 
 The environment setting in this game is at the 50th anniversary of human migration to moon...
 
-The simulator is powered by [PixiJS](https://www.pixijs.com/) and [Parse](https://docs.parseplatform.org/js/guide/)
+The simulator is powered by [PixiJS](https://www.pixijs.com/)
 
 ## Development
 

@@ -1,5 +1,4 @@
 import * as PIXI from 'pixi.js'
-import * as Parse from 'parse'
 
 import { DropShadowFilter } from 'pixi-filters'
 

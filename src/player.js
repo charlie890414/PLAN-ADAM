@@ -1,5 +1,4 @@
 import * as PIXI from 'pixi.js';
-import Parse from 'parse';
 import Keyboard from 'pixi.js-keyboard';
 
 export default class extends PIXI.Sprite {
