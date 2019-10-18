@@ -2,30 +2,35 @@ import * as PIXI from 'pixi.js';
 import Player from './player';
 
 export default class extends PIXI.Container {
-    constructor() {
+    constructor(app, HUD) {
         super();
         // Chainable `add` to enqueue a resource
         PIXI.Loader.shared
             .add('basemap', 'basemap.jpg')
 
-        this.player = new Player();
+        this.player = new Player(app, HUD);
+        this.app = app;
+        this.HUD = HUD;
+    }
+
+    loader(resources) {
+        this.map = new PIXI.Sprite(resources.basemap.texture);
+        this.player.loader(resources);
+        this.addChild(this.map);
     }
 
     show() {
-        let map = new PIXI.Sprite(resources.basemap.texture);
-        this.addChild(map);
-
         this.addChild(this.player);
         this.player.show();
 
-        this.setTicker(app.ticker);
+        this.setTicker(this.app.ticker);
     }
 
     setTicker(ticker) {
         ticker.add(() => {
-            var position = this.player.toGlobal(panel);
-            this.x -= position.x - app.screen.width / 2;
-            this.y -= position.y - app.screen.height / 2;
+            var position = this.player.toGlobal(this.HUD);
+            this.x -= position.x - this.app.screen.width / 2;
+            this.y -= position.y - this.app.screen.height / 2;
         });
     }
 }

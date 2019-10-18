@@ -3,26 +3,32 @@ import Parse from 'parse';
 import Keyboard from 'pixi.js-keyboard';
 
 export default class extends PIXI.Sprite {
-    constructor() {
+    constructor(app, HUD) {
         super();
 
         PIXI.Loader.shared
             .add('astronaut_0', 'astronaut_0.png')
+
+        this.app = app;
+        this.HUD = HUD;
+    }
+
+    loader(resources) {
+        this.texture = resources.astronaut_0.texture;
     }
 
     show() {
-        this.texture = resources.astronaut_0.texture;
         this.height = 100;
         this.width = 100;
         this.anchor.set(0.5);
 
-        this.setTicker(app.ticker);
+        this.setTicker(this.app.ticker);
     }
 
     setTicker(ticker) {
         ticker.add(() => {
-            const mouse = app.renderer.plugins.interaction.mouse.global;
-            var position = this.toGlobal(panel);
+            const mouse = this.app.renderer.plugins.interaction.mouse.global;
+            var position = this.toGlobal(this.HUD);
             this.rotation = Math.atan2(position.y - mouse.y, position.x - mouse.x);
 
             this.walk();
