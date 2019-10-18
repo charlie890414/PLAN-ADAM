@@ -1,4 +1,5 @@
 import * as PIXI from 'pixi.js';
+import Parse from 'parse';
 import Keyboard from 'pixi.js-keyboard';
 
 export default class extends PIXI.Sprite {
@@ -12,8 +13,8 @@ export default class extends PIXI.Sprite {
     show(resources) {
         this.texture = resources.astronaut_0.texture;
 
-        this.height = 100;
-        this.width = 100;
+        this.width = this.texture.width / 10;
+        this.height = this.texture.height / 10;
         this.anchor.set(0.5);
 
         this.setTicker(app.ticker);
