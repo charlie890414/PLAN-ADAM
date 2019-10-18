@@ -62,7 +62,6 @@ export default class welcome {
     })
 
     $('#submit').on('click', function () {
-      $('#app').remove();
       app();
     })
   }
