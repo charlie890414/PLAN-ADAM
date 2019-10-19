@@ -1,26 +1,8 @@
 import * as PIXI from 'pixi.js';
-import {
-    MIX_COLOR
-} from './color';
-import {
-    Application
-} from './draw';
+import { MIX_COLOR } from './color';
+import { Application } from './draw';
 
-export class Star extends PIXI.Application {
-    /**
-     *
-     * @param {number} w - 寬度
-     * @param {number} h - 高度
-     */
-    constructor(w, h) {
-        super({
-            width: w,
-            height: h,
-            antialias: true,
-            transparent: false,
-            resolution: 1
-        });
-    }
+export class Star {
 
     /**
      * 更新預覽
@@ -36,27 +18,16 @@ export class Star extends PIXI.Application {
         console.log(param);
     }
 
+    /**
+     * @returns {Objec} Object same as update
+     */
     static fetch() {
         this.param.g = (((6.67 * 10) ^ -11) * this.param.mass) / this.radius ^ 2
         return this.param;
     }
 }
 
-export class Planet extends PIXI.Application {
-    /**
-     *
-     * @param {number} w - 寬度
-     * @param {number} h - 高度
-     */
-    constructor(w, h) {
-        super({
-            width: w,
-            height: h,
-            antialias: true,
-            transparent: false,
-            resolution: 1
-        });
-    }
+export class Planet {
 
     /**
      * 更新預覽
@@ -74,15 +45,20 @@ export class Planet extends PIXI.Application {
      * @param {number} param.copper - 銅
      * @param {number} param.spin - 自轉速度
      * @param {number} param.water - 水
+     * @param {number} param.distance - 距離
+     * @param {number} param.angular - 角速度
      */
     static update(param) {
         this.param = param;
         console.log(param);
         let SOLID_COLOR, LIQUID_COLOR, GAS_COLOR = MIX_COLOR(param);
-        let pic = new Application();
-        pic.update();
+        drawPlanet.controls.cloudColor = GAS_COLOR;
+        drawPlanet.controls.render();
     }
 
+    /**
+     * @returns {Objec} Object same as update
+     */
     static fetch() {
         this.param.g = (((6.67 * 10) ^ -11) * this.param.mass) / this.radius ^ 2;
         return this.param;
