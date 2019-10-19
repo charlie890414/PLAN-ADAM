@@ -84,7 +84,7 @@ class MiniMap extends PIXI.Container {
   }
 
   move(delta) {
-    const EPS = 0.5;
+    const EPS = 0.5 * Planet.fetch().mass;
     const pos = this.pos;
     const vel = this.vec;
 
