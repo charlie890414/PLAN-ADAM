@@ -14,9 +14,9 @@ export class Star {
      * @param {number} param.spin - 自轉速度
      */
     static update(data) {
-        drawStar.controls.cloudColor = '#' + data.color.toString(16);
-        drawStar.controls.landColor1 = '#' + data.color.toString(16);
-        drawStar.controls.landColor2 = '#' + (data.color + (Math.random() * 500 - 250)).toString(16);
+        drawStar.controls.cloudColor = '#' + data.color.toString(16).padStart(6, '0');
+        drawStar.controls.landColor1 = '#' + data.color.toString(16).padStart(6, '0');
+        drawStar.controls.landColor2 = '#' + (parseInt(data.color + (Math.random() * 100 - 50))).toString(16).padStart(6, '0');
         drawStar.controls.render();
     }
 
