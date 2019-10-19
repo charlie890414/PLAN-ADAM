@@ -54,12 +54,13 @@ html, body {
   padding: 50px 0 0 60px;
   max-height: 630px;
   overflow-y: auto;
-  margin: 50px;
+  margin: 50px 50px 0 0;
 }
 
 .configs {
   max-height: 50%;
   overflow-y: auto;
+  margin-top: 20px;
 }
 
 .config > label {
@@ -72,7 +73,7 @@ html, body {
 .buttons {
   position: absolute;
   right: 20px;
-  top: 15px;
+  bottom: 15px;
 }
 .green-planet .range-slider .range-value,
 .green-planet .range-slider input[type="range"] {
@@ -215,4 +216,8 @@ html, body {
 
 .future-feature {
   position: relative;
+}
+
+.model > canvas {
+  filter: drop-shadow(5px 10px 6px #555);
 }
