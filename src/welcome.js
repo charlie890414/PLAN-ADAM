@@ -53,7 +53,7 @@ export default class welcome {
         angular: $('#planet-angular').val()
       })
     })
-
+    $('#planet input[type=range], #star input[type=range]').change();
     $('#submit').on('click', function () {
       app();
     })

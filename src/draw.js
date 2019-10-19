@@ -182,8 +182,8 @@ class Controls {
         this.surfacesFalloff = 1;
         this.surfacesIntensity = 1;
 
-        this.landColor1 = "#e6af7e";
-        this.landColor2 = "#007200";
+        this.landColor1 = "#a37c6e";
+        this.landColor2 = "#6b3024";
         this.landiScale = 2;
         this.landiOctaves = 1;
         this.landiFalloff = 1;
@@ -194,13 +194,13 @@ class Controls {
         this.landsFalloff = 1;
         this.landsIntensity = 1;
 
-        this.waterDeep = "#000055";
-        this.waterShallow = "#0000ff";
+        this.waterDeep = "#f4b35b";
+        this.waterShallow = "#6e1f10";
         this.waterLevel = 0.68;
         this.waterSpecular = 1;
         this.waterFalloff = 1;
 
-        this.cloudColor = "#ffffff";
+        this.cloudColor = "#ff0000";
         this.cloudOpacity = 1;
         this.cloudiScale = 0.5;
         this.cloudiOctaves = 2;
