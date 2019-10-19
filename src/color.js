@@ -52,32 +52,33 @@ let GAS_COLOR_MAP = {
 };
 
 function HEX_TO_COLOR(HEX) {
-    return "#" + HEX.toString(16).replace("0x", "");
+    console.log(HEX);
+    return "#" + parseInt(HEX).toString(16).replace("0x", "");
 }
 // HEX_TO_COLOR(0xffffff);
 
 function CHEMICAL(composition) {
-    let ferric_oxide = 0;
-    let iron = composition.iron / 56;
-    let oxygen = composition.oxygen / 32;
-    let water = composition.water / 18;
+    let Fe2O3 = 0;
+    let Fe = composition.Fe / 56;
+    let O2 = composition.O2 / 32;
+    let H2O = composition.H2O / 18;
 
-    let minist = Math.min(iron / 4, oxygen / 3, water / 2);
-    if (iron / 4 == minist) {
-        ferric_oxide = iron / 4 * 2;
-        oxygen -= iron / 4 * 3;
-        iron = 0;
-    } else if (oxygen / 3 == minist) {
-        ferric_oxide = oxygen / 3 * 2;
-        iron -= oxygen / 3 * 4;
-        oxygen = 0;
-    } else if (water / 2 == minist) {
-        water = water;
+    let minist = Math.min(Fe / 4, O2 / 3, H2O / 2);
+    if (Fe / 4 == minist) {
+        Fe2O3 = Fe / 4 * 2;
+        O2 -= Fe / 4 * 3;
+        Fe = 0;
+    } else if (O2 / 3 == minist) {
+        Fe2O3 = O2 / 3 * 2;
+        Fe -= O2 / 3 * 4;
+        O2 = 0;
+    } else if (H2O / 2 == minist) {
+        H2O = H2O;
     }
-    composition.ferric_oxide = ferric_oxide * 160;
-    composition.iron = iron * 56;
-    composition.oxygen = oxygen * 32;
-    composition.water = water * 18;
+    composition.Fe2O3 = Fe2O3 * 160;
+    composition.Fe = Fe * 56;
+    composition.O2 = O2 * 32;
+    composition.H2O = H2O * 18;
     return composition;
 }
 
@@ -139,9 +140,9 @@ export function MIX_COLOR(composition) {
         }
     }
 
-    SOLID_COLOR = Math.floor(SOLID_COLOR);
-    LIQUID_COLOR = Math.floor(LIQUID_COLOR);
-    GAS_COLOR = Math.floor(GAS_COLOR);
+    SOLID_COLOR = isNaN(Math.floor(SOLID_COLOR)) ? 0 : Math.floor(SOLID_COLOR);
+    LIQUID_COLOR = isNaN(Math.floor(LIQUID_COLOR)) ? 0 : Math.floor(LIQUID_COLOR);
+    GAS_COLOR = isNaN(Math.floor(GAS_COLOR)) ? 0 : Math.floor(GAS_COLOR);
     console.log(HEX_TO_COLOR(SOLID_COLOR), HEX_TO_COLOR(LIQUID_COLOR), HEX_TO_COLOR(GAS_COLOR));
     return {
         SOLID_COLOR: HEX_TO_COLOR(SOLID_COLOR),
