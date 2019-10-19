@@ -19,7 +19,6 @@
     "alea": "^1.0.0",
     "bootstrap": "^4.3.1",
     "eslint": "^6.5.1",
-    "eslint-config-airbnb": "^18.0.1",
     "eslint-plugin-import": "^2.18.2",
     "file-loader": "^4.2.0",
     "gh-pages": "^2.1.1",
