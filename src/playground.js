@@ -6,7 +6,7 @@ export default class extends PIXI.Container {
         super();
 
         this.land = new PIXI.Sprite(PIXI.Texture.WHITE)
-        this.land.width = 1600;
+        this.land.width = 16000;
         this.land.height = 4000;
         this.land.tint = 0xcd7f32;
 
