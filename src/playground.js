@@ -10,13 +10,7 @@ export default class extends PIXI.Container {
         this.land.height = 4000;
         this.land.tint = 0xcd7f32;
 
-        const fs = 36;
-        let textureArray = [];
-        for (var i = 1; i <= fs; i++) {
-            var texture = PIXI.Texture.from(`animate/astronaut-${i}.png`);
-            textureArray.push(texture);
-        }
-        this.player = new Player(textureArray);
+        this.player = new Player();
         this.player.x = this.land.width / 4;
         this.player.y = this.land.height / 2;
     }
