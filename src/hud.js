@@ -7,9 +7,11 @@ export default class HUD extends PIXI.Container {
     super();
   }
 
-  show() {
+  show(resources) {
+    PIXI.Loader.shared
+      .add('fire', 'fire.gif')
     const param = Planet.fetch();
-
+    this.resources = resources;
     this.meta = new PIXI.Text();
     this.meta.x = 5;
     this.meta.y = 5;
@@ -26,13 +28,19 @@ export default class HUD extends PIXI.Container {
     this.map = new MiniMap(new PIXI.Point(0, param.distance), new PIXI.Point(param.angular, 0));
     this.addChild(this.map);
     this.map.show();
-
     this.power = new Bar({ x: -400, y: -50 });
     this.degree = new Bar({ x: -400, y: -100, symbols: '度', leftText: '仰角', color: 0xd515a1 });
     this.addChild(this.power.view, this.degree.view);
     app.ticker.add(() => { this.update(); });
+    this.newfire();
   }
-
+  newfire() {
+    this.fire = new PIXI.Sprite();
+    this.fire.texture = this.resources.fire.texture;
+    this.fire.x = 0;
+    this.fire.y = app.screen.height - 500;
+    this.addChild(this.fire);
+  }
   update() {
     const speed = Math.sqrt(Math.pow(this.map.vec.x, 2) + Math.pow(this.map.vec.y, 2));
     const r = Math.sqrt(Math.pow(this.map.pos.x, 2) + Math.pow(this.map.pos.y, 2));
@@ -62,7 +70,6 @@ class MiniMap extends PIXI.Container {
     Bg.width = 200;
     Bg.height = 180;
     this.addChild(Bg);
-
     this.width = Bg.width;
     this.height = Bg.height;
     this.x = app.screen.width - 205;

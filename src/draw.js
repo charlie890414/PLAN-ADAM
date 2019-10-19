@@ -4,11 +4,11 @@ import 'sylvester';
 
 export default class Application {
     constructor(param, controls = false) {
-        const {resolution, width, height} = param;
+        const { resolution, width, height } = param;
         this.width = width;
         this.height = height;
         this.controls = new Controls(this);
-        if(controls) {
+        if (controls) {
             for (const item in controls) {
                 this.controls[item] = controls[item];
             }
@@ -153,7 +153,7 @@ export default class Application {
             this.planetRenderer.cloudMesh.rotation.y += 0.002;
         }
         this.planetRenderer.render();
-        requestAnimationFrame(this.update.bind(this));
+        this.frameid = requestAnimationFrame(this.update.bind(this));
     }
 
 
@@ -647,7 +647,7 @@ class PixelSurface {
 
 class Perlin {
     constructor(seed) {
-        let noise = new ClassicalNoise({random: Alea(seed)});
+        let noise = new ClassicalNoise({ random: Alea(seed) });
         this.noise = (x, y, z) => {
             return 0.5 * noise.noise(x, y, z) + 0.5;
         }

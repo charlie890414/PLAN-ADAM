@@ -18,6 +18,8 @@ function startGame() {
         resizeTo: window
     });
 
+    cancelAnimationFrame(global.drawPlanet.frameid);
+    cancelAnimationFrame(global.drawStar.frameid);
     document.getElementById('app').remove();
     document.body.appendChild(app.view);
 
@@ -47,22 +49,22 @@ global.drawPlanet = new DrawPlanet({
     resolution: 512,
     width: 250,
     height: 250
-}, { waterLevel: .68});
+}, { waterLevel: .68 });
 
 global.drawStar = new DrawPlanet({
     resolution: 512,
     width: 250,
     height: 250
-}, { waterLevel: 0})
+}, { waterLevel: 0 })
 
 document.querySelector('#planet .model').appendChild(drawPlanet.solid);
 document.querySelector('#star .model').appendChild(drawStar.solid);
 
-$('.elm').each((idx, el)=> {
-    el.addEventListener('input', function(e) {
+$('.elm').each((idx, el) => {
+    el.addEventListener('input', function (e) {
         let sum = 0;
         $('.elm').each((idx, el) => sum += el.id === this.id ? 0 : parseInt(el.value));
-        if(sum + parseInt(this.value) > 100) {
+        if (sum + parseInt(this.value) > 100) {
             this.value = 100 - sum;
             return false;
         }
