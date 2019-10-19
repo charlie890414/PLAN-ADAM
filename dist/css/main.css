@@ -221,3 +221,11 @@ html, body {
 .model > canvas {
   filter: drop-shadow(5px 10px 6px #555);
 }
+
+.dropdown-menu .config {
+  margin-left: 25px;
+}
+
+.dropdown-item .range-slider {
+  margin: 0 15px;
+}
