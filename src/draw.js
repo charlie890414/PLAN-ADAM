@@ -3,14 +3,21 @@ import * as Alea from 'alea';
 import 'sylvester';
 
 export default class Application {
-    constructor() {
+    constructor(param, controls = false) {
+        const {resolution, width, height} = param;
+        this.width = width;
+        this.height = height;
         this.controls = new Controls(this);
+        if(controls) {
+            for (const item in controls) {
+                this.controls[item] = controls[item];
+            }
+        }
         this.planetTexture = null;
         this.planetRenderer = new PlanetRenderer();
 
         this.construct();
         this.update();
-        window.addEventListener("resize", this.resize.bind(this), false);
 
     }
     //#region Static
@@ -120,27 +127,15 @@ export default class Application {
         });
         this.planetRenderer.setTexture(this.planetTexture);
         this.planetRenderer.setNormalScale(this.controls.normalScale);
+        this.planetRenderer.setSize(this.width, this.height);
         this.plane = this.planetTexture.diffuse.canvas;
         this.solid = this.planetRenderer.canvas;
         this.trackball = new Trackball(this.planetRenderer.canvas, this.planetRenderer.planet);
-        this.resize();
     }
 
     deconstruct() {
         this.planetTexture.diffuse.canvas.remove();
         this.trackball.release();
-    }
-
-    resize() {
-        let q = this.planetRenderer.canvas;
-        let leftoverw = window.innerWidth - (245 + 256 + 16 * 2);
-        let leftoverh = window.innerHeight;
-        let size = Math.min(leftoverw - 32, leftoverh - 32);
-        this.planetRenderer.setSize(size, size);
-        q.style.top = 16;
-        q.style.right = leftoverw / 2 - size / 2;
-
-        document.body.style.height = 128 * 4 + 256 + 16 * 6;
     }
 
     update() {
@@ -196,7 +191,7 @@ class Controls {
 
         this.waterDeep = "#f4b35b";
         this.waterShallow = "#6e1f10";
-        this.waterLevel = 0.68;
+        this.waterLevel = .68;
         this.waterSpecular = 1;
         this.waterFalloff = 1;
 

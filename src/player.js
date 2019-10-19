@@ -5,6 +5,7 @@ class Ball extends PIXI.Sprite {
     constructor(theta, v, g, r, x, y, rock) {
         super();
         this.texture = rock;
+
         this.scale.x = this.scale.y = 0.3;
         this.x = x - 50;
         this.y = y + 50;
@@ -44,7 +45,7 @@ export default class extends PIXI.Sprite {
         for (var i = 0; i <= 36; i++) {
             PIXI.Loader.shared.add(`astronaut_${i}`, `animate/astronaut-${i}.png`);
         }
-
+        this.step2 = false;
         this.spaceup = true;
         PIXI.Loader.shared
             .add('rock', 'rock.png')
@@ -94,22 +95,40 @@ export default class extends PIXI.Sprite {
             Keyboard.update();
         });
     }
-    throw() {
-        var ball = new Ball(89, 15, this.g, this.rotation + Math.PI, this.x, this.y, this.resources.rock.texture);
+    throw(v,r) {
+        var ball = new Ball(r, v, this.g, this.rotation + Math.PI, this.x, this.y, this.resources.rock.texture);
         ground.addChildAt(ball, ground.children.length - 1);
     }
     walk(delta) {
+        if(Keyboard.isKeyDown('Space')) {
+            if(panel.power.value >= 100) {
+                this.step2 = true;
+            }
+
+            if(panel.degree.value >= 90) {
+                this.throw(panel.power.value, panel.degree.value);
+                panel.degree.value = panel.power.value = 0;
+                this.step2 = false;
+            }
+
+            if(this.step2) {
+                panel.degree.value += 1;
+            } else {
+                panel.power.value += 1;
+            }
+        }
+
+        if(Keyboard.isKeyReleased('Space')) {
+            if(this.step2 || panel.degree.value >= 90) {
+                this.throw(panel.power.value, panel.degree.value);
+                panel.degree.value = panel.power.value = 0;
+                this.step2 = false;
+            } else {
+                this.step2 = true;
+            }
+        }
         const speed = 100 / this.t;
 
-        //console.log(this.nowscale);
-        if (this.spaceup)
-            if (Keyboard.isKeyDown('Space')) {
-                this.spaceup = false;
-                this.throw();
-            }
-        if (Keyboard.isKeyPressed('Space')) {
-            this.spaceup = true
-        }
         if (this.f == 0) {
             if (Keyboard.isKeyDown('ArrowLeft', 'KeyA')) {
                 this.vx -= speed;

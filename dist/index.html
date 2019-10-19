@@ -18,36 +18,22 @@
                     <div class="config">
                         <label for="star-radius">半徑</label>
                         <div class="range-slider">
-                            <input id="star-radius" type="range" value="0" min="1" max="100000">
-                            <span class="range-value">0</span><span class="unit">KM</span>
+                            <input id="star-radius" type="range" value="0.2" min="0.2" max="6.6" step=0.1>
+                            <span class="range-value">0</span><span class="unit">Rʘ</span>
                         </div>
                     </div>
                     <div class="config">
                         <label for="star-mass">質量</label>
                         <div class="range-slider">
-                            <input id="star-mass" type="range" value="55" min="1" max="265">
+                            <input id="star-mass" type="range" value="0.08" min="0.08" max="16" step=0.01>
                             <span class="range-value">0</span><span class="unit">M☉</span>
-                        </div>
-                    </div>
-                    <div class="config">
-                        <label for="star-water">水</label>
-                        <div class="range-slider">
-                            <input id="star-water" type="range" value="55" min="0" max="100">
-                            <span class="range-value">0</span><span class="unit">%</span>
                         </div>
                     </div>
                     <div class="config">
                         <label for="star-temperature">溫度</label>
                         <div class="range-slider">
-                            <input id="star-temperature" type="range" value="55" min="2200" max="33000">
+                            <input id="star-temperature" type="range" value="2200" min="2200" max="33000">
                             <span class="range-value">0</span><span class="unit">K</span>
-                        </div>
-                    </div>
-                    <div class="config">
-                        <label for="star-spin">自轉速度</label>
-                        <div class="range-slider">
-                            <input id="star-spin" type="range" value="55" min="0" max="100">
-                            <span class="range-value">0</span><span class="unit">%</span>
                         </div>
                     </div>
 
@@ -55,115 +41,110 @@
             </div>
             <div id="planet">
                 <div class="model">
-                    <div class="future-feature">
-                        <div class="ff-img-1"></div>
-                        <div class="ff-img-2"></div>
-                        <div class="ff-img-3"></div>
-                    </div>
                 </div>
                 <div class="configs">
                     <div class="config green-planet">
                         <label for="planet-radius">半徑</label>
                         <div class="range-slider">
-                            <input id="planet-radius" type="range" value="55" min="1" max="100000">
+                            <input id="planet-radius" type="range" value="1" min="1" max="100000">
                             <span class="range-value">0</span><span class="unit">KM</span>
                         </div>
                     </div>
                     <div class="config green-planet">
                         <label for="planet-mass">質量</label>
                         <div class="range-slider">
-                            <input id="planet-mass" type="range" value="55" min="1" max="265">
-                            <span class="range-value">0</span><span class="unit">M☉</span>
+                            <input id="planet-mass" type="range" value="1" min="0.01" max="100000" step=0.01>
+                            <span class="range-value">0</span><span class="unit">M⊕</span>
                         </div>
                     </div>
                     <div class="config green-planet">
                         <label for="planet-water">水</label>
                         <div class="range-slider">
-                            <input id="planet-water" type="range" value="55" min="0" max="100">
+                            <input id="planet-water" type="range" value="0" min="0" max="100">
                             <span class="range-value">0</span><span class="unit">%</span>
                         </div>
                     </div>
                     <div class="config green-planet">
                         <label for="planet-oxygen">氧</label>
                         <div class="range-slider">
-                            <input id="planet-oxygen" type="range" value="55" min="0" max="100">
+                            <input id="planet-oxygen" type="range" value="0" min="0" max="100" class="gas">
                             <span class="range-value">0</span><span class="unit">%</span>
                         </div>
                     </div>
                     <div class="config green-planet">
                         <label for="planet-nitro">氮</label>
                         <div class="range-slider">
-                            <input id="planet-nitro" type="range" value="55" min="0" max="100">
+                            <input id="planet-nitro" type="range" value="0" min="0" max="100" class="gas">
                             <span class="range-value">0</span><span class="unit">%</span>
                         </div>
                     </div>
                     <div class="config green-planet">
                         <label for="planet-hydrogen">氫</label>
                         <div class="range-slider">
-                            <input id="planet-hydrogen" type="range" value="55" min="0" max="100">
+                            <input id="planet-hydrogen" type="range" value="0" min="0" max="100" class="gas">
                             <span class="range-value">0</span><span class="unit">%</span>
                         </div>
                     </div>
                     <div class="config green-planet">
                         <label for="planet-chlorine">氯</label>
                         <div class="range-slider">
-                            <input id="planet-chlorine" type="range" value="55" min="0" max="100">
+                            <input id="planet-chlorine" type="range" value="0" min="0" max="100" class="gas">
                             <span class="range-value">0</span><span class="unit">%</span>
                         </div>
                     </div>
                     <div class="config green-planet">
                         <label for="planet-nto">二氧化氮</label>
                         <div class="range-slider">
-                            <input id="planet-nto" type="range" value="55" min="0" max="100">
+                            <input id="planet-nto" type="range" value="0" min="0" max="100" class="gas">
                             <span class="range-value">0</span><span class="unit">%</span>
                         </div>
                     </div>
                     <div class="config green-planet">
                         <label for="planet-cot">二氧化碳</label>
                         <div class="range-slider">
-                            <input id="planet-cot" type="range" value="55" min="0" max="100">
+                            <input id="planet-cot" type="range" value="0" min="0" max="100" class="gas">
                             <span class="range-value">0</span><span class="unit">%</span>
                         </div>
                     </div>
                     <div class="config green-planet">
                         <label for="planet-methane">甲烷</label>
                         <div class="range-slider">
-                            <input id="planet-methane" type="range" value="55" min="0" max="100">
+                            <input id="planet-methane" type="range" value="0" min="0" max="100" class="gas">
                             <span class="range-value">0</span><span class="unit">%</span>
                         </div>
                     </div>
                     <div class="config green-planet">
                         <label for="planet-iron">鐵</label>
                         <div class="range-slider">
-                            <input id="planet-iron" type="range" value="55" min="0" max="100">
+                            <input id="planet-iron" type="range" value="0" min="0" max="100" class="metal">
                             <span class="range-value">0</span><span class="unit">%</span>
                         </div>
                     </div>
                     <div class="config green-planet">
                         <label for="planet-copper">銅</label>
                         <div class="range-slider">
-                            <input id="planet-copper" type="range" value="55" min="0" max="100">
+                            <input id="planet-copper" type="range" value="0" min="0" max="100" class="metal">
                             <span class="range-value">0</span><span class="unit">%</span>
                         </div>
                     </div>
                     <div class="config green-planet">
                         <label for="planet-spin">自轉速度</label>
                         <div class="range-slider">
-                            <input id="planet-spin" type="range" value="55" min="0" max="100">
+                            <input id="planet-spin" type="range" value="0" min="0" max="100">
                             <span class="range-value">0</span><span class="unit">%</span>
                         </div>
                     </div>
                     <div class="config green-planet">
                         <label for="planet-distance">與恆星的距離</label>
                         <div class="range-slider">
-                            <input id="planet-distance" type="range" value="55" min="0" max="100">
+                            <input id="planet-distance" type="range" value="0" min="0" max="100">
                             <span class="range-value">0</span><span class="unit">AU</span>
                         </div>
                     </div>
                     <div class="config green-planet">
                         <label for="planet-angular">角速度</label>
                         <div class="range-slider">
-                            <input id="planet-angular" type="range" value="55" min="0" max="100">
+                            <input id="planet-angular" type="range" value="0" min="0" max="100">
                             <span class="range-value">0</span><span class="unit">%</span>
                         </div>
                     </div>
