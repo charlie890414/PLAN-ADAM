@@ -9,7 +9,7 @@
     "watch": "webpack --watch",
     "start": "webpack-dev-server",
     "build": "webpack",
-    "deploy": "gh-pages -d dist"
+    "deploy": "gh-pages -d dist -n"
   },
   "keywords": [],
   "author": "",
