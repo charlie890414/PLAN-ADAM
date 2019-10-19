@@ -24,7 +24,6 @@
     "file-loader": "^4.2.0",
     "gh-pages": "^2.1.1",
     "jquery": "^3.4.1",
-    "pixi-filters": "^3.0.3",
     "pixi-textinput-v5": "^4.0.0-beta.10",
     "pixi.js": "^5.1.5",
     "pixi.js-keyboard": "^1.0.9",
