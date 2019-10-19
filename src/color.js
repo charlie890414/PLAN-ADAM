@@ -43,9 +43,8 @@ let GAS_COLOR_MAP = {
     "CH4": 0x00DDAA,
     "NO2": 0xBB5500,
     "Cl": 0xBBBB00,
-    "CH4": 0x00DDAA,
     "O2": -1,
-    "N": -1,
+    "N2": -1,
     "H2": -1,
     "CO2": -1,
     "CO": -1,
@@ -54,7 +53,8 @@ let GAS_COLOR_MAP = {
 };
 
 function HEX_TO_COLOR(HEX) {
-    return "#" + HEX.toString(16).replace("0x", "");
+    console.log(HEX);
+    return "#" + parseInt(HEX).toString(16).replace("0x", "");
 }
 // HEX_TO_COLOR(0xffffff);
 
@@ -141,9 +141,9 @@ export function MIX_COLOR(composition) {
         }
     }
 
-    SOLID_COLOR = Math.floor(SOLID_COLOR);
-    LIQUID_COLOR = Math.floor(LIQUID_COLOR);
-    GAS_COLOR = Math.floor(GAS_COLOR);
+    SOLID_COLOR = isNaN(Math.floor(SOLID_COLOR)) ? 0 : Math.floor(SOLID_COLOR);
+    LIQUID_COLOR = isNaN(Math.floor(LIQUID_COLOR)) ? 0 : Math.floor(LIQUID_COLOR);
+    GAS_COLOR = isNaN(Math.floor(GAS_COLOR)) ? 0 : Math.floor(GAS_COLOR);
     console.log(HEX_TO_COLOR(SOLID_COLOR), HEX_TO_COLOR(LIQUID_COLOR), HEX_TO_COLOR(GAS_COLOR));
     return {
         SOLID_COLOR: HEX_TO_COLOR(SOLID_COLOR),
