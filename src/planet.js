@@ -18,6 +18,9 @@ export class Star {
         console.log(param);
     }
 
+    /**
+     * @returns {Objec} Object same as update
+     */
     static fetch() {
         this.param.g = (((6.67 * 10) ^ -11) * this.param.mass) / this.radius ^ 2
         return this.param;
@@ -42,6 +45,8 @@ export class Planet {
      * @param {number} param.copper - 銅
      * @param {number} param.spin - 自轉速度
      * @param {number} param.water - 水
+     * @param {number} param.distance - 距離
+     * @param {number} param.angular - 角速度
      */
     static update(param) {
         this.param = param;
@@ -51,6 +56,9 @@ export class Planet {
         drawPlanet.controls.render();
     }
 
+    /**
+     * @returns {Objec} Object same as update
+     */
     static fetch() {
         this.param.g = (((6.67 * 10) ^ -11) * this.param.mass) / this.radius ^ 2;
         return this.param;
