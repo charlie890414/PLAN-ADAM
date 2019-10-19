@@ -46,7 +46,7 @@ export class Planet {
      * @param {number} param.spin - 自轉速度
      * @param {number} param.water - 水
      * @param {number} param.distance - 距離
-     * @param {number} param.angular - 角速度
+     * @param {number} param.angular - 公轉速度
      */
     static update(param) {
         this.param = param;
