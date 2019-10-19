@@ -1,12 +1,10 @@
 import * as PIXI from 'pixi.js'
-<<<<<<< HEAD
+import {
+  DropShadowFilter
+} from 'pixi-filters'
 import {
   Planet
 } from './planet'
-=======
-import { DropShadowFilter } from 'pixi-filters'
-import { Planet } from './planet'
->>>>>>> 315b888dffd5b0919c4f72bb95238c55943e76a3
 
 export default class HUD extends PIXI.Container {
   constructor() {
@@ -33,27 +31,31 @@ export default class HUD extends PIXI.Container {
     this.addChild(this.map);
     this.map.show();
 
-<<<<<<< HEAD
+    this.power = new Bar({
+      x: -400,
+      y: -50
+    });
+    this.degree = new Bar({
+      x: -400,
+      y: -100,
+      symbols: '度',
+      leftText: '仰角',
+      color: 0xd515a1
+    });
+    this.addChild(this.power.view, this.degree.view);
     app.ticker.add(() => {
       this.update();
     });
-=======
-    this.power = new Bar({x: -400, y: -50});
-    this.degree = new Bar({x: -400, y: -100, symbols: '度', leftText: '仰角', color: 0xd515a1});
-    this.addChild(this.power.view, this.degree.view);
-    app.ticker.add(() => { this.update(); });
->>>>>>> 315b888dffd5b0919c4f72bb95238c55943e76a3
   }
 
   update() {
-    console.log(this.map.vec, this.map.pos);
     const speed = Math.sqrt(Math.pow(this.map.vec.x, 2) + Math.pow(this.map.vec.y, 2));
     const r = Math.sqrt(Math.pow(this.map.pos.x, 2) + Math.pow(this.map.pos.y, 2));
     const omega = Math.sqrt(speed * r);
 
     this.meta.text =
-      "v = " + speed + "\n" +
-      "w = " + omega + "\n";
+      "v = " + Math.round(speed * 1e3) / 1e3 + "\n" +
+      "ω = " + Math.round(omega * 1e3) / 1e3 + "\n";
   }
 }
 
@@ -86,48 +88,55 @@ class MiniMap extends PIXI.Container {
     this.planet = new PIXI.Sprite(PIXI.Texture.WHITE);
     this.planet.anchor.set(0.5);
     this.planet.tint = 0x335544;
-    this.planet.position.set(this.pos.x * 7 + center.x, this.pos.y * 7 + center.y);
-    console.log(this.planet.position);
     this.planet.height = this.planet.width = 20;
     this.addChild(this.planet);
 
     var star = new PIXI.Sprite(PIXI.Texture.WHITE);
     star.anchor.set(0.5);
-    star.position = center;
-    //star.width = star.height = 30;
+    star.x = center.x;
+    star.y = center.y;
     star.tint = 0xff0000;
     this.addChild(star);
 
     app.ticker.add((delta) => this.move(delta));
-
-
   }
 
   move(delta) {
-    const EPS = 0.5;
+    const EPS = Planet.fetch().mass;
     const pos = this.pos;
     const vel = this.vec;
 
     const r = Math.sqrt(Math.pow(pos.x, 2) + Math.pow(pos.y, 2));
-    const r3 = 1 / Math.pow(r, 3);
+    let r3 = 1 / Math.pow(r, 3);
     const acl = new PIXI.Point(pos.x * -r3, pos.y * -r3);
     vel.x += acl.x * EPS / delta / 60;
     vel.y += acl.y * EPS / delta / 60;
     pos.x += vel.x / delta / 60;
     pos.y += vel.y / delta / 60;
 
-    //console.log(pos, vel, acl);
-    const center = new PIXI.Point(this.width / 2, this.height / 2);
-    this.planet.position.set(pos.x * 7 + center.x, pos.y * 7 + center.y);
+    let next = new PIXI.Point(this.width / 2, this.height / 2);
+    next.x += pos.x;
+    next.y += pos.y;
+
+    this.planet.position = next;
   }
 }
 
 class Bar extends PIXI.Graphics {
   constructor(param = {}) {
     super();
-    const { x, y, width = 200, height = 30, color = 0x3498db, alpha = 0.7, leftText = '蓄力', symbols = '%' } = param;
+    const {
+      x,
+      y,
+      width = 200,
+      height = 30,
+      color = 0x3498db,
+      alpha = 0.7,
+      leftText = '蓄力',
+      symbols = '%'
+    } = param;
 
-    return new (function () {
+    return new(function () {
       let value = 0;
 
       this.init = function () {
