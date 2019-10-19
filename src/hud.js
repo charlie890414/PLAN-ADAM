@@ -5,15 +5,18 @@ import {
 import {
   Planet
 } from './planet'
+import { PlaneHelper } from 'three';
 
 export default class HUD extends PIXI.Container {
   constructor() {
     super();
+    PIXI.Loader.shared
+      .add('boom', 'boom.png')
   }
 
-  show() {
+  show(resources) {
     const param = Planet.fetch();
-
+    this.resources = resources;
     this.meta = new PIXI.Text();
     this.meta.x = 5;
     this.meta.y = 5;
@@ -30,7 +33,6 @@ export default class HUD extends PIXI.Container {
     this.map = new MiniMap(new PIXI.Point(0, param.distance), new PIXI.Point(param.angular, 0));
     this.addChild(this.map);
     this.map.show();
-
     this.power = new Bar({
       x: -400,
       y: -50
@@ -47,12 +49,36 @@ export default class HUD extends PIXI.Container {
       this.update();
     });
   }
+  endgame() {
+    this.boom = new PIXI.Sprite();
+    this.boom.texture = this.resources.boom.texture;
+    this.boom.x = app.screen.width / 2 - this.boom.width * 2 / 2;
+    this.boom.y = app.screen.height / 2 - this.boom.height * 2 / 2;
+    this.boom.alpha = 0;
+    this.boom.scale.x = 2;
+    this.boom.scale.y = 2;
+    this.boom.interactive = true;
+    this.boom.cursor = "pointer";
+    this.boom.on('click', (event) => {
+      window.location.reload("index.html")
+      console.log("cl");
+    });
+    this.addChild(this.boom);
+    var sh = setInterval(() => {
+      this.boom.alpha += 0.008;
+      // this.boom.scale.x += 0.03;
+      // this.boom.scale.y += 0.03;
+      // this.boom.x = app.screen.width / 2 - this.boom.width * this.boom.scale.x / 2;
+      // this.boom.y = app.screen.height / 2 - this.boom.height * this.boom.scale.y / 2;
+      if (this.boom.alpha >= 1) clearInterval(sh);
+    }, 1)
+  }
+
 
   update() {
     const speed = Math.sqrt(Math.pow(this.map.vec.x, 2) + Math.pow(this.map.vec.y, 2));
     const r = Math.sqrt(Math.pow(this.map.pos.x, 2) + Math.pow(this.map.pos.y, 2));
     const omega = Math.sqrt(speed * r);
-
     this.meta.text =
       "v = " + Math.round(speed * 1e3) / 1e3 + "\n" +
       "ω = " + Math.round(omega * 1e3) / 1e3 + "\n";
@@ -72,12 +98,18 @@ class MiniMap extends PIXI.Container {
     this.vec = vec;
   }
 
+  /**
+   * @returns {number} The distnace between planet and star
+   */
+  getcurrentDistance() {
+    return Math.sqrt(Math.pow(this.pos.x, 2) + Math.pow(this.pos.y, 2));
+  }
+
   show() {
     const Bg = new PIXI.Sprite(PIXI.Texture.WHITE);
     Bg.width = 200;
     Bg.height = 180;
     this.addChild(Bg);
-
     this.width = Bg.width;
     this.height = Bg.height;
     this.x = app.screen.width - 205;
@@ -117,8 +149,10 @@ class MiniMap extends PIXI.Container {
     let next = new PIXI.Point(this.width / 2, this.height / 2);
     next.x += pos.x;
     next.y += pos.y;
-
     this.planet.position = next;
+    if (panel.map.getcurrentDistance() < 13) {
+      panel.endgame();
+    }
   }
 }
 
@@ -136,7 +170,7 @@ class Bar extends PIXI.Graphics {
       symbols = '%'
     } = param;
 
-    return new(function () {
+    return new (function () {
       let value = 0;
 
       this.init = function () {

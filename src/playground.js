@@ -4,7 +4,6 @@ import { Planet, Star } from './planet';
 export default class extends PIXI.Container {
     constructor() {
         super();
-
         this.land = new PIXI.Sprite(PIXI.Texture.from(drawPlanet.plane));
         this.land.width = 10240;
         this.land.height = 5120;

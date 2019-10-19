@@ -95,31 +95,31 @@ export default class extends PIXI.Sprite {
             Keyboard.update();
         });
     }
-    throw(v,r) {
+    throw(v, r) {
         var ball = new Ball(r, v, this.g, this.rotation + Math.PI, this.x, this.y, this.resources.rock.texture);
         ground.addChildAt(ball, ground.children.length - 1);
     }
     walk(delta) {
-        if(Keyboard.isKeyDown('Space')) {
-            if(panel.power.value >= 100) {
+        if (Keyboard.isKeyDown('Space')) {
+            if (panel.power.value >= 100) {
                 this.step2 = true;
             }
 
-            if(panel.degree.value >= 90) {
+            if (panel.degree.value >= 90) {
                 this.throw(panel.power.value, panel.degree.value);
                 panel.degree.value = panel.power.value = 0;
                 this.step2 = false;
             }
 
-            if(this.step2) {
+            if (this.step2) {
                 panel.degree.value += 1;
             } else {
                 panel.power.value += 1;
             }
         }
 
-        if(Keyboard.isKeyReleased('Space')) {
-            if(this.step2 || panel.degree.value >= 90) {
+        if (Keyboard.isKeyReleased('Space')) {
+            if (this.step2 || panel.degree.value >= 90) {
                 this.throw(panel.power.value, panel.degree.value);
                 panel.degree.value = panel.power.value = 0;
                 this.step2 = false;
