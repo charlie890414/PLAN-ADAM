@@ -1,19 +1,56 @@
 let SOLID_COLOR_MAP = {
-    "copper": 0xFF0000,
-    "iron": 0xC0C0C0,
-    "carbon": 0x000000,
-    "ferric_oxide": 0xA52A2A, //Fe2O3
+    "Fe2O3": 0x8B0000,
+    "Cu": 0xD2691E,
+    "CuOH2": 0x1E90FF,
+    "CuSO4": 0x0000CD,
+    "KMnO4": 0x660077,
+    "S": 0xFFBB00,
+    "ice": 0xFFFFFF,
+    "Au": 0xDDDDDD,
+    "Fe": 0xDDDDDD,
+    "Mg": 0xDDDDDD,
+    "Al": 0xDDDDDD,
+    "Hg": 0xDDDDDD,
+    "C": 0x000000,
+    "CuO": 0x000000,
+    "MnO2": 0x000000,
+    "Fe3O4": 0x000000,
+    "FeS": 0x000000,
+    "FeOH3": 0x880000,
+    "NaCl": 0xDDDDDD,
+    "NaHCO3": 0xDDDDDD,
+    "NaOH": 0xDDDDDD,
+    "CaOH": 0xDDDDDD,
+    "CaCO3": 0xDDDDDD,
+    "CaO": 0xDDDDDD,
+    "MgO": 0xDDDDDD
 };
 
 let LIQUID_COLOR_MAP = {
-    "water": 0x61a3ff
+    "H2O": -1,
+    "H2O2": -1,
+    "CuCl2": 0x00DDDD,
+    "CuNO32": 0x0066FF,
+    "FeSO4": 0x00FFFF,
+    "FeCl3": 0xEEEE00,
+    "H2SO4": 0xFFDD55,
+    "FeCl3": 0xFFCC22,
+    "KMnO4": 0xC71585,
+    "C7H7O4N": 0xFF00FF,
 };
 
 let GAS_COLOR_MAP = {
-    "Hydrogen": -1,
-    "oxygen": -1,
-    "nitro": -1,
-    "Chlorine": 0x7FFF00,
+    "CH4": 0x00DDAA,
+    "NO2": 0xBB5500,
+    "Cl": 0xBBBB00,
+    "CH4": 0x00DDAA,
+    "O2": -1,
+    "N": -1,
+    "H2": -1,
+    "CO2": -1,
+    "CO": -1,
+    "SO2": -1,
+    "HCl": -1,
 };
 
 function HEX_TO_COLOR(HEX) {
@@ -108,5 +145,9 @@ export function MIX_COLOR(composition) {
     LIQUID_COLOR = Math.floor(LIQUID_COLOR);
     GAS_COLOR = Math.floor(GAS_COLOR);
     console.log(HEX_TO_COLOR(SOLID_COLOR), HEX_TO_COLOR(LIQUID_COLOR), HEX_TO_COLOR(GAS_COLOR));
-    return {SOLID_COLOR: HEX_TO_COLOR(SOLID_COLOR), LIQUID_COLOR: HEX_TO_COLOR(LIQUID_COLOR), GAS_COLOR: HEX_TO_COLOR(GAS_COLOR)};
+    return {
+        SOLID_COLOR: HEX_TO_COLOR(SOLID_COLOR),
+        LIQUID_COLOR: HEX_TO_COLOR(LIQUID_COLOR),
+        GAS_COLOR: HEX_TO_COLOR(GAS_COLOR)
+    };
 }

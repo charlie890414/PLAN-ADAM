@@ -100,16 +100,16 @@ export default class welcome {
       Planet.update({
         radius: parseFloat($('#planet-radius').val()),
         mass: parseFloat($('#planet-mass').val()),
-        water: parseFloat($('#planet-water').val()),
-        oxygen: parseFloat($('#planet-oxygen').val()),
-        nitro: parseFloat($('#planet-nitro').val()),
-        hydrogen: parseFloat($('#planet-hydrogen').val()),
-        chlorine: parseFloat($('#planet-chlorine').val()),
-        nto: parseFloat($('#planet-nto').val()),
-        cot: parseFloat($('#planet-cot').val()),
-        methane: parseFloat($('#planet-methane').val()),
-        iron: parseFloat($('#planet-iron').val()),
-        copper: parseFloat($('#planet-copper').val()),
+        H2O: parseFloat($('#planet-water').val()),
+        O2: parseFloat($('#planet-oxygen').val()),
+        N: parseFloat($('#planet-nitro').val()),
+        H2: parseFloat($('#planet-hydrogen').val()),
+        Cl: parseFloat($('#planet-chlorine').val()),
+        NO2: parseFloat($('#planet-nto').val()),
+        CO2: parseFloat($('#planet-cot').val()),
+        CH4: parseFloat($('#planet-methane').val()),
+        Fe: parseFloat($('#planet-iron').val()),
+        Cu: parseFloat($('#planet-copper').val()),
         spin: parseFloat($('#planet-spin').val()),
         distance: parseFloat($('#planet-distance').val()),
         angular: parseFloat($('#planet-angular').val())
@@ -117,6 +117,7 @@ export default class welcome {
     })
 
     $('#submit').on('click', function () {
+
       app();
     })
   }

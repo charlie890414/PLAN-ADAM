@@ -1,6 +1,10 @@
 import * as PIXI from 'pixi.js'
-import { DropShadowFilter } from 'pixi-filters'
-import { Planet } from './planet'
+import {
+  DropShadowFilter
+} from 'pixi-filters'
+import {
+  Planet
+} from './planet'
 
 export default class HUD extends PIXI.Container {
   constructor() {
@@ -28,11 +32,22 @@ export default class HUD extends PIXI.Container {
     this.map = new MiniMap(new PIXI.Point(0, param.distance), new PIXI.Point(param.angular, 0));
     this.addChild(this.map);
     this.map.show();
-    this.power = new Bar({ x: -400, y: -50 });
-    this.degree = new Bar({ x: -400, y: -100, symbols: '度', leftText: '仰角', color: 0xd515a1 });
+    this.power = new Bar({
+      x: -400,
+      y: -50
+    });
+    this.degree = new Bar({
+      x: -400,
+      y: -100,
+      symbols: '度',
+      leftText: '仰角',
+      color: 0xd515a1
+    });
     this.addChild(this.power.view, this.degree.view);
-    app.ticker.add(() => { this.update(); });
     this.newfire();
+    app.ticker.add(() => {
+      this.update();
+    });
   }
   newfire() {
     this.fire = new PIXI.Sprite();
@@ -41,6 +56,8 @@ export default class HUD extends PIXI.Container {
     this.fire.y = app.screen.height - 500;
     this.addChild(this.fire);
   }
+
+
   update() {
     const speed = Math.sqrt(Math.pow(this.map.vec.x, 2) + Math.pow(this.map.vec.y, 2));
     const r = Math.sqrt(Math.pow(this.map.pos.x, 2) + Math.pow(this.map.pos.y, 2));
@@ -117,7 +134,16 @@ class MiniMap extends PIXI.Container {
 class Bar extends PIXI.Graphics {
   constructor(param = {}) {
     super();
-    const { x, y, width = 200, height = 30, color = 0x3498db, alpha = 0.7, leftText = '蓄力', symbols = '%' } = param;
+    const {
+      x,
+      y,
+      width = 200,
+      height = 30,
+      color = 0x3498db,
+      alpha = 0.7,
+      leftText = '蓄力',
+      symbols = '%'
+    } = param;
 
     return new (function () {
       let value = 0;
