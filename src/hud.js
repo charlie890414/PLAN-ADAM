@@ -1,5 +1,7 @@
 import * as PIXI from 'pixi.js'
-import { Planet } from './planet'
+import {
+  Planet
+} from './planet'
 
 export default class HUD extends PIXI.Container {
   constructor() {
@@ -26,10 +28,13 @@ export default class HUD extends PIXI.Container {
     this.addChild(this.map);
     this.map.show();
 
-    app.ticker.add(() => { this.update(); });
+    app.ticker.add(() => {
+      this.update();
+    });
   }
 
   update() {
+    console.log(this.map.vec, this.map.pos);
     const speed = Math.sqrt(Math.pow(this.map.vec.x, 2) + Math.pow(this.map.vec.y, 2));
     const r = Math.sqrt(Math.pow(this.map.pos.x, 2) + Math.pow(this.map.pos.y, 2));
     const omega = Math.sqrt(speed * r);
@@ -69,13 +74,14 @@ class MiniMap extends PIXI.Container {
     this.planet = new PIXI.Sprite(PIXI.Texture.WHITE);
     this.planet.anchor.set(0.5);
     this.planet.tint = 0x335544;
+    this.planet.position.set(this.pos.x * 7 + center.x, this.pos.y * 7 + center.y);
+    console.log(this.planet.position);
     this.planet.height = this.planet.width = 20;
     this.addChild(this.planet);
 
     var star = new PIXI.Sprite(PIXI.Texture.WHITE);
     star.anchor.set(0.5);
-    star.x = center.x;
-    star.y = center.y;
+    star.position = center;
     //star.width = star.height = 30;
     star.tint = 0xff0000;
     this.addChild(star);
@@ -84,12 +90,12 @@ class MiniMap extends PIXI.Container {
   }
 
   move(delta) {
-    const EPS = 0.5 * Planet.fetch().mass;
+    const EPS = 0.5;
     const pos = this.pos;
     const vel = this.vec;
 
     const r = Math.sqrt(Math.pow(pos.x, 2) + Math.pow(pos.y, 2));
-    let r3 = 1 / Math.pow(r, 3);
+    const r3 = 1 / Math.pow(r, 3);
     const acl = new PIXI.Point(pos.x * -r3, pos.y * -r3);
     vel.x += acl.x * EPS / delta / 60;
     vel.y += acl.y * EPS / delta / 60;

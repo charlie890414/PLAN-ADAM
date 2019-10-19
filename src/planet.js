@@ -1,6 +1,10 @@
 import * as PIXI from 'pixi.js';
-import { MIX_COLOR } from './color';
-import { Application } from './draw';
+import {
+    MIX_COLOR
+} from './color';
+import {
+    Application
+} from './draw';
 
 export class Star {
 
@@ -22,7 +26,7 @@ export class Star {
      * @returns {Objec} Object same as update
      */
     static fetch() {
-        this.param.g = (((6.67 * 10) ^ -11) * this.param.mass) / this.radius ^ 2
+        this.param.g = (Math.pow(6.67 * 10, -11) * this.param.mass) / Math.pow(this.radius, 2);
         return this.param;
     }
 }
@@ -51,8 +55,14 @@ export class Planet {
     static update(param) {
         this.param = param;
         console.log(param);
-        let SOLID_COLOR, LIQUID_COLOR, GAS_COLOR = MIX_COLOR(param);
+        let {
+            SOLID_COLOR,
+            LIQUID_COLOR,
+            GAS_COLOR
+        } = MIX_COLOR(param);
         drawPlanet.controls.cloudColor = GAS_COLOR;
+        drawPlanet.controls.landColor1 = SOLID_COLOR;
+        drawPlanet.controls.landColor2 = SOLID_COLOR;
         drawPlanet.controls.render();
     }
 
@@ -60,7 +70,7 @@ export class Planet {
      * @returns {Objec} Object same as update
      */
     static fetch() {
-        this.param.g = (((6.67 * 10) ^ -11) * this.param.mass) / this.radius ^ 2;
+        this.param.g = (Math.pow(6.67 * 10, -11) * this.param.mass) / Math.pow(this.radius, 2);
         return this.param;
     }
 }
