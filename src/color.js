@@ -43,6 +43,7 @@ let GAS_COLOR_MAP = {
     "CH4": 0x00DDAA,
     "NO2": 0xBB5500,
     "Cl": 0xBBBB00,
+    "CH4": 0x00DDAA,
     "O2": -1,
     "N": -1,
     "H2": -1,
