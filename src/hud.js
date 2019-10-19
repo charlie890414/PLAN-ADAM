@@ -82,6 +82,13 @@ class MiniMap extends PIXI.Container {
     this.vec = vec;
   }
 
+  /**
+   * @returns {number} The distnace between planet and star
+   */
+  getcurrentDistance() {
+    return Math.sqrt(Math.pow(this.pos.x, 2) + Math.pow(this.pos.y, 2));
+  }
+
   show() {
     const Bg = new PIXI.Sprite(PIXI.Texture.WHITE);
     Bg.width = 200;
@@ -115,7 +122,7 @@ class MiniMap extends PIXI.Container {
     const pos = this.pos;
     const vel = this.vec;
 
-    const r = Math.sqrt(Math.pow(pos.x, 2) + Math.pow(pos.y, 2));
+    const r = this.getcurrentDistance();
     let r3 = 1 / Math.pow(r, 3);
     const acl = new PIXI.Point(pos.x * -r3, pos.y * -r3);
     vel.x += acl.x * EPS / delta / 60;
