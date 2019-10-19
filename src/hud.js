@@ -27,8 +27,8 @@ export default class HUD extends PIXI.Container {
     this.addChild(this.map);
     this.map.show();
 
-    this.power = new Bar({x: -400, y: -50});
-    this.degree = new Bar({x: -400, y: -100, symbols: '度', leftText: '仰角', color: 0xd515a1});
+    this.power = new Bar({ x: -400, y: -50 });
+    this.degree = new Bar({ x: -400, y: -100, symbols: '度', leftText: '仰角', color: 0xd515a1 });
     this.addChild(this.power.view, this.degree.view);
     app.ticker.add(() => { this.update(); });
   }
@@ -39,8 +39,8 @@ export default class HUD extends PIXI.Container {
     const omega = Math.sqrt(speed * r);
 
     this.meta.text =
-      "v = " + speed + "\n" +
-      "w = " + omega + "\n";
+      "v = " + Math.round(speed * 1e3) / 1e3 + "\n" +
+      "ω = " + Math.round(omega * 1e3) / 1e3 + "\n";
   }
 }
 
@@ -80,17 +80,14 @@ class MiniMap extends PIXI.Container {
     star.anchor.set(0.5);
     star.x = center.x;
     star.y = center.y;
-    //star.width = star.height = 30;
     star.tint = 0xff0000;
     this.addChild(star);
 
     app.ticker.add((delta) => this.move(delta));
-
-
   }
 
   move(delta) {
-    const EPS = 0.5 * Planet.fetch().mass;
+    const EPS = Planet.fetch().mass;
     const pos = this.pos;
     const vel = this.vec;
 
@@ -102,9 +99,11 @@ class MiniMap extends PIXI.Container {
     pos.x += vel.x / delta / 60;
     pos.y += vel.y / delta / 60;
 
-    //console.log(pos, vel, acl);
-    const center = new PIXI.Point(this.width / 2, this.height / 2);
-    this.planet.position.set(pos.x * 7 + center.x, pos.y * 7 + center.y);
+    let next = new PIXI.Point(this.width / 2, this.height / 2);
+    next.x += pos.x;
+    next.y += pos.y;
+
+    this.planet.position = next;
   }
 }
 

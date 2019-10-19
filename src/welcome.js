@@ -81,15 +81,15 @@ export default class welcome {
         if (Radius < 6.6) Radius = 6.6;
       }
 
-      return {color: Color, mass: Mass, radius: Radius};
+      return { color: Color, mass: Mass, radius: Radius };
     }
 
     $('#star').on('change', 'input[type=range]', () => {
       let data = config(parseInt($('#star-temperature').val()), parseInt($('#star-mass').val()), parseInt($('#star-radius').val()));
-      if(parseInt($('#star-mass').val()) > data.mass) {
+      if (parseInt($('#star-mass').val()) > data.mass) {
         $('#star-mass').val(data.mass).trigger('input');
       }
-      if(parseInt($('#star-radius').val()) < data.radius) {
+      if (parseInt($('#star-radius').val()) < data.radius) {
         $('#star-radius').val(data.radius).trigger('input');
       }
 
@@ -98,21 +98,21 @@ export default class welcome {
 
     $('#planet input[type=range]').on('change', () => {
       Planet.update({
-        radius: $('#planet-radius').val(),
-        mass: $('#planet-mass').val(),
-        water: $('#planet-water').val(),
-        oxygen: $('#planet-oxygen').val(),
-        nitro: $('#planet-nitro').val(),
-        hydrogen: $('#planet-hydrogen').val(),
-        chlorine: $('#planet-chlorine').val(),
-        nto: $('#planet-nto').val(),
-        cot: $('#planet-cot').val(),
-        methane: $('#planet-methane').val(),
-        iron: $('#planet-iron').val(),
-        copper: $('#planet-copper').val(),
-        spin: $('#planet-spin').val(),
-        distance: $('#planet-distance').val(),
-        angular: $('#planet-angular').val()
+        radius: parseFloat($('#planet-radius').val()),
+        mass: parseFloat($('#planet-mass').val()),
+        water: parseFloat($('#planet-water').val()),
+        oxygen: parseFloat($('#planet-oxygen').val()),
+        nitro: parseFloat($('#planet-nitro').val()),
+        hydrogen: parseFloat($('#planet-hydrogen').val()),
+        chlorine: parseFloat($('#planet-chlorine').val()),
+        nto: parseFloat($('#planet-nto').val()),
+        cot: parseFloat($('#planet-cot').val()),
+        methane: parseFloat($('#planet-methane').val()),
+        iron: parseFloat($('#planet-iron').val()),
+        copper: parseFloat($('#planet-copper').val()),
+        spin: parseFloat($('#planet-spin').val()),
+        distance: parseFloat($('#planet-distance').val()),
+        angular: parseFloat($('#planet-angular').val())
       })
     })
     $('#planet input[type=range], #star input[type=range]').change();
