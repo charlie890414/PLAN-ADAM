@@ -57,6 +57,8 @@ export default class welcome {
         iron: $('#planet-iron').val(),
         copper: $('#planet-copper').val(),
         spin: $('#planet-spin').val(),
+        distance: $('#planet-distance').val(),
+        angular: $('#planet-angular').val(),
         el: el2
       })
     })

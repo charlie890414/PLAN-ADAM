@@ -54,7 +54,13 @@
                 </div>
             </div>
             <div id="planet">
-                <div class="model"></div>
+                <div class="model">
+                    <div class="future-feature">
+                        <div class="ff-img-1"></div>
+                        <div class="ff-img-2"></div>
+                        <div class="ff-img-3"></div>
+                    </div>
+                </div>
                 <div class="configs">
                     <div class="config green-planet">
                         <label for="planet-radius">半徑</label>
@@ -144,6 +150,20 @@
                         <label for="planet-spin">自轉速度</label>
                         <div class="range-slider">
                             <input id="planet-spin" type="range" value="55" min="0" max="100">
+                            <span class="range-value">0</span><span class="unit">%</span>
+                        </div>
+                    </div>
+                    <div class="config green-planet">
+                        <label for="planet-distance">與恆星的距離</label>
+                        <div class="range-slider">
+                            <input id="planet-distance" type="range" value="55" min="0" max="100">
+                            <span class="range-value">0</span><span class="unit">AU</span>
+                        </div>
+                    </div>
+                    <div class="config green-planet">
+                        <label for="planet-angular">角速度</label>
+                        <div class="range-slider">
+                            <input id="planet-angular" type="range" value="55" min="0" max="100">
                             <span class="range-value">0</span><span class="unit">%</span>
                         </div>
                     </div>
