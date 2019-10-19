@@ -3,7 +3,7 @@ import {
   DropShadowFilter
 } from 'pixi-filters'
 import {
-  Planet
+  Planet, Star
 } from './planet'
 import { PlaneHelper } from 'three';
 
@@ -12,6 +12,9 @@ export default class HUD extends PIXI.Container {
     super();
     PIXI.Loader.shared
       .add('boom', 'boom.png')
+
+    PIXI.Loader.shared.add('planetball', 'miniplanet.png');
+    PIXI.Loader.shared.add('starball', 'ministar.png');
   }
 
   show(resources) {
@@ -32,7 +35,7 @@ export default class HUD extends PIXI.Container {
 
     this.map = new MiniMap(new PIXI.Point(0, param.distance), new PIXI.Point(param.angular, 0));
     this.addChild(this.map);
-    this.map.show();
+    this.map.show(resources);
     this.power = new Bar({
       x: -400,
       y: -50
@@ -105,7 +108,7 @@ class MiniMap extends PIXI.Container {
     return Math.sqrt(Math.pow(this.pos.x, 2) + Math.pow(this.pos.y, 2));
   }
 
-  show() {
+  show(resources) {
     const Bg = new PIXI.Sprite(PIXI.Texture.WHITE);
     Bg.width = 200;
     Bg.height = 180;
@@ -115,19 +118,22 @@ class MiniMap extends PIXI.Container {
     this.x = app.screen.width - 205;
     this.y = 5;
 
+    this.path = new PIXI.Graphics();
+    this.addChild(this.path);
+
     const center = new PIXI.Point(this.width / 2, this.height / 2);
 
-    this.planet = new PIXI.Sprite(PIXI.Texture.WHITE);
+    this.planet = new PIXI.Sprite(resources.planetball.texture);
     this.planet.anchor.set(0.5);
-    this.planet.tint = 0x335544;
-    this.planet.height = this.planet.width = 20;
+    this.planet.height = this.planet.width = 10;
+
     this.addChild(this.planet);
 
-    var star = new PIXI.Sprite(PIXI.Texture.WHITE);
+    var star = new PIXI.Sprite(resources.starball.texture);
     star.anchor.set(0.5);
-    star.x = center.x;
-    star.y = center.y;
-    star.tint = 0xff0000;
+    star.position = center;
+    star.height = star.width = 20;
+
     this.addChild(star);
 
     app.ticker.add((delta) => this.move(delta));
@@ -135,8 +141,12 @@ class MiniMap extends PIXI.Container {
 
   move(delta) {
     const EPS = Planet.fetch().mass;
+    const center = new PIXI.Point(this.width / 2, this.height / 2);
     const pos = this.pos;
     const vel = this.vec;
+
+    this.path.lineStyle(1, 0xFF0000);
+    this.path.moveTo(pos.x + center.x, pos.y + center.y);
 
     const r = Math.sqrt(Math.pow(pos.x, 2) + Math.pow(pos.y, 2));
     let r3 = 1 / Math.pow(r, 3);
@@ -146,10 +156,11 @@ class MiniMap extends PIXI.Container {
     pos.x += vel.x / delta / 60;
     pos.y += vel.y / delta / 60;
 
-    let next = new PIXI.Point(this.width / 2, this.height / 2);
-    next.x += pos.x;
-    next.y += pos.y;
-    this.planet.position = next;
+    this.planet.position.set(pos.x + center.x, pos.y + center.y);
+
+    this.path.lineTo(pos.x + center.x, pos.y + center.y);
+    this.path.endFill();
+
     if (panel.map.getcurrentDistance() < 13) {
       panel.endgame();
     }
