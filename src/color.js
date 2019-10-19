@@ -1,7 +1,7 @@
 let SOLID_COLOR_MAP = {
     "Fe2O3": 0x8B0000,
     "Cu": 0xD2691E,
-    "Cu(OH)2": 0x1E90FF,
+    "CuOH2": 0x1E90FF,
     "CuSO4": 0x0000CD,
     "KMnO4": 0x660077,
     "S": 0xFFBB00,
