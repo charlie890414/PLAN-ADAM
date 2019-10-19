@@ -110,6 +110,7 @@ export default class welcome {
         CH4: parseFloat($('#planet-methane').val()),
         Fe: parseFloat($('#planet-iron').val()),
         Cu: parseFloat($('#planet-copper').val()),
+        Fe2O3: parseFloat($('#planet-Fe2O3').val()),
         spin: parseFloat($('#planet-spin').val()),
         distance: parseFloat($('#planet-distance').val()),
         angular: parseFloat($('#planet-angular').val())
