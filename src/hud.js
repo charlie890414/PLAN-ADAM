@@ -19,7 +19,7 @@ export default class HUD extends PIXI.Container {
     this.addChild(metaBg);
     this.addChild(this.meta);
 
-    this.map = new MiniMap(new PIXI.Point(4, 4), new PIXI.Point(2, 0));
+    this.map = new MiniMap(new PIXI.Point(0, 3), new PIXI.Point(0.5, 0));
     this.addChild(this.map);
     this.map.show();
   }
@@ -50,24 +50,29 @@ class MiniMap extends PIXI.Container {
   }
 
   show() {
-    this.width = 200;
-    this.height = 180;
+    const Bg = new PIXI.Sprite(PIXI.Texture.WHITE);
+    Bg.width = 200;
+    Bg.height = 180;
+    this.addChild(Bg);
+
+    this.width = Bg.width;
+    this.height = Bg.height;
     this.x = app.screen.width - 205;
     this.y = 5;
 
-    this.center = new PIXI.Point(
-      (this.x + this.width) / 2,
-      (this.y + this.height) / 2
-    );
+    const center = new PIXI.Point(this.width / 2, this.height / 2);
 
     this.planet = new PIXI.Sprite(PIXI.Texture.WHITE);
+    this.planet.anchor.set(0.5);
     this.planet.tint = 0x335544;
-    this.planet.height = this.planet.width = 5;
+    this.planet.height = this.planet.width = 20;
     this.addChild(this.planet);
 
     var star = new PIXI.Sprite(PIXI.Texture.WHITE);
-    star.position = this.center;
-    star.width = star.height = 20;
+    star.anchor.set(0.5);
+    star.x = center.x;
+    star.y = center.y;
+    //star.width = star.height = 30;
     star.tint = 0xff0000;
     this.addChild(star);
 
@@ -75,18 +80,20 @@ class MiniMap extends PIXI.Container {
   }
 
   move(delta) {
-    const EPS = 0.001;
+    const EPS = 0.5;
     const pos = this.pos;
     const vel = this.vec;
 
-    var r = Math.sqrt(Math.pow(pos.x, 2) + Math.pow(pos.y, 2));
-    var r3 = 1 / Math.pow(r, 3);
-    var acl = new PIXI.Point(pos.x * -r3, pos.y * -r3);
+    const r = Math.sqrt(Math.pow(pos.x, 2) + Math.pow(pos.y, 2));
+    let r3 = 1 / Math.pow(r, 3);
+    const acl = new PIXI.Point(pos.x * -r3, pos.y * -r3);
     vel.x += acl.x * EPS / delta / 60;
     vel.y += acl.y * EPS / delta / 60;
-    pos.x += vel.x * EPS / delta / 60;
-    pos.y += vel.y * EPS / delta / 60;
+    pos.x += vel.x / delta / 60;
+    pos.y += vel.y / delta / 60;
 
-    this.planet.position.set(pos.x + this.center.x, this.y + this.center.y);
+    //console.log(pos, vel, acl);
+    const center = new PIXI.Point(this.width / 2, this.height / 2);
+    this.planet.position.set(pos.x * 7 + center.x, pos.y * 7 + center.y);
   }
 }
