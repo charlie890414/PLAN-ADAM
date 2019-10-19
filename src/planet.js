@@ -16,7 +16,7 @@ export class Star {
     static update(data) {
         drawStar.controls.cloudColor = '#' + data.color.toString(16).padStart(6, '0');
         drawStar.controls.landColor1 = '#' + data.color.toString(16).padStart(6, '0');
-        drawStar.controls.landColor2 = '#' + (parseInt(data.color + (Math.random() * 100 - 50))).toString(16).padStart(6, '0');
+        drawStar.controls.landColor2 = '#' + data.color.toString(16).padStart(6, '0');
         drawStar.controls.render();
     }
 
@@ -51,6 +51,9 @@ export class Planet {
      * @param {number} param.angular - 公轉速度
      */
     static update(param) {
+        for(let item in param) {
+            param[item] = parseInt(param[item]);
+        }
         this.param = param;
         let { SOLID_COLOR, LIQUID_COLOR, GAS_COLOR } = MIX_COLOR(param);
         drawPlanet.controls.cloudColor = GAS_COLOR;

@@ -189,8 +189,8 @@ class Controls {
         this.landsFalloff = 1;
         this.landsIntensity = 1;
 
-        this.waterDeep = "#f4b35b";
-        this.waterShallow = "#6e1f10";
+        this.waterDeep = "#000055";
+        this.waterShallow = "#0000ff";
         this.waterLevel = .68;
         this.waterSpecular = 1;
         this.waterFalloff = 1;

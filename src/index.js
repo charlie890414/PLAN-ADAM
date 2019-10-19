@@ -47,7 +47,7 @@ global.drawPlanet = new DrawPlanet({
     resolution: 512,
     width: 250,
     height: 250
-});
+}, { waterLevel: .68});
 
 global.drawStar = new DrawPlanet({
     resolution: 512,
@@ -58,13 +58,16 @@ global.drawStar = new DrawPlanet({
 document.querySelector('#planet .model').appendChild(drawPlanet.solid);
 document.querySelector('#star .model').appendChild(drawStar.solid);
 
-$('#planet input[type=range]').on('input', function() {
-
-});
-
-$('#planet input[type=range]').on('input', function() {
-
-});
+$('.elm').each((idx, el)=> {
+    el.addEventListener('input', function(e) {
+        let sum = 0;
+        $('.elm').each((idx, el) => sum += el.id === this.id ? 0 : parseInt(el.value));
+        if(sum + parseInt(this.value) > 100) {
+            this.value = 100 - sum;
+            return false;
+        }
+    })
+})
 
 
 Welcome.welcome(startGame);
