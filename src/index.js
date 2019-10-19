@@ -2,6 +2,7 @@ import * as PIXI from 'pixi.js';
 import Playground from './playground';
 import HUD from './hud';
 import Welcome from './welcome';
+import DrawPlanet from './draw';
 
 function startGame() {
 
@@ -32,7 +33,9 @@ function startGame() {
         panel.show(resources);
         ground.show(resources);
     });
+
 }
 
-
+global.drawPlanet = new DrawPlanet();
+document.querySelector('#planet .model').appendChild(drawPlanet.solid);
 Welcome.welcome(startGame);

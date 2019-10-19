@@ -24,25 +24,17 @@ export default class welcome {
       planet: new Planet({ w: 500, h: 250 })
     }
 
-    let el1 = document.createElement('canvas');
-    let el2 = document.createElement('canvas');
-    $('#star .model').append(el1);
-    $('#planet .model').append(el2);
-    el1.width = el2.width = 500;
-    el1.height = el2.height = 250;
-
-    $('#star').on('input', 'input[type=range]', () => {
+    $('#star').on('change', 'input[type=range]', () => {
       Star.update({
         radius: $('#star-radius').val(),
         mass: $('#star-mass').val(),
         water: $('#star-water').val(),
         temperature: $('#star-temperature').val(),
-        spin: $('#star-spin').val(),
-        el: el1
+        spin: $('#star-spin').val()
       })
     })
 
-    $('#planet input[type=range]').on('input', () => {
+    $('#planet input[type=range]').on('change', () => {
       Planet.update({
         radius: $('#planet-radius').val(),
         mass: $('#planet-mass').val(),
@@ -58,8 +50,7 @@ export default class welcome {
         copper: $('#planet-copper').val(),
         spin: $('#planet-spin').val(),
         distance: $('#planet-distance').val(),
-        angular: $('#planet-angular').val(),
-        el: el2
+        angular: $('#planet-angular').val()
       })
     })
 

@@ -5,10 +5,9 @@ export default class extends PIXI.Container {
     constructor() {
         super();
 
-        this.land = new PIXI.Sprite(PIXI.Texture.WHITE)
-        this.land.width = 1600;
-        this.land.height = 4000;
-        this.land.tint = 0xcd7f32;
+        this.land = new PIXI.Sprite(PIXI.Texture.from(drawPlanet.plane));
+        this.land.width = 10240;
+        this.land.height = 5120;
 
         this.player = new Player();
         this.player.x = this.land.width / 4;
