@@ -4,6 +4,7 @@ import HUD from './hud';
 import Welcome from './welcome';
 import DrawPlanet from './draw';
 import * as $ from 'jquery';
+import 'bootstrap';
 
 function startGame() {
 
@@ -71,5 +72,6 @@ $('.elm').each((idx, el) => {
     })
 })
 
+$('.dropdown-toggle').dropdown();
 
 Welcome.welcome(startGame);

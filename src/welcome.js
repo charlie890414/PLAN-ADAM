@@ -116,8 +116,8 @@ export default class welcome {
       })
     })
 
+    $('#planet input[type=range], #star input[type=range]').change();
     $('#submit').on('click', function () {
-
       app();
     })
   }
