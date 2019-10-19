@@ -2,12 +2,10 @@ import * as PIXI from 'pixi.js';
 import Keyboard from 'pixi.js-keyboard';
 //import { Planet, Star } from './planet';
 
-export default class extends PIXI.Sprite {
-    constructor() {
-        super();
+export default class extends PIXI.AnimatedSprite {
+    constructor(textures) {
+        super(textures);
 
-        PIXI.Loader.shared
-            .add('astronaut_0', 'astronaut_0.png')
         //this.Planet_param = Planet.fetch();
         this.vx = this.vy = 0;
         this.f = 0;
@@ -28,7 +26,6 @@ export default class extends PIXI.Sprite {
     }
 
     show(resources) {
-        this.texture = resources.astronaut_0.texture;
 
         this.width = this.texture.width / 10;
         this.height = this.texture.height / 10;
