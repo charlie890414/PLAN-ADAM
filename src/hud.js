@@ -5,15 +5,16 @@ import {
 import {
   Planet
 } from './planet'
+import { PlaneHelper } from 'three';
 
 export default class HUD extends PIXI.Container {
   constructor() {
     super();
+    PIXI.Loader.shared
+      .add('boom', 'boom.png')
   }
 
   show(resources) {
-    PIXI.Loader.shared
-      .add('fire', 'fire.gif')
     const param = Planet.fetch();
     this.resources = resources;
     this.meta = new PIXI.Text();
@@ -44,17 +45,33 @@ export default class HUD extends PIXI.Container {
       color: 0xd515a1
     });
     this.addChild(this.power.view, this.degree.view);
-    this.newfire();
     app.ticker.add(() => {
       this.update();
     });
   }
-  newfire() {
-    this.fire = new PIXI.Sprite();
-    this.fire.texture = this.resources.fire.texture;
-    this.fire.x = 0;
-    this.fire.y = app.screen.height - 500;
-    this.addChild(this.fire);
+  endgame() {
+    this.boom = new PIXI.Sprite();
+    this.boom.texture = this.resources.boom.texture;
+    this.boom.x = app.screen.width / 2 - this.boom.width * 2 / 2;
+    this.boom.y = app.screen.height / 2 - this.boom.height * 2 / 2;
+    this.boom.alpha = 0;
+    this.boom.scale.x = 2;
+    this.boom.scale.y = 2;
+    this.boom.interactive = true;
+    this.boom.cursor = "pointer";
+    this.boom.on('click', (event) => {
+      window.location.reload("index.html")
+      console.log("cl");
+    });
+    this.addChild(this.boom);
+    var sh = setInterval(() => {
+      this.boom.alpha += 0.008;
+      // this.boom.scale.x += 0.03;
+      // this.boom.scale.y += 0.03;
+      // this.boom.x = app.screen.width / 2 - this.boom.width * this.boom.scale.x / 2;
+      // this.boom.y = app.screen.height / 2 - this.boom.height * this.boom.scale.y / 2;
+      if (this.boom.alpha >= 1) clearInterval(sh);
+    }, 1)
   }
 
 
@@ -62,7 +79,6 @@ export default class HUD extends PIXI.Container {
     const speed = Math.sqrt(Math.pow(this.map.vec.x, 2) + Math.pow(this.map.vec.y, 2));
     const r = Math.sqrt(Math.pow(this.map.pos.x, 2) + Math.pow(this.map.pos.y, 2));
     const omega = Math.sqrt(speed * r);
-
     this.meta.text =
       "v = " + Math.round(speed * 1e3) / 1e3 + "\n" +
       "ω = " + Math.round(omega * 1e3) / 1e3 + "\n";
@@ -122,7 +138,7 @@ class MiniMap extends PIXI.Container {
     const pos = this.pos;
     const vel = this.vec;
 
-    const r = this.getcurrentDistance();
+    const r = Math.sqrt(Math.pow(pos.x, 2) + Math.pow(pos.y, 2));
     let r3 = 1 / Math.pow(r, 3);
     const acl = new PIXI.Point(pos.x * -r3, pos.y * -r3);
     vel.x += acl.x * EPS / delta / 60;
@@ -133,8 +149,10 @@ class MiniMap extends PIXI.Container {
     let next = new PIXI.Point(this.width / 2, this.height / 2);
     next.x += pos.x;
     next.y += pos.y;
-
     this.planet.position = next;
+    if (panel.map.getcurrentDistance() < 13) {
+      panel.endgame();
+    }
   }
 }
 
