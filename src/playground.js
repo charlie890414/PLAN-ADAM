@@ -50,7 +50,6 @@ export default class extends PIXI.Container {
             var position = this.player.toGlobal(panel);
             this.x -= position.x - app.screen.width / 2;
             this.y -= position.y - app.screen.height / 2;
-            panel.meta.update({ speed: this.x, omega: this.y, period: 100 });
         });
         ticker.add((delta) => {
             this.maskmove(delta);

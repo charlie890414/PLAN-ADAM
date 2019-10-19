@@ -16,6 +16,7 @@ function startGame() {
         resizeTo: window
     });
 
+    document.getElementById('app').remove();
     document.body.appendChild(app.view);
 
     /* Setup game */
@@ -32,5 +33,6 @@ function startGame() {
         ground.show(resources);
     });
 }
+
 
 Welcome.welcome(startGame);
