@@ -1,6 +1,6 @@
 import * as PIXI from 'pixi.js';
 import Keyboard from 'pixi.js-keyboard';
-//import { Planet, Star } from './planet';
+import { Planet, Star } from './planet';
 class Ball extends PIXI.Sprite {
     constructor(theta, v, g, r, x, y, rock) {
         super();
@@ -22,7 +22,6 @@ class Ball extends PIXI.Sprite {
         this.ah = 0.1;
         this.mh = this.ah * (this.v * Math.sin(Math.PI * this.theta / 180) * (this.alltime / 2) - (1 / 2) * this.g * ((this.alltime / 2) * (this.alltime / 2))) / ((this.alltime / 2) * 60);
         this.time = 0;
-        console.log(this.alltime);
         this.ballmove = setInterval(() => {
             this.time++;
             if (this.time / 60.0 > this.alltime) clearInterval(this.ballmove);
@@ -49,11 +48,11 @@ export default class extends PIXI.Sprite {
         this.spaceup = true;
         PIXI.Loader.shared
             .add('rock', 'rock.png')
-        //this.Planet_param = Planet.fetch();
+        this.Planet_param = Planet.fetch();
         this.vx = this.vy = 0;
         this.f = 0;
         this.v = 1.1;
-        this.g = 0.98;
+        this.g = this.Planet_param.g;
         this.g_scale = 1000;
         this.up = true;
         this.t = this.v / (3.0 * this.g);
@@ -62,10 +61,6 @@ export default class extends PIXI.Sprite {
         this.mf = this.maxf / (this.t * 30)
         this.ms = (Math.abs((1.05 * (this.maxf) / 10))) / (this.t * 30) / 10;
         this.nowscale = 0.2;
-        console.log(this.maxf);
-        // console.log(this.mf);
-        console.log(this.ms);
-        console.log(Math.abs((this.v * (this.maxf) / 10)) + 1);
     }
 
     show(resources) {
@@ -100,8 +95,8 @@ export default class extends PIXI.Sprite {
         });
     }
     throw() {
-        var ball = new Ball(45, 7, this.g, this.rotation + Math.PI, this.x, this.y, this.resources.rock.texture);
-        ground.addChild(ball);
+        var ball = new Ball(89, 15, this.g, this.rotation + Math.PI, this.x, this.y, this.resources.rock.texture);
+        ground.addChildAt(ball, ground.children.length - 1);
     }
     walk(delta) {
         const speed = 100 / this.t;

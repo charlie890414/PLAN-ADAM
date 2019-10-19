@@ -1,6 +1,6 @@
 import * as PIXI from 'pixi.js';
 import Player from './player';
-
+import { Planet, Star } from './planet';
 export default class extends PIXI.Container {
     constructor() {
         super();
@@ -32,7 +32,7 @@ export default class extends PIXI.Container {
         this.sunmask.endFill();
         this.sunmask.alpha = 0;
         this.hour = 1;
-        this.timespeed = 360;
+        this.timespeed = 24 / Planet.fetch().spin;
         this.mask_pos_x = (this.land.width * 3) / 4;
         this.addChild(this.sunmask);
     }
