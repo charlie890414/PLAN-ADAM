@@ -30,6 +30,7 @@ export class Star extends PIXI.Application {
     }
 
     static fetch() {
+        this.param.g = (((6.67 * 10) ^ -11) * this.param.mass) / this.radius ^ 2
         return this.param;
     }
 }
@@ -72,6 +73,7 @@ export class Planet extends PIXI.Application {
     }
 
     static fetch() {
+        this.param.g = (((6.67 * 10) ^ -11) * this.param.mass) / this.radius ^ 2;
         return this.param;
     }
 }
