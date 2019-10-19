@@ -1,4 +1,5 @@
 import * as PIXI from 'pixi.js'
+import { Planet } from './planet'
 
 export default class HUD extends PIXI.Container {
   constructor() {
@@ -6,6 +7,8 @@ export default class HUD extends PIXI.Container {
   }
 
   show() {
+    const param = Planet.fetch();
+
     this.meta = new PIXI.Text();
     this.meta.x = 5;
     this.meta.y = 5;
@@ -19,20 +22,21 @@ export default class HUD extends PIXI.Container {
     this.addChild(metaBg);
     this.addChild(this.meta);
 
-    this.map = new MiniMap(new PIXI.Point(0, 3), new PIXI.Point(0.5, 0));
+    this.map = new MiniMap(new PIXI.Point(0, param.distance), new PIXI.Point(param.angular, 0));
     this.addChild(this.map);
     this.map.show();
+
+    app.ticker.add(() => { this.update(); });
   }
 
-  update(param) {
-    if (param.speed) this.speed = param.speed;
-    if (param.omega) this.omega = param.omega;
-    if (param.period) this.period = param.period;
+  update() {
+    const speed = Math.sqrt(Math.pow(this.map.vec.x, 2) + Math.pow(this.map.vec.y, 2));
+    const r = Math.sqrt(Math.pow(this.map.pos.x, 2) + Math.pow(this.map.pos.y, 2));
+    const omega = Math.sqrt(speed * r);
 
     this.meta.text =
-      "v = " + this.speed + "\n" +
-      "w = " + this.omega + "\n" +
-      "t = " + this.period + "\n";
+      "v = " + speed + "\n" +
+      "w = " + omega + "\n";
   }
 }
 
