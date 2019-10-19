@@ -33,6 +33,11 @@ export default class extends PIXI.Container {
         this.timespeed = 24 / Planet.fetch().spin;
         this.mask_pos_x = (this.land.width * 3) / 4;
         this.addChild(this.sunmask);
+
+        this.lightmask = new PIXI.Sprite(PIXI.Texture.WHITE);
+        this.lightmask.width = this.width;
+        this.lightmask.height = this.height;
+        this.addChild(this.lightmask);
     }
     show(resources) {
         this.addChild(this.land);
@@ -51,6 +56,17 @@ export default class extends PIXI.Container {
         });
         ticker.add((delta) => {
             this.maskmove(delta);
+        });
+        ticker.add(() => {
+            const sunDistance = panel.map.getcurrentDistance();
+            if (sunDistance < 40) {
+                this.lightmask.tint = 0xFFFFFF;
+                this.lightmask.alpha = 1 / Math.pow(sunDistance, 2);
+            }
+            else {
+                this.lightmask.tint = 0X000000;
+                this.lightmask.alpha = Math.pow(sunDistance, 2) / 1e4;
+            }
         });
     }
 }

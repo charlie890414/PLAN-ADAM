@@ -97,7 +97,7 @@ export default class extends PIXI.Sprite {
     }
     throw(v, r) {
         var ball = new Ball(r, v, this.g, this.rotation + Math.PI, this.x, this.y, this.resources.rock.texture);
-        ground.addChildAt(ball, ground.children.length - 1);
+        ground.addChildAt(ball, ground.children.length - 2);
     }
     walk(delta) {
         if (Keyboard.isKeyDown('Space')) {
