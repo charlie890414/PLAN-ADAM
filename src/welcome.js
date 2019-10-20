@@ -113,7 +113,6 @@ export default class welcome {
         Fe2O3: parseFloat($('#planet-Fe2O3').val()),
         CuOH2: parseFloat($('#planet-CuOH2').val()),
         CuSO4: parseFloat($('#planet-CuSO4').val()),
-        KMnO4: parseFloat($('#planet-KMnO4').val()),
         S: parseFloat($('#planet-S').val()),
         ice: parseFloat($('#planet-ice').val()),
         Au: parseFloat($('#planet-Au').val()),
