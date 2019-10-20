@@ -8,6 +8,7 @@ export default class Application {
         this.width = width;
         this.height = height;
         this.controls = new Controls(this);
+        this.controls.resolution = resolution;
         if (controls) {
             for (const item in controls) {
                 this.controls[item] = controls[item];

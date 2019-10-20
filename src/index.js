@@ -47,13 +47,13 @@ function startGame() {
 }
 
 global.drawPlanet = new DrawPlanet({
-    resolution: 512,
+    resolution: 128,
     width: 250,
     height: 250
 }, { waterLevel: .68 });
 
 global.drawStar = new DrawPlanet({
-    resolution: 512,
+    resolution: 128,
     width: 250,
     height: 250
 }, { waterLevel: 0 })
