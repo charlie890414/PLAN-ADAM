@@ -56,9 +56,6 @@ export class Planet {
      * @param {number} param.angular - 公轉速度
      */
     static update(param) {
-        for (let item in param) {
-            param[item] = parseInt(param[item]);
-        }
         this.param = param;
         let {
             SOLID_COLOR,
@@ -77,9 +74,6 @@ export class Planet {
      */
     static fetch() {
         this.param.g = (this.param.mass) / Math.pow(this.param.radius, 2);//(Math.pow(6.67 * 10, -11) *
-        console.log(this.param.g);
-        console.log(this.param.mass);
-        console.log(this.param.radius);
         return this.param;
     }
 
