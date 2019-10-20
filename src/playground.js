@@ -65,7 +65,7 @@ export default class extends PIXI.Container {
             }
             else {
                 this.lightmask.tint = 0X000000;
-                this.lightmask.alpha = Math.pow(sunDistance, 2) / 1e4;
+                this.lightmask.alpha = Math.pow(sunDistance, 2) / 1e5;
             }
         });
     }
