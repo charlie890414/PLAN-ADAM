@@ -29,7 +29,7 @@ export class Star {
      * @returns {Objec} Object same as update
      */
     static fetch() {
-        this.param.g = (Math.pow(6.67 * 10, -11) * this.param.mass) / Math.pow(this.radius, 2);
+        this.param.g = (this.param.mass) / Math.pow(this.param.radius, 2);//(Math.pow(6.67 * 10, -11) *
         return this.param;
     }
 }
@@ -76,7 +76,9 @@ export class Planet {
      * @returns {Objec} Object same as update
      */
     static fetch() {
-        this.param.g = (Math.pow(6.67 * 10, -11) * this.param.mass) / Math.pow(this.param.radius, 2);
+        this.param.g = (this.param.mass) / Math.pow(this.param.radius, 2);//(Math.pow(6.67 * 10, -11) *
+        console.log(this.param.g);
+        console.log(this.param.mass);
         console.log(this.param.radius);
         return this.param;
     }
