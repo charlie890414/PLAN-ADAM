@@ -53,7 +53,7 @@ let GAS_COLOR_MAP = {
 
 function HEX_TO_COLOR(HEX) {
     console.log(HEX);
-    return "#" + parseInt(HEX).toString(16).replace("0x", "");
+    return "#" + parseInt(HEX).toString(16).padStart(6, '0').replace("0x", "");
 }
 // HEX_TO_COLOR(0xffffff);
 

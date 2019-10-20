@@ -29,7 +29,7 @@ export class Star {
      * @returns {Objec} Object same as update
      */
     static fetch() {
-        this.param.g = (Math.pow(6.67 * 10, -11) * this.param.mass) / Math.pow(this.radius, 2);
+        this.param.g = (this.param.mass) / Math.pow(this.param.radius, 2);//(Math.pow(6.67 * 10, -11) *
         return this.param;
     }
 }
@@ -56,9 +56,6 @@ export class Planet {
      * @param {number} param.angular - 公轉速度
      */
     static update(param) {
-        for (let item in param) {
-            param[item] = parseInt(param[item]);
-        }
         this.param = param;
         let {
             SOLID_COLOR,
@@ -76,8 +73,7 @@ export class Planet {
      * @returns {Objec} Object same as update
      */
     static fetch() {
-        this.param.g = (Math.pow(6.67 * 10, -11) * this.param.mass) / Math.pow(this.param.radius, 2);
-        console.log(this.param.radius);
+        this.param.g = 6.67*1e3*(this.param.mass) / Math.pow(this.param.radius, 2);//(Math.pow(6.67 * 10, -11) *
         return this.param;
     }
 
