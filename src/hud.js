@@ -118,9 +118,6 @@ class MiniMap extends PIXI.Container {
     this.x = app.screen.width - 205;
     this.y = 5;
 
-    this.path = new PIXI.Graphics();
-    this.addChild(this.path);
-
     const center = new PIXI.Point(this.width / 2, this.height / 2);
 
     this.planet = new PIXI.Sprite(resources.planetball.texture);
@@ -145,9 +142,6 @@ class MiniMap extends PIXI.Container {
     const pos = this.pos;
     const vel = this.vec;
 
-    this.path.lineStyle(1, 0xFF0000);
-    this.path.moveTo(pos.x + center.x, pos.y + center.y);
-
     const r = Math.sqrt(Math.pow(pos.x, 2) + Math.pow(pos.y, 2));
     let r3 = 1 / Math.pow(r, 3);
     const acl = new PIXI.Point(pos.x * -r3, pos.y * -r3);
@@ -158,8 +152,11 @@ class MiniMap extends PIXI.Container {
 
     this.planet.position.set(pos.x + center.x, pos.y + center.y);
 
-    this.path.lineTo(pos.x + center.x, pos.y + center.y);
-    this.path.endFill();
+    var follow = new PIXI.Sprite(PIXI.Texture.WHITE);
+    follow.tint = 0xFF0000;
+    follow.position = this.planet.position;
+    follow.height = follow.width = 1;
+    this.addChildAt(follow, 1);
 
     if (panel.map.getcurrentDistance() < 13) {
       panel.endgame();
