@@ -86,7 +86,7 @@ export default class HUD extends PIXI.Container {
       "質量 = " + planet.mass + "\n" +
       "自轉速度 = " + planet.spin + "\n" +
       "與恆星距離 = " + r + "\n" +
-      "公角速度 = " + speed + "\n";
+      "速度 = " + speed + "\n";
   }
 }
 
