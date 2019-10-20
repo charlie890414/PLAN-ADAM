@@ -115,6 +115,12 @@ export default class welcome {
         distance: parseFloat($('#planet-distance').val()),
         angular: parseFloat($('#planet-angular').val())
       })
+
+      for(const item of ['solid', 'liquid', 'gas']) {
+        let sum = 0;
+        $(`.big-${item} input[type=range]`).each((idx, el) => sum += parseInt(el.value));
+        $(`.big-${item} .range-value:eq(0)`).text(sum + '%');
+      }
     })
 
     $('#planet input[type=range], #star input[type=range]').change();
