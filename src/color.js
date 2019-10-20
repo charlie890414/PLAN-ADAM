@@ -143,7 +143,7 @@ export function MIX_COLOR(composition) {
     SOLID_COLOR = isNaN(Math.floor(SOLID_COLOR)) ? 0 : Math.floor(SOLID_COLOR);
     LIQUID_COLOR = isNaN(Math.floor(LIQUID_COLOR)) ? 0 : Math.floor(LIQUID_COLOR);
     GAS_COLOR = isNaN(Math.floor(GAS_COLOR)) ? 0 : Math.floor(GAS_COLOR);
-    console.log(HEX_TO_COLOR(SOLID_COLOR), HEX_TO_COLOR(LIQUID_COLOR), HEX_TO_COLOR(GAS_COLOR));
+    console.log('>>>>', HEX_TO_COLOR(SOLID_COLOR), HEX_TO_COLOR(LIQUID_COLOR), HEX_TO_COLOR(GAS_COLOR));
     return {
         SOLID_COLOR: HEX_TO_COLOR(SOLID_COLOR),
         LIQUID_COLOR: HEX_TO_COLOR(LIQUID_COLOR),
