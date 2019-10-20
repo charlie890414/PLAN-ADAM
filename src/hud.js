@@ -14,7 +14,7 @@ export default class HUD extends PIXI.Container {
 
     PIXI.Loader.shared.add('planetball', 'miniplanet.png');
     PIXI.Loader.shared.add('starball', 'ministar.png');
-    PIXI.Loader.shared.add('pathdot','pathdot.png');
+    PIXI.Loader.shared.add('pathdot', 'pathdot.png');
   }
 
   show(resources) {
@@ -74,7 +74,7 @@ export default class HUD extends PIXI.Container {
     const star = Star.fetch(), planet = Planet.fetch();
     var speed = Math.sqrt(Math.pow(this.map.vec.x, 2) + Math.pow(this.map.vec.y, 2));
     var r = this.map.getcurrentDistance();
-    r = Math.round(speed * 1e3) / 1e3;
+    r = Math.round(r * 1e3) / 1e3;
     speed = Math.round(speed * 1e3) / 1e3;
     this.meta.text =
       "恆星\n" +
@@ -86,7 +86,7 @@ export default class HUD extends PIXI.Container {
       "質量 = " + planet.mass + "\n" +
       "自轉速度 = " + planet.spin + "\n" +
       "與恆星距離 = " + r + "\n" +
-      "公角速度 = " + planet.angular + "\n";
+      "公角速度 = " + speed + "\n";
   }
 }
 
