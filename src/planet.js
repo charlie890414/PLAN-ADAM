@@ -76,7 +76,9 @@ export class Planet {
      * @returns {Objec} Object same as update
      */
     static fetch() {
-        this.param.g = (Math.pow(6.67 * 10, -11) * this.param.mass) / Math.pow(this.radius, 2);
+        this.param.g = (Math.pow(6.67 * 10, -11) * this.param.mass) / Math.pow(this.param.radius, 2);
+        console.log(this.param.radius);
         return this.param;
     }
+
 }

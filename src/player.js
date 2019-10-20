@@ -33,7 +33,6 @@ class Ball extends PIXI.Sprite {
             //     this.h -= this.mh;
             // else
             //     this.h += this.mh;
-            console.log(this.h);
             this.scale.x = this.scale.y = 0.3 + (this.h < 0 ? 0 : this.h);
         }, 100 / 6);
     }
@@ -97,7 +96,7 @@ export default class extends PIXI.Sprite {
     }
     throw(v, r) {
         var ball = new Ball(r, v, this.g, this.rotation + Math.PI, this.x, this.y, this.resources.rock.texture);
-        ground.addChildAt(ball, ground.children.length - 2);
+        ground.addChildAt(ball, ground.children.length - 1);
     }
     walk(delta) {
         if (Keyboard.isKeyDown('Space')) {
