@@ -7,12 +7,14 @@ import * as $ from 'jquery';
 import 'bootstrap';
 
 function startGame() {
+    loading(document.body)
 
     global.drawPlanet = new DrawPlanet({
         resolution: 1024,
         width: 1980,
         height: 1080,
         callback: [() => {
+
             /* Init PIXI JS */
             const type = PIXI.utils.isWebGLSupported() ? 'WebGL' : 'canvas';
             PIXI.utils.sayHello(type);
@@ -41,7 +43,11 @@ function startGame() {
             loader.load((loader, resources) => {
                 panel.show(resources);
                 ground.show(resources);
+                $('#loading').remove();
             });
+
+
+
         }]
     }, drawPlanet.controls);
 
@@ -78,3 +84,9 @@ $('.elm').each((idx, el) => {
 $('.dropdown-toggle').dropdown();
 
 Welcome.welcome(startGame);
+
+
+function loading(el) {
+    let html = `<div id="loading"><div id="div-loading"><div id="loading-background"></div><div id="loading-text"></div></div></div>`;
+    $(el).append(html);
+}
