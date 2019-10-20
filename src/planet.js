@@ -64,6 +64,7 @@ export class Planet {
         } = MIX_COLOR(param);
         drawPlanet.controls.cloudColor = GAS_COLOR;
         drawPlanet.controls.waterDeep = LIQUID_COLOR;
+        drawPlanet.controls.waterShallow = LIQUID_COLOR;
         drawPlanet.controls.landColor1 = SOLID_COLOR;
         drawPlanet.controls.landColor2 = SOLID_COLOR;
         drawPlanet.controls.render();
@@ -73,7 +74,7 @@ export class Planet {
      * @returns {Objec} Object same as update
      */
     static fetch() {
-        this.param.g = 6.67*1e3*(this.param.mass) / Math.pow(this.param.radius, 2);//(Math.pow(6.67 * 10, -11) *
+        this.param.g = 6.67 * 1e3 * (this.param.mass) / Math.pow(this.param.radius, 2);//(Math.pow(6.67 * 10, -11) *
         return this.param;
     }
 

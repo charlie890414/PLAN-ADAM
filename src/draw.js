@@ -4,7 +4,7 @@ import 'sylvester';
 
 export default class Application {
     constructor(param, controls = false) {
-        const { resolution, width, height } = param;
+        const { resolution, width, height, callback = [] } = param;
         this.width = width;
         this.height = height;
         this.controls = new Controls(this);
@@ -14,6 +14,7 @@ export default class Application {
             }
         }
         this.controls.resolution = resolution;
+        this.controls.callback = callback;
         this.planetTexture = null;
         this.planetRenderer = new PlanetRenderer();
 
@@ -125,6 +126,7 @@ export default class Application {
             cloudOpacity: this.controls.cloudOpacity,
             cloudNoise: cloudNoise,
             spin: this.controls.spin,
+            callback: this.controls.callback
         });
         this.planetRenderer.setTexture(this.planetTexture);
         this.planetRenderer.setNormalScale(this.controls.normalScale);
@@ -392,6 +394,7 @@ class PlanetTexture {
         this.specular = new PixelSurface(this.width, this.height);
         this.cloud = new PixelSurface(this.width, this.height);
         this.done = false;
+        this.fn = () => params.callback.forEach(xfn => xfn());
     }
     surfaceHeight(x, y, z) {
         return this.params.surfaceNoise.sample(x / this.params.spin, y / this.params.spin, z);
@@ -465,6 +468,9 @@ class PlanetTexture {
             this.cloud.update();
         }
         this.done = next.done == 1;
+        if(this.done) {
+            this.fn();
+        }
     }
 }
 
