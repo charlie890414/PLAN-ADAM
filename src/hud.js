@@ -5,7 +5,6 @@ import {
 import {
   Planet, Star
 } from './planet'
-import { PlaneHelper } from 'three';
 
 export default class HUD extends PIXI.Container {
   constructor() {
@@ -20,17 +19,9 @@ export default class HUD extends PIXI.Container {
   show(resources) {
     const param = Planet.fetch();
     this.resources = resources;
-    this.meta = new PIXI.Text();
+    this.meta = new PIXI.Text('', { fill: 0xFFFFFF });
     this.meta.x = 5;
     this.meta.y = 5;
-
-    var metaBg = new PIXI.Sprite(PIXI.Texture.WHITE);
-    metaBg.x = this.meta.x;
-    metaBg.y = this.meta.y;
-    metaBg.width = 160;
-    metaBg.height = 100;
-
-    this.addChild(metaBg);
     this.addChild(this.meta);
 
     this.map = new MiniMap(new PIXI.Point(0, param.distance), new PIXI.Point(param.angular, 0));
@@ -79,12 +70,22 @@ export default class HUD extends PIXI.Container {
 
 
   update() {
-    const speed = Math.sqrt(Math.pow(this.map.vec.x, 2) + Math.pow(this.map.vec.y, 2));
-    const r = Math.sqrt(Math.pow(this.map.pos.x, 2) + Math.pow(this.map.pos.y, 2));
-    const omega = Math.sqrt(speed * r);
+    const star = Star.fetch(), planet = Planet.fetch();
+    var speed = Math.sqrt(Math.pow(this.map.vec.x, 2) + Math.pow(this.map.vec.y, 2));
+    var r = this.map.getcurrentDistance();
+    r = Math.round(speed * 1e3) / 1e3;
+    speed = Math.round(speed * 1e3) / 1e3;
     this.meta.text =
-      "v = " + Math.round(speed * 1e3) / 1e3 + "\n" +
-      "ω = " + Math.round(omega * 1e3) / 1e3 + "\n";
+      "恆星\n" +
+      "半徑 = " + star.radius + "\n" +
+      "質量 = " + planet.radius + "\n" +
+      "溫度 = " + planet.temperature + "\n" +
+      "行星\n" +
+      "半徑 = " + planet.radius + "\n" +
+      "質量 = " + planet.mass + "\n" +
+      "自轉速度 = " + planet.spin + "\n" +
+      "與恆星距離 = " + r + "\n" +
+      "公角速度 = " + planet.angular + "\n";
   }
 }
 
@@ -110,12 +111,12 @@ class MiniMap extends PIXI.Container {
 
   show(resources) {
     const Bg = new PIXI.Sprite(PIXI.Texture.WHITE);
-    Bg.width = 200;
-    Bg.height = 180;
+    Bg.width = 300;
+    Bg.height = 300;
     this.addChild(Bg);
     this.width = Bg.width;
     this.height = Bg.height;
-    this.x = app.screen.width - 205;
+    this.x = app.screen.width - this.width - 5;
     this.y = 5;
 
     const center = new PIXI.Point(this.width / 2, this.height / 2);
