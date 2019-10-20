@@ -14,6 +14,7 @@ export default class HUD extends PIXI.Container {
 
     PIXI.Loader.shared.add('planetball', 'miniplanet.png');
     PIXI.Loader.shared.add('starball', 'ministar.png');
+    PIXI.Loader.shared.add('pathdot','pathdot.png');
   }
 
   show(resources) {
@@ -110,6 +111,7 @@ class MiniMap extends PIXI.Container {
   }
 
   show(resources) {
+    this.pathdot = resources.pathdot.texture;
     const Bg = new PIXI.Sprite(PIXI.Texture.WHITE);
     Bg.width = 300;
     Bg.height = 300;
@@ -119,7 +121,7 @@ class MiniMap extends PIXI.Container {
     this.x = app.screen.width - this.width - 5;
     this.y = 5;
 
-    const center = new PIXI.Point(this.width / 2, this.height / 2);
+    const center = this.center = new PIXI.Point(this.width / 2, this.height / 2);
 
     this.planet = new PIXI.Sprite(resources.planetball.texture);
     this.planet.anchor.set(0.5);
@@ -139,7 +141,6 @@ class MiniMap extends PIXI.Container {
 
   move(delta) {
     const EPS = Planet.fetch().mass;
-    const center = new PIXI.Point(this.width / 2, this.height / 2);
     const pos = this.pos;
     const vel = this.vec;
 
@@ -151,12 +152,10 @@ class MiniMap extends PIXI.Container {
     pos.x += vel.x / delta / 60;
     pos.y += vel.y / delta / 60;
 
-    this.planet.position.set(pos.x + center.x, pos.y + center.y);
+    this.planet.position.set(pos.x + this.center.x, pos.y + this.center.y);
 
-    var follow = new PIXI.Sprite(PIXI.Texture.WHITE);
-    follow.tint = 0xFF0000;
+    var follow = new PIXI.Sprite(this.pathdot);
     follow.position = this.planet.position;
-    follow.height = follow.width = 1;
     this.addChildAt(follow, 1);
 
     if (panel.map.getcurrentDistance() < 13) {
