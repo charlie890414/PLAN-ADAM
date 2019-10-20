@@ -9,7 +9,7 @@ class Ball extends PIXI.Sprite {
         this.scale.x = this.scale.y = 0.3;
         this.x = x - 50;
         this.y = y + 50;
-        this.g = g * 10;
+        this.g = g * 100;
         this.v = v;//初速度
         this.theta = theta;
         this.alltime = 2 * this.v * Math.sin(Math.PI * this.theta / 180) / this.g;
