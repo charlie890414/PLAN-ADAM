@@ -19,6 +19,7 @@ export class Star {
      */
     static update(data) {
         this.param = data;
+        this.param.g = (this.param.mass) / Math.pow(this.param.radius, 2);//(Math.pow(6.67 * 10, -11) *
         drawStar.controls.cloudColor = '#' + data.color.toString(16).padStart(6, '0');
         drawStar.controls.landColor1 = '#' + data.color.toString(16).padStart(6, '0');
         drawStar.controls.landColor2 = '#' + data.color.toString(16).padStart(6, '0');
@@ -29,7 +30,6 @@ export class Star {
      * @returns {Objec} Object same as update
      */
     static fetch() {
-        this.param.g = (this.param.mass) / Math.pow(this.param.radius, 2);//(Math.pow(6.67 * 10, -11) *
         return this.param;
     }
 }
@@ -57,6 +57,7 @@ export class Planet {
      */
     static update(param) {
         this.param = param;
+        this.param.g = 6.67 * 1e2 * (this.param.mass) / Math.pow(this.param.radius, 2);//(Math.pow(6.67 * 10, -11) *
         let {
             SOLID_COLOR,
             LIQUID_COLOR,
@@ -74,7 +75,6 @@ export class Planet {
      * @returns {Objec} Object same as update
      */
     static fetch() {
-        this.param.g = 6.67 * 1e3 * (this.param.mass) / Math.pow(this.param.radius, 2);//(Math.pow(6.67 * 10, -11) *
         return this.param;
     }
 
