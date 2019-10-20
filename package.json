@@ -8,8 +8,7 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "watch": "webpack --watch",
     "start": "webpack-dev-server",
-    "build": "webpack",
-    "deploy": "gh-pages -d dist -n"
+    "build": "webpack"
   },
   "keywords": [],
   "author": "",
@@ -21,7 +20,6 @@
     "eslint": "^6.5.1",
     "eslint-plugin-import": "^2.18.2",
     "file-loader": "^4.2.0",
-    "gh-pages": "^2.1.1",
     "jquery": "^3.4.1",
     "pixi-filters": "^3.0.3",
     "pixi-textinput-v5": "^4.0.0-beta.10",

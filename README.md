@@ -22,11 +22,6 @@ To compile webpack:
 npm run build
 ```
 
-If you want automatically deploy to Github Page when push:
-```
-git config core.hooksPath .githooks
-```
-
 ## Feature Checklist
 
  - [ ] Start game by landing

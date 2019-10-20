@@ -8,8 +8,7 @@
 		"editor.formatOnSave": true,
 		"files.exclude": {
 			"**/node_modules": true,
-			"dist": true,
-			".githooks": true,
+			"dist": true
 		}
 	}
 }
