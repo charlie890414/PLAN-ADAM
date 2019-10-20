@@ -78,8 +78,8 @@ export default class HUD extends PIXI.Container {
     this.meta.text =
       "恆星\n" +
       "半徑 = " + star.radius + "\n" +
-      "質量 = " + planet.radius + "\n" +
-      "溫度 = " + planet.temperature + "\n" +
+      "質量 = " + star.mass + "\n" +
+      "溫度 = " + star.temperature + "\n" +
       "行星\n" +
       "半徑 = " + planet.radius + "\n" +
       "質量 = " + planet.mass + "\n" +
