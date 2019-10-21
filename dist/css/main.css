@@ -4,12 +4,32 @@
   from {
     transform: rotate(0deg);
   }
+
   to {
     transform: rotate(360deg);
   }
 }
 
-:root{
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+::-webkit-scrollbar-track {
+  border-radius: 3px;
+  background: rgba(0, 0, 0, 0.06);
+  box-shadow: inset 0 0 5px rgba(0, 0, 0, 0.08);
+  -webkit-box-shadow: inset 0 0 5px rgba(0, 0, 0, 0.08);
+}
+
+::-webkit-scrollbar-thumb {
+  border-radius: 3px;
+  background: rgba(0, 0, 0, 0.12);
+  box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.2);
+  -webkit-box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.2);
+}
+
+:root {
   --star: #d63031;
   --planet: #10ac84;
 }
@@ -19,7 +39,8 @@
   padding: 0;
 }
 
-html, body {
+html,
+body {
   height: 100%;
   overflow: hidden;
   font-family: 'Noto Sans TC', Helvetica Neue, Helvetica, Arial;
@@ -46,7 +67,8 @@ html, body {
   justify-content: space-around;
 }
 
-#star, #planet {
+#star,
+#planet {
   display: inline-block;
   background: #bdc3c7;
   border-radius: 15px;
@@ -63,7 +85,7 @@ html, body {
   margin-top: 20px;
 }
 
-.config > label {
+.config>label {
   font-size: 24px;
   font-weight: 800;
   color: #d63031;
@@ -75,12 +97,13 @@ html, body {
   right: 20px;
   bottom: 15px;
 }
+
 .green-planet .range-slider .range-value,
 .green-planet .range-slider input[type="range"] {
   background: var(--planet);
 }
 
-.green-planet > label {
+.green-planet>label {
   color: var(--planet);
 }
 
@@ -166,7 +189,7 @@ html, body {
   position: relative;
 }
 
-::-moz-range-track{
+::-moz-range-track {
   background: transparent;
   border: 0;
 }
@@ -218,7 +241,7 @@ html, body {
   position: relative;
 }
 
-.model > canvas {
+.model>canvas {
   filter: drop-shadow(5px 10px 6px #555);
 }
 
