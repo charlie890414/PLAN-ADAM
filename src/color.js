@@ -53,6 +53,7 @@ let GAS_COLOR_MAP = {
 
 function HEX_TO_COLOR(HEX) {
     console.log(HEX);
+    if (isNaN(HEX)) return null;
     return "#" + parseInt(HEX).toString(16).padStart(6, '0').replace("0x", "");
 }
 // HEX_TO_COLOR(0xffffff);
@@ -147,9 +148,9 @@ export function MIX_COLOR(composition) {
         }
     }
 
-    SOLID_COLOR = isNaN(Math.floor(SOLID_COLOR)) ? 0 : Math.floor(SOLID_COLOR);
-    LIQUID_COLOR = isNaN(Math.floor(LIQUID_COLOR)) ? 0 : Math.floor(LIQUID_COLOR);
-    GAS_COLOR = isNaN(Math.floor(GAS_COLOR)) ? 0 : Math.floor(GAS_COLOR);
+    SOLID_COLOR = isNaN(Math.floor(SOLID_COLOR)) ? NaN : Math.floor(SOLID_COLOR);
+    LIQUID_COLOR = isNaN(Math.floor(LIQUID_COLOR)) ? NaN : Math.floor(LIQUID_COLOR);
+    GAS_COLOR = isNaN(Math.floor(GAS_COLOR)) ? NaN : Math.floor(GAS_COLOR);
     console.log('>>>>', HEX_TO_COLOR(SOLID_COLOR), HEX_TO_COLOR(LIQUID_COLOR), HEX_TO_COLOR(GAS_COLOR));
     return {
         SOLID_COLOR: HEX_TO_COLOR(SOLID_COLOR),

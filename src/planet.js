@@ -19,7 +19,7 @@ export class Star {
      */
     static update(data) {
         this.param = data;
-        this.param.g = (this.param.mass) / Math.pow(this.param.radius, 2);//(Math.pow(6.67 * 10, -11) *
+        this.param.g = (this.param.mass) / Math.pow(this.param.radius, 2); //(Math.pow(6.67 * 10, -11) *
         drawStar.controls.cloudColor = '#' + data.color.toString(16).padStart(6, '0');
         drawStar.controls.landColor1 = '#' + data.color.toString(16).padStart(6, '0');
         drawStar.controls.landColor2 = '#' + data.color.toString(16).padStart(6, '0');
@@ -57,17 +57,36 @@ export class Planet {
      */
     static update(param) {
         this.param = param;
-        this.param.g = 6.67 * 1e2 * (this.param.mass) / Math.pow(this.param.radius, 2);//(Math.pow(6.67 * 10, -11) *
+        this.param.g = 6.67 * 1e2 * (this.param.mass) / Math.pow(this.param.radius, 2); //(Math.pow(6.67 * 10, -11) *
         let {
             SOLID_COLOR,
             LIQUID_COLOR,
             GAS_COLOR
         } = MIX_COLOR(param);
-        drawPlanet.controls.cloudColor = GAS_COLOR;
-        drawPlanet.controls.waterDeep = LIQUID_COLOR;
-        drawPlanet.controls.waterShallow = LIQUID_COLOR;
-        drawPlanet.controls.landColor1 = SOLID_COLOR;
-        drawPlanet.controls.landColor2 = SOLID_COLOR;
+
+        if (GAS_COLOR) {
+            drawPlanet.controls.cloudOpacity = 1;
+            drawPlanet.controls.cloudColor = GAS_COLOR;
+        } else {
+            drawPlanet.controls.cloudOpacity = 0;
+        }
+
+        if (LIQUID_COLOR) {
+            drawPlanet.controls.waterLevel = 0.68;
+            drawPlanet.controls.waterDeep = LIQUID_COLOR;
+            drawPlanet.controls.waterShallow = LIQUID_COLOR;
+        } else {
+            drawPlanet.controls.waterLevel = 0;
+        }
+
+        if (SOLID_COLOR) {
+            drawPlanet.controls.landColor1 = SOLID_COLOR;
+            drawPlanet.controls.landColor2 = SOLID_COLOR;
+        } else {
+            drawPlanet.controls.landColor1 = '#000000';
+            drawPlanet.controls.landColor2 = '#000000';
+        }
+
         drawPlanet.controls.render();
     }
 
