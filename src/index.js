@@ -7,42 +7,51 @@ import * as $ from 'jquery';
 import 'bootstrap';
 
 function startGame() {
+    loading(document.body)
 
-    /* Init PIXI JS */
-    const type = PIXI.utils.isWebGLSupported() ? 'WebGL' : 'canvas';
-    PIXI.utils.sayHello(type);
-
-    global.app = new PIXI.Application({
-        antialias: true,
-        transparent: false,
-        resolution: 1,
-        resizeTo: window
-    });
-
-    cancelAnimationFrame(global.drawPlanet.frameid);
-    cancelAnimationFrame(global.drawStar.frameid);
-    document.getElementById('app').remove();
-    document.body.appendChild(app.view);
-
-    /* Setup game */
-    global.panel = new HUD();
-    global.ground = new Playground();
-
-    app.stage.addChild(ground);
-    app.stage.addChild(panel);
-
-    /* Load resources */
-    const loader = PIXI.Loader.shared;
-    loader.load((loader, resources) => {
-        panel.show(resources);
-        ground.show(resources);
-    });
-
-    drawPlanet = new DrawPlanet({
+    global.drawPlanet = new DrawPlanet({
         resolution: 1024,
         width: 1980,
-        height: 1080
+        height: 1080,
+        callback: [() => {
+
+            /* Init PIXI JS */
+            const type = PIXI.utils.isWebGLSupported() ? 'WebGL' : 'canvas';
+            PIXI.utils.sayHello(type);
+
+            global.app = new PIXI.Application({
+                antialias: true,
+                transparent: false,
+                resolution: 1,
+                resizeTo: window
+            });
+
+            cancelAnimationFrame(global.drawPlanet.frameid);
+            cancelAnimationFrame(global.drawStar.frameid);
+            document.getElementById('app').remove();
+            document.body.appendChild(app.view);
+
+            /* Setup game */
+            global.panel = new HUD();
+            global.ground = new Playground();
+
+            app.stage.addChild(ground);
+            app.stage.addChild(panel);
+
+            /* Load resources */
+            const loader = PIXI.Loader.shared;
+            loader.load((loader, resources) => {
+                panel.show(resources);
+                ground.show(resources);
+                $('#loading').remove();
+            });
+
+
+
+        }]
     }, drawPlanet.controls);
+
+
 
 }
 
@@ -75,3 +84,9 @@ $('.elm').each((idx, el) => {
 $('.dropdown-toggle').dropdown();
 
 Welcome.welcome(startGame);
+
+
+function loading(el) {
+    let html = `<div id="loading"><div id="div-loading"><div id="loading-background"></div><div id="loading-text"></div></div></div>`;
+    $(el).append(html);
+}

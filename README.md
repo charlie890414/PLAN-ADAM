@@ -4,9 +4,12 @@
 
 This is a IO game with *very realistic simulation*.
 
-The environment setting in this game is at the 50th anniversary of human migration to moon...
+The simulator is powered by ![PixiJS](https://pixijs.download/pixijs-banner-v5.png)
 
-The simulator is powered by [PixiJS](https://www.pixijs.com/)
+## Tutorial
+In the begining, player could create their environment they want to explore.
+
+After creation, player could use `W` ,`A`,`S`,`D` to move, and `Space` to throw stone.
 
 ## Development
 
@@ -21,12 +24,3 @@ To compile webpack:
 ```
 npm run build
 ```
-
-## Feature Checklist
-
- - [ ] Start game by landing
- - [ ] Default equipment with use limit
- - [ ] Random meteorite to voted place
- - [ ] Physical communication (Use Helmet as medium , etc.)
- - [ ] Land Occupation (build solar panel on owner's land?)
- - [ ] IMS (International Moon Station)

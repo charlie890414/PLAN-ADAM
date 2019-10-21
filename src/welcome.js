@@ -92,7 +92,7 @@ export default class welcome {
       if (parseInt($('#star-radius').val()) < data.radius) {
         $('#star-radius').val(data.radius).trigger('input');
       }
-
+      data.temperature = parseInt($('#star-temperature').val());
       Star.update(data);
     })
 
