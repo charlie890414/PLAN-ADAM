@@ -1,3 +1,5 @@
+/* https://www.shutterstock.com/image-vector/wasd-keys-game-control-keyboard-buttons-1521819746?id=1521819746&irgwc=1&utm_medium=Affiliate&utm_campaign=Freepik+Company%2C+S.L.&utm_source=39422&utm_term=5daecfd8c3f54.5daecfd8c3f55 */
+/* https://www.shutterstock.com/image-vector/wasd-keys-game-control-keyboard-buttons-1488113183?id=1488113183&irgwc=1&utm_medium=Affiliate&utm_campaign=Freepik+Company%2C+S.L.&utm_source=39422&utm_term=5daecfd8c3f33.5daecfd8c3f34 */
 @import url(https://fonts.googleapis.com/earlyaccess/notosanstc.css);
 
 @keyframes rotate {
@@ -67,6 +69,18 @@ body {
   justify-content: space-around;
 }
 
+h1 {
+  width: 100%;
+  text-align: center;
+  padding: 20px 0 0;
+  letter-spacing: 5px;
+  position: relative;
+}
+
+h1 .thin {
+  font-weight: 200;
+}
+
 #star,
 #planet {
   display: inline-block;
@@ -74,18 +88,23 @@ body {
   border-radius: 15px;
   vertical-align: top;
   padding: 50px 0 0 60px;
-  max-height: 630px;
+  max-height: 75%;
   overflow-y: auto;
-  margin: 50px 50px 0 0;
+  margin: 0 50px 50px 0;
 }
 
 .configs {
-  max-height: 50%;
+  max-height: 40%;
   overflow-y: auto;
   margin-top: 20px;
+  width: 550px;
 }
 
-.config>label {
+.config {
+  display: inline-block;
+}
+
+.config > label {
   font-size: 24px;
   font-weight: 800;
   color: #d63031;
@@ -94,8 +113,19 @@ body {
 
 .buttons {
   position: absolute;
-  right: 20px;
-  bottom: 15px;
+  right: 30px;
+  top: 50%;
+  transform: translateY(-40%);
+}
+
+.help {
+  position: absolute;
+  bottom: 10px;
+}
+
+.buttons > button {
+  font-size: 22px;
+  padding: 5px 25px;
 }
 
 .green-planet .range-slider .range-value,
@@ -113,12 +143,12 @@ body {
   display: inline-block;
   white-space: nowrap;
   padding: 5px 20px;
-  margin: 20px 15px;
+  margin: 5px 15px;
 }
 
 .range-slider input[type="range"] {
   background: var(--star);
-  width: 250px;
+  width: 0;
   height: 7px;
   transform: translateY(-50%);
   border-radius: 5px;
@@ -126,6 +156,16 @@ body {
   display: inline-block;
   -webkit-appearance: none;
   position: relative;
+  opacity: 0;
+  margin-left: -15px;
+  transition: all 1s;
+}
+
+.expand input[type="range"]{
+  margin-left: 0;
+  width: 250px;
+  opacity: 1;
+  transition: all .5s;
 }
 
 .range-slider input[type="range"]::-webkit-slider-thumb {

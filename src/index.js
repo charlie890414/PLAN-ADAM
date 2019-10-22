@@ -81,7 +81,37 @@ $('.elm').each((idx, el) => {
     })
 })
 
-$('.dropdown-toggle').dropdown();
+$('.range-slider').click(function(e) {
+  if($(this).hasClass('expand')) {
+    if($(this).hasClass('range-slider-even')) {
+      $(this).parent().prev().animate({
+        opacity: 1,
+        marginLeft: 0
+      });
+    } else {
+      $(this).parent().next().show().animate({
+        opacity: 1,
+        marginLeft: 0
+      });
+    }
+    $(this).removeClass('expand');
+  } else {
+    $(this).addClass('expand');
+    if($(this).hasClass('range-slider-even')) {
+      $(this).parent().prev().animate({
+        opacity: 0,
+        marginLeft: -$(this).parent().prev().width()
+      });
+    } else {
+      $(this).parent().next().animate({
+        opacity: 0,
+        marginLeft: -$(this).parent().next().width()
+      }, undefined, undefined, () => {
+        $(this).parent().next().hide();
+      });
+    }
+  }
+})
 
 Welcome.welcome(startGame);
 
