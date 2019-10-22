@@ -18,14 +18,28 @@ export default class HUD extends PIXI.Container {
   }
 
   show(resources) {
-    const param = Planet.fetch();
+    const star = Star.fetch(), planet = Planet.fetch();
     this.resources = resources;
-    this.meta = new PIXI.Text('', { fill: 0xFFFFFF });
-    this.meta.x = 5;
-    this.meta.y = 5;
-    this.addChild(this.meta);
+    this.leftMeta = new PIXI.Text('', { fill: 0xFFFFFF });
+    this.leftMeta.x = 5;
+    this.leftMeta.y = 5;
+    this.leftMeta.text =
+      "Star:\n" +
+      "radius = " + star.radius + "\n" +
+      "mass = " + star.mass + "\n" +
+      "temperature = " + star.temperature + "\n" +
+      "\nPlanet:\n" +
+      "radius = " + planet.radius + "\n" +
+      "mass = " + planet.mass + "\n" +
+      "spining speed = " + planet.spin + "\n";
+    this.addChild(this.leftMeta);
 
-    this.map = new MiniMap(new PIXI.Point(0, param.distance), new PIXI.Point(param.angular, 0));
+    this.rightMeta = new PIXI.Text('', { fill: 0XFFFFFF });
+    this.rightMeta.x = app.screen.width - 305;
+    this.rightMeta.y = 305;
+    this.addChild(this.rightMeta);
+
+    this.map = new MiniMap(new PIXI.Point(0, planet.distance), new PIXI.Point(planet.angular, 0));
     this.addChild(this.map);
     this.map.show(resources);
     this.power = new Bar({
@@ -71,22 +85,13 @@ export default class HUD extends PIXI.Container {
 
 
   update() {
-    const star = Star.fetch(), planet = Planet.fetch();
     var speed = Math.sqrt(Math.pow(this.map.vec.x, 2) + Math.pow(this.map.vec.y, 2));
     var r = this.map.getcurrentDistance();
     r = Math.round(r * 1e3) / 1e3;
     speed = Math.round(speed * 1e3) / 1e3;
-    this.meta.text =
-      "恆星\n" +
-      "半徑 = " + star.radius + "\n" +
-      "質量 = " + star.mass + "\n" +
-      "溫度 = " + star.temperature + "\n" +
-      "行星\n" +
-      "半徑 = " + planet.radius + "\n" +
-      "質量 = " + planet.mass + "\n" +
-      "自轉速度 = " + planet.spin + "\n" +
-      "與恆星距離 = " + r + "\n" +
-      "速度 = " + speed + "\n";
+    this.rightMeta.text =
+      "distance = " + r + "\n" +
+      "speed = " + speed + "\n";
   }
 }
 
