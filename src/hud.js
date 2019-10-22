@@ -20,6 +20,10 @@ export default class HUD extends PIXI.Container {
   show(resources) {
     const star = Star.fetch(), planet = Planet.fetch();
     this.resources = resources;
+    this.throwdistance = new PIXI.Text('', { fill: 0xFFFFFF });
+    this.throwdistance.x = app.screen.width - 431;
+    this.throwdistance.y = app.screen.height - 150;
+    this.throwdistance.text = "distance:0m"
     this.leftMeta = new PIXI.Text('', { fill: 0xFFFFFF });
     this.leftMeta.x = 5;
     this.leftMeta.y = 5;
@@ -39,7 +43,7 @@ export default class HUD extends PIXI.Container {
     this.rightMeta.x = app.screen.width - 305;
     this.rightMeta.y = 305;
     this.addChild(this.rightMeta);
-
+    this.addChild(this.throwdistance);
     this.map = new MiniMap(new PIXI.Point(0, planet.distance), new PIXI.Point(planet.angular, 0));
     this.addChild(this.map);
     this.map.show(resources);
@@ -50,7 +54,7 @@ export default class HUD extends PIXI.Container {
     this.degree = new Bar({
       x: -400,
       y: -100,
-      symbols: 'degree',
+      //symbols: 'degree',
       leftText: 'Angle',
       color: 0xd515a1
     });

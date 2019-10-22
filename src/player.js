@@ -13,6 +13,7 @@ class Ball extends PIXI.Sprite {
         this.v = v;//初速度
         this.theta = theta;
         this.alltime = 2 * this.v * Math.sin(Math.PI * this.theta / 180) / this.g;
+        this.md = 0.0;
         //this.mx = this.v * Math.cos(this.theta * 180 / Math.PI) / 60;
         this.my = 200 * this.v * this.v * Math.sin(Math.PI * this.theta / 180) * Math.abs(Math.cos(Math.PI * this.theta / 180)) * (Math.sin(r) / (this.g * (this.alltime * 60)));
         this.mx = 200 * this.v * this.v * Math.sin(Math.PI * this.theta / 180) * Math.abs(Math.cos(Math.PI * this.theta / 180)) * (Math.cos(r) / (this.g * (this.alltime * 60)));
@@ -21,6 +22,9 @@ class Ball extends PIXI.Sprite {
         //console.log(2 * this.v * this.v * Math.sin(Math.PI * this.theta / 180) * Math.abs(Math.cos(Math.PI * this.theta / 180)) / (this.g));
         this.h = 0;
         this.ah = 0.1;
+        this.d = 0.0;
+        this.md += Math.pow(this.mx * this.mx + this.my * this.my, 0.5);
+        console.log(this.md);
         this.mh = this.ah * (this.v * Math.sin(Math.PI * this.theta / 180) * (this.alltime / 2) - (1 / 2) * this.g * ((this.alltime / 2) * (this.alltime / 2))) / ((this.alltime / 2) * 60);
         this.time = 0;
         this.ballmove = setInterval(() => {
@@ -28,6 +32,8 @@ class Ball extends PIXI.Sprite {
             if (this.time / 60.0 > this.alltime) clearInterval(this.ballmove);
             this.x += this.mx;
             this.y += this.my;
+            this.d += this.md;
+            panel.throwdistance.text = "distance:" + this.d.toFixed(3) + "m";
             this.h = this.ah * (this.v * Math.sin(Math.PI * this.theta / 180) * (this.time / 60) - (1 / 2) * this.g * ((this.time / 60) * (this.time / 60)));
             // if (this.time / 60.0 > this.alltime / 2)
             //     this.h -= this.mh;
@@ -52,7 +58,7 @@ export default class extends PIXI.Sprite {
         this.vx = this.vy = 0;
         this.f = 0;
         this.v = 1.1;
-        this.g = this.Planet_param.g * 4 / 6;
+        this.g = this.Planet_param.g * 4;
         this.g_scale = 1000;
         this.up = true;
         this.t = this.v / (3.0 * this.g);
