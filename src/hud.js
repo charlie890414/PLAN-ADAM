@@ -31,7 +31,8 @@ export default class HUD extends PIXI.Container {
       "\nPlanet:\n" +
       "radius = " + planet.radius + "\n" +
       "mass = " + planet.mass + "\n" +
-      "spining speed = " + planet.spin + "\n";
+      "spining speed = " + planet.spin + "\n" +
+      "gravity = " + planet.g.toFixed(3) + "\n";
     this.addChild(this.leftMeta);
 
     this.rightMeta = new PIXI.Text('', { fill: 0XFFFFFF });
