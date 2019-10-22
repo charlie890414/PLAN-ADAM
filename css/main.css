@@ -1,15 +1,37 @@
+
+/* https://www.shutterstock.com/image-vector/wasd-keys-game-control-keyboard-buttons-1488113183?id=1488113183&irgwc=1&utm_medium=Affiliate&utm_campaign=Freepik+Company%2C+S.L.&utm_source=39422&utm_term=5daecfd8c3f33.5daecfd8c3f34 */
 @import url(https://fonts.googleapis.com/earlyaccess/notosanstc.css);
 
 @keyframes rotate {
   from {
     transform: rotate(0deg);
   }
+
   to {
     transform: rotate(360deg);
   }
 }
 
-:root{
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+::-webkit-scrollbar-track {
+  border-radius: 3px;
+  background: rgba(0, 0, 0, 0.06);
+  box-shadow: inset 0 0 5px rgba(0, 0, 0, 0.08);
+  -webkit-box-shadow: inset 0 0 5px rgba(0, 0, 0, 0.08);
+}
+
+::-webkit-scrollbar-thumb {
+  border-radius: 3px;
+  background: rgba(0, 0, 0, 0.12);
+  box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.2);
+  -webkit-box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.2);
+}
+
+:root {
   --star: #d63031;
   --planet: #10ac84;
 }
@@ -19,7 +41,8 @@
   padding: 0;
 }
 
-html, body {
+html,
+body {
   height: 100%;
   overflow: hidden;
   font-family: 'Noto Sans TC', Helvetica Neue, Helvetica, Arial;
@@ -46,21 +69,55 @@ html, body {
   justify-content: space-around;
 }
 
-#star, #planet {
+h1 {
+  width: 100%;
+  text-align: center;
+  padding: 20px 0 0;
+  letter-spacing: 5px;
+  position: relative;
+}
+
+h1 .thin {
+  font-weight: 200;
+}
+
+#star,
+#planet {
   display: inline-block;
   background: #bdc3c7;
   border-radius: 15px;
   vertical-align: top;
-  padding: 50px 0 0 60px;
-  max-height: 630px;
+  padding: 30px 0 0 50px;
+  max-height: 75%;
   overflow-y: auto;
-  margin: 50px 50px 0 0;
+  margin: 0 50px 50px 0;
+}
+
+h2 {
+  padding-bottom: 10px;
+}
+
+#star h2 {
+  color: var(--star);
+}
+
+#planet h2 {
+  color: var(--planet);
 }
 
 .configs {
-  max-height: 50%;
+  max-height: 40%;
   overflow-y: auto;
   margin-top: 20px;
+  width: 550px;
+}
+
+.config {
+  display: inline-block;
+}
+
+.dropdown-menu .config {
+  display: block;
 }
 
 .config > label {
@@ -72,15 +129,27 @@ html, body {
 
 .buttons {
   position: absolute;
-  right: 20px;
-  bottom: 15px;
+  right: 30px;
+  top: 50%;
+  transform: translateY(-40%);
 }
+
+.help {
+  position: absolute;
+  bottom: 10px;
+}
+
+.buttons > button {
+  font-size: 22px;
+  padding: 5px 25px;
+}
+
 .green-planet .range-slider .range-value,
 .green-planet .range-slider input[type="range"] {
   background: var(--planet);
 }
 
-.green-planet > label {
+.green-planet>label {
   color: var(--planet);
 }
 
@@ -89,13 +158,13 @@ html, body {
   border-radius: 15px;
   display: inline-block;
   white-space: nowrap;
-  padding: 5px 20px;
-  margin: 20px 15px;
+  padding: 3px 20px;
+  margin: 10px 15px;
 }
 
 .range-slider input[type="range"] {
   background: var(--star);
-  width: 250px;
+  width: 0;
   height: 7px;
   transform: translateY(-50%);
   border-radius: 5px;
@@ -103,6 +172,23 @@ html, body {
   display: inline-block;
   -webkit-appearance: none;
   position: relative;
+  opacity: 0;
+  margin-left: -15px;
+  transition: all 1s;
+}
+
+.expand input[type="range"]{
+  margin-left: 0;
+  width: 200px;
+  opacity: 1;
+  transition: all .5s;
+}
+
+.dropdown-menu input[type="range"] {
+  margin-left: 0;
+  width: 200px;
+  opacity: 1;
+  transition: all .5s;
 }
 
 .range-slider input[type="range"]::-webkit-slider-thumb {
@@ -166,7 +252,7 @@ html, body {
   position: relative;
 }
 
-::-moz-range-track{
+::-moz-range-track {
   background: transparent;
   border: 0;
 }
@@ -218,7 +304,7 @@ html, body {
   position: relative;
 }
 
-.model > canvas {
+.model>canvas {
   filter: drop-shadow(5px 10px 6px #555);
 }
 
@@ -228,4 +314,112 @@ html, body {
 
 .dropdown-item .range-slider {
   margin: 0 15px;
+}
+
+
+#div-loading, #loading-text, #loading-background
+{
+
+    overflow: hidden;
+
+    position: absolute;
+
+    border-radius: 50%;
+
+    margin: 0 auto;
+
+}
+
+#loading {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  left: 0;
+  top: 0;
+  background: rgba(127, 140, 141, .8);
+}
+
+#div-loading
+{
+  position: absolute;
+
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+
+    width: 280px;
+    height: 280px;
+
+    background-color: rgba(44, 62, 80, 1);
+
+}
+
+
+#loading-text
+{
+
+    z-index: 1;
+
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+
+    font-size: 20px;
+
+    box-sizing: border-box;
+
+    width: 150px;
+    height: 150px;
+    background-size: 150px 150px;
+    background-image: url('https://i.imgur.com/XMTQv6T.png');
+    color: white;
+
+    text-align: center;
+
+    line-height: 140px;
+
+}
+
+#loading-background
+{
+
+    z-index: 0;
+
+    width: 270px;
+    height: 270px;
+
+    background-image: url('http://i.imgur.com/eMq5Gds.png');
+
+    background-repeat: no-repeat;
+
+    background-position: 12px 91px;
+
+    background-size: 30px 67px;
+
+    -webkit-animation: turningspaceship 1.5s ease-in-out infinite; /* Chrome, Safari, Opera */
+    animation: turningspaceship 1.5s ease-in-out infinite;
+
+}
+
+@-webkit-keyframes turningspaceship {
+    from {transform: rotate(270deg);}
+    to {transform: rotate(630deg);}
+}
+
+
+@keyframes turningspaceship {
+    from {transform: rotate(270deg);}
+    to {transform: rotate(630deg);}
+}
+
+.keys {
+  width: 60px;
+  height: 60px;
+  background: #333;
+  border-radius: 15px;
+  color: white;
+  line-height: 60px;
+  text-align: center;
+  font-size: 24px;
+  font-weight: bold;
 }
