@@ -57,12 +57,16 @@ export class Planet {
      */
     static update(param) {
         this.param = param;
+
         this.param.g = 6.67 * 1e2 * (this.param.mass) / Math.pow(this.param.radius, 2); //(Math.pow(6.67 * 10, -11) *
         let {
             SOLID_COLOR,
             LIQUID_COLOR,
             GAS_COLOR
         } = MIX_COLOR(param);
+
+        drawPlanet.controls.spin = Math.max(Math.min(this.param.spin / 45, 1), this.param.spin / 45);
+        drawPlanet.controls.cloudiIntensity = 1.8;
 
         if (GAS_COLOR) {
             drawPlanet.controls.cloudOpacity = 1;
@@ -83,8 +87,15 @@ export class Planet {
             drawPlanet.controls.landColor1 = SOLID_COLOR;
             drawPlanet.controls.landColor2 = SOLID_COLOR;
         } else {
-            drawPlanet.controls.landColor1 = '#000000';
-            drawPlanet.controls.landColor2 = '#000000';
+            if (LIQUID_COLOR) {
+                drawPlanet.controls.landColor1 = LIQUID_COLOR;
+                drawPlanet.controls.landColor2 = LIQUID_COLOR;
+            } else if (GAS_COLOR) {
+                drawPlanet.controls.cloudiIntensity = 16;
+            } else {
+                drawPlanet.controls.landColor1 = '#000000';
+                drawPlanet.controls.landColor2 = '#000000';
+            }
         }
 
         drawPlanet.controls.render();
