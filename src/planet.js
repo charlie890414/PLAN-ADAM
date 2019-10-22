@@ -65,7 +65,7 @@ export class Planet {
             GAS_COLOR
         } = MIX_COLOR(param);
 
-        drawPlanet.controls.spin = Math.max(Math.min(this.param.spin / 45, 1), this.param.spin);
+        drawPlanet.controls.spin = Math.max(Math.min(this.param.spin / 45, 1), this.param.spin / 45);
         drawPlanet.controls.cloudiIntensity = 1.8;
 
         if (GAS_COLOR) {

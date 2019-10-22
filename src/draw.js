@@ -157,8 +157,8 @@ export default class Application {
             }
         }
         if (this.controls.animate) {
-            this.planetRenderer.planetMesh.rotation.y += this.controls.spin * 0.001;
-            this.planetRenderer.cloudMesh.rotation.y += this.controls.spin * 0.002;
+            this.planetRenderer.planetMesh.rotation.y += this.controls.spin * 0.005;
+            this.planetRenderer.cloudMesh.rotation.y += this.controls.spin * 0.01;
         }
         this.planetRenderer.render();
         this.frameid = requestAnimationFrame(this.update.bind(this));

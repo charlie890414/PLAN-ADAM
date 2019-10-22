@@ -89,13 +89,10 @@ export function MIX_COLOR(composition) {
     let LIQUID_COLOR = null;
     let GAS_COLOR = null;
 
-    let SOLID_padding = 0;
     let SOLID_percentage = 0;
 
-    let LIQUID_padding = 0;
     let LIQUID_percentage = 0;
 
-    let GAS_padding = 0;
     let GAS_percentage = 0;
 
     composition = CHEMICAL(composition);
@@ -103,15 +100,9 @@ export function MIX_COLOR(composition) {
     for (let key in composition) {
         if (SOLID_COLOR_MAP[key]) {
             SOLID_percentage += parseInt(composition[key]);
-            LIQUID_padding += parseInt(composition[key]);
-            GAS_padding += parseInt(composition[key]);
         } else if (LIQUID_COLOR_MAP[key]) {
-            SOLID_padding += parseInt(composition[key]);
             LIQUID_percentage += parseInt(composition[key]);
-            GAS_padding += parseInt(composition[key]);
         } else if (GAS_COLOR_MAP[key]) {
-            SOLID_padding += parseInt(composition[key]);
-            LIQUID_padding += parseInt(composition[key]);
             GAS_percentage += parseInt(composition[key]);
         }
     }
@@ -120,8 +111,8 @@ export function MIX_COLOR(composition) {
 
     for (let key in composition) {
         if (SOLID_COLOR_MAP[key]) {
-            console.log(key, (composition[key] + composition[key] / SOLID_percentage * SOLID_padding));
-            SOLID_COLOR += SOLID_COLOR_MAP[key] * (composition[key] + composition[key] / SOLID_percentage * SOLID_padding) / SOLID_percentage;
+            console.log(key, (composition[key] / SOLID_percentage));
+            SOLID_COLOR += SOLID_COLOR_MAP[key] * (composition[key] / SOLID_percentage);
         }
     }
 
@@ -129,8 +120,8 @@ export function MIX_COLOR(composition) {
 
     for (let key in composition) {
         if (LIQUID_COLOR_MAP[key]) {
-            console.log(key, (composition[key] + composition[key] / LIQUID_percentage * LIQUID_padding));
-            LIQUID_COLOR += LIQUID_COLOR_MAP[key] * (composition[key] + composition[key] / LIQUID_percentage * LIQUID_padding) / LIQUID_percentage;
+            console.log(key, (composition[key] / LIQUID_percentage));
+            LIQUID_COLOR += LIQUID_COLOR_MAP[key] * (composition[key] / LIQUID_percentage);
         }
     }
 
@@ -138,8 +129,8 @@ export function MIX_COLOR(composition) {
 
     for (let key in composition) {
         if (GAS_COLOR_MAP[key]) {
-            console.log(key, (composition[key] + composition[key] / GAS_percentage * GAS_padding));
-            GAS_COLOR += GAS_COLOR_MAP[key] * (composition[key] + composition[key] / GAS_percentage * GAS_padding) / GAS_percentage;
+            console.log(key, (composition[key] / GAS_percentage));
+            GAS_COLOR += GAS_COLOR_MAP[key] * (composition[key] / GAS_percentage);
         }
     }
 
