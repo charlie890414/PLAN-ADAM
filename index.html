@@ -363,103 +363,424 @@
                   </div>
               </div>
             </div>
-            <div class="config-block">
-              <div class="config green-planet">
-                  <label for="planet-spin">自轉速度</label>
-                  <div class="range-slider range-slider-odd">
-                      <input id="planet-spin" type="range" value="50" min="1" max="360">
-                      <span class="range-value">0</span><span class="unit">度/H</span>
-                  </div>
-              </div>
-              <div class="config green-planet big-gas">
-                  <label>氣體</label>
-                  <div class="range-slider range-slider-even">
-                      <div class="dropdown">
-                          <button class="btn dropdown-toggle p-0" type="button" id="dropdownMenuButton"
-                              data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                              <span class="range-value">&nbsp;</span>
-                          </button>
-                          <div class="dropdown-menu" aria-labelledby="dropdownMenuButton"
-                              style="height: auto; max-height: 200px; overflow-x: hidden; zoom: 0.8;">
-                              <div class="config green-planet dropdown-item">
-                                  <label for="planet-oxygen">O2</label>
-                                  <div class="range-slider">
-                                      <input id="planet-oxygen" type="range" value="0" min="0" max="100"
-                                          class="elm">
-                                      <span class="range-value">0</span><span class="unit">%</span>
-                                  </div>
-                              </div>
-                              <div class="config green-planet dropdown-item">
-                                  <label for="planet-nitro">N2</label>
-                                  <div class="range-slider">
-                                      <input id="planet-nitro" type="range" value="0" min="0" max="100"
-                                          class="elm">
-                                      <span class="range-value">0</span><span class="unit">%</span>
-                                  </div>
-                              </div>
-                              <div class="config green-planet dropdown-item">
-                                  <label for="planet-hydrogen">H2</label>
-                                  <div class="range-slider">
-                                      <input id="planet-hydrogen" type="range" value="0" min="0" max="100"
-                                          class="elm">
-                                      <span class="range-value">0</span><span class="unit">%</span>
-                                  </div>
-                              </div>
-                              <div class="config green-planet dropdown-item">
-                                  <label for="planet-chlorine">Cl</label>
-                                  <div class="range-slider">
-                                      <input id="planet-chlorine" type="range" value="0" min="0" max="100"
-                                          class="elm">
-                                      <span class="range-value">0</span><span class="unit">%</span>
-                                  </div>
-                              </div>
-                              <div class="config green-planet dropdown-item">
-                                  <label for="planet-nto">NO2</label>
-                                  <div class="range-slider">
-                                      <input id="planet-nto" type="range" value="0" min="0" max="100" class="elm">
-                                      <span class="range-value">0</span><span class="unit">%</span>
-                                  </div>
-                              </div>
-                              <div class="config green-planet dropdown-item">
-                                  <label for="planet-cot">CO2</label>
-                                  <div class="range-slider">
-                                      <input id="planet-cot" type="range" value="0" min="0" max="100" class="elm">
-                                      <span class="range-value">0</span><span class="unit">%</span>
-                                  </div>
-                              </div>
-                              <div class="config green-planet dropdown-item">
-                                  <label for="planet-methane">CH4</label>
-                                  <div class="range-slider">
-                                      <input id="planet-methane" type="range" value="0" min="0" max="100"
-                                          class="elm">
-                                      <span class="range-value">0</span><span class="unit">%</span>
-                                  </div>
-                              </div>
-                              <div class="config green-planet dropdown-item">
-                                  <label for="planet-CO">CO</label>
-                                  <div class="range-slider">
-                                      <input id="planet-CO" type="range" value="0" min="0" max="100" class="elm">
-                                      <span class="range-value">0</span><span class="unit">%</span>
-                                  </div>
-                              </div>
-                              <div class="config green-planet dropdown-item">
-                                  <label for="planet-SO2">SO2</label>
-                                  <div class="range-slider">
-                                      <input id="planet-SO2" type="range" value="0" min="0" max="100" class="elm">
-                                      <span class="range-value">0</span><span class="unit">%</span>
-                                  </div>
-                              </div>
-                              <div class="config green-planet dropdown-item">
-                                  <label for="planet-HCl">HCl</label>
-                                  <div class="range-slider">
-                                      <input id="planet-HCl" type="range" value="0" min="0" max="100" class="elm">
-                                      <span class="range-value">0</span><span class="unit">%</span>
-                                  </div>
-                              </div>
-                          </div>
-                      </div>
-                  </div>
-              </div>
+            <div id="planet">
+                <div class="model">
+                </div>
+                <div class="configs">
+                    <div class="config green-planet">
+                        <label for="planet-radius">半徑</label>
+                        <div class="range-slider">
+                            <input id="planet-radius" type="range" value="6371" min="1" max="30000">
+                            <span class="range-value">0</span><span class="unit">KM</span>
+                        </div>
+                    </div>
+                    <div class="config green-planet">
+                        <label for="planet-mass">質量</label>
+                        <div class="range-slider">
+                            <input id="planet-mass" type="range" value="60000" min="0.01" max="600000" step=0.01>
+                            <span class="range-value">0</span><span class="unit">M⊕</span>
+                        </div>
+                    </div>
+                    <div class="config green-planet big-solid">
+                        <label>固體</label>
+                        <div class="range-slider">
+                            <div class="dropdown">
+                                <button class="btn dropdown-toggle p-0" type="button" id="dropdownMenuButton"
+                                    data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    <span class="range-value" style="margin-left: 250px;">&nbsp;</span>
+                                </button>
+                                <div class="dropdown-menu" aria-labelledby="dropdownMenuButton"
+                                    style="height: auto; max-height: 200px; overflow-x: hidden; zoom: 0.8;">
+                                    <div class="config green-planet">
+                                        <label for="planet-iron">Fe</label>
+                                        <div class="range-slider">
+                                            <input id="planet-iron" type="range" value="0" min="0" max="100"
+                                                class="elm">
+                                            <span class="range-value">0</span><span class="unit">%</span>
+                                        </div>
+                                    </div>
+                                    <div class="config green-planet">
+                                        <label for="planet-copper">Cu</label>
+                                        <div class="range-slider">
+                                            <input id="planet-copper" type="range" value="0" min="0" max="100"
+                                                class="elm">
+                                            <span class="range-value">0</span><span class="unit">%</span>
+                                        </div>
+                                    </div>
+                                    <div class="config green-planet">
+                                        <label for="planet-Fe2O3">Fe2O3</label>
+                                        <div class="range-slider">
+                                            <input id="planet-Fe2O3" type="range" value="0" min="0" max="100"
+                                                class="elm">
+                                            <span class="range-value">0</span><span class="unit">%</span>
+                                        </div>
+                                    </div>
+                                    <div class="config green-planet">
+                                        <label for="planet-CuOH2">CuOH2</label>
+                                        <div class="range-slider">
+                                            <input id="planet-CuOH2" type="range" value="0" min="0" max="100"
+                                                class="elm">
+                                            <span class="range-value">0</span><span class="unit">%</span>
+                                        </div>
+                                    </div>
+                                    <div class="config green-planet">
+                                        <label for="planet-CuSO4">CuSO4</label>
+                                        <div class="range-slider">
+                                            <input id="planet-CuSO4" type="range" value="0" min="0" max="100"
+                                                class="elm">
+                                            <span class="range-value">0</span><span class="unit">%</span>
+                                        </div>
+                                    </div>
+                                    <div class="config green-planet">
+                                        <label for="planet-KMnO4">KMnO4</label>
+                                        <div class="range-slider">
+                                            <input id="planet-KMnO4" type="range" value="0" min="0" max="100"
+                                                class="elm">
+                                            <span class="range-value">0</span><span class="unit">%</span>
+                                        </div>
+                                    </div>
+                                    <div class="config green-planet">
+                                        <label for="planet-S">S</label>
+                                        <div class="range-slider">
+                                            <input id="planet-S" type="range" value="0" min="0" max="100" class="elm">
+                                            <span class="range-value">0</span><span class="unit">%</span>
+                                        </div>
+                                    </div>
+                                    <div class="config green-planet">
+                                        <label for="planet-ice">ice</label>
+                                        <div class="range-slider">
+                                            <input id="planet-ice" type="range" value="0" min="0" max="100" class="elm">
+                                            <span class="range-value">0</span><span class="unit">%</span>
+                                        </div>
+                                    </div>
+                                    <div class="config green-planet">
+                                        <label for="planet-Au">Au</label>
+                                        <div class="range-slider">
+                                            <input id="planet-Au" type="range" value="0" min="0" max="100" class="elm">
+                                            <span class="range-value">0</span><span class="unit">%</span>
+                                        </div>
+                                    </div>
+                                    <div class="config green-planet">
+                                        <label for="planet-Mg">Mg</label>
+                                        <div class="range-slider">
+                                            <input id="planet-Mg" type="range" value="0" min="0" max="100" class="elm">
+                                            <span class="range-value">0</span><span class="unit">%</span>
+                                        </div>
+                                    </div>
+                                    <div class="config green-planet">
+                                        <label for="planet-Al">Al</label>
+                                        <div class="range-slider">
+                                            <input id="planet-Al" type="range" value="0" min="0" max="100" class="elm">
+                                            <span class="range-value">0</span><span class="unit">%</span>
+                                        </div>
+                                    </div>
+                                    <div class="config green-planet">
+                                        <label for="planet-Hg">Hg</label>
+                                        <div class="range-slider">
+                                            <input id="planet-Hg" type="range" value="0" min="0" max="100" class="elm">
+                                            <span class="range-value">0</span><span class="unit">%</span>
+                                        </div>
+                                    </div>
+                                    <div class="config green-planet">
+                                        <label for="planet-C">C</label>
+                                        <div class="range-slider">
+                                            <input id="planet-C" type="range" value="0" min="0" max="100" class="elm">
+                                            <span class="range-value">0</span><span class="unit">%</span>
+                                        </div>
+                                    </div>
+                                    <div class="config green-planet">
+                                        <label for="planet-CuO">CuO</label>
+                                        <div class="range-slider">
+                                            <input id="planet-CuO" type="range" value="0" min="0" max="100" class="elm">
+                                            <span class="range-value">0</span><span class="unit">%</span>
+                                        </div>
+                                    </div>
+                                    <div class="config green-planet">
+                                        <label for="planet-MnO2">MnO2</label>
+                                        <div class="range-slider">
+                                            <input id="planet-MnO2" type="range" value="0" min="0" max="100"
+                                                class="elm">
+                                            <span class="range-value">0</span><span class="unit">%</span>
+                                        </div>
+                                    </div>
+                                    <div class="config green-planet">
+                                        <label for="planet-Fe3O4">Fe3O4</label>
+                                        <div class="range-slider">
+                                            <input id="planet-Fe3O4" type="range" value="0" min="0" max="100"
+                                                class="elm">
+                                            <span class="range-value">0</span><span class="unit">%</span>
+                                        </div>
+                                    </div>
+                                    <div class="config green-planet">
+                                        <label for="planet-FeS">FeS</label>
+                                        <div class="range-slider">
+                                            <input id="planet-FeS" type="range" value="0" min="0" max="100" class="elm">
+                                            <span class="range-value">0</span><span class="unit">%</span>
+                                        </div>
+                                    </div>
+                                    <div class="config green-planet">
+                                        <label for="planet-FeOH3">FeOH3</label>
+                                        <div class="range-slider">
+                                            <input id="planet-FeOH3" type="range" value="0" min="0" max="100"
+                                                class="elm">
+                                            <span class="range-value">0</span><span class="unit">%</span>
+                                        </div>
+                                    </div>
+                                    <div class="config green-planet">
+                                        <label for="planet-NaCl">NaCl</label>
+                                        <div class="range-slider">
+                                            <input id="planet-NaCl" type="range" value="0" min="0" max="100"
+                                                class="elm">
+                                            <span class="range-value">0</span><span class="unit">%</span>
+                                        </div>
+                                    </div>
+                                    <div class="config green-planet">
+                                        <label for="planet-NaHCO3">NaHCO3</label>
+                                        <div class="range-slider">
+                                            <input id="planet-NaHCO3" type="range" value="0" min="0" max="100"
+                                                class="elm">
+                                            <span class="range-value">0</span><span class="unit">%</span>
+                                        </div>
+                                    </div>
+                                    <div class="config green-planet">
+                                        <label for="planet-NaOH">NaOH</label>
+                                        <div class="range-slider">
+                                            <input id="planet-NaOH" type="range" value="0" min="0" max="100"
+                                                class="elm">
+                                            <span class="range-value">0</span><span class="unit">%</span>
+                                        </div>
+                                    </div>
+                                    <div class="config green-planet">
+                                        <label for="planet-CaOH">CaOH</label>
+                                        <div class="range-slider">
+                                            <input id="planet-CaOH" type="range" value="0" min="0" max="100"
+                                                class="elm">
+                                            <span class="range-value">0</span><span class="unit">%</span>
+                                        </div>
+                                    </div>
+                                    <div class="config green-planet">
+                                        <label for="planet-CaCO3">CaCO3</label>
+                                        <div class="range-slider">
+                                            <input id="planet-CaCO3" type="range" value="0" min="0" max="100"
+                                                class="elm">
+                                            <span class="range-value">0</span><span class="unit">%</span>
+                                        </div>
+                                    </div>
+                                    <div class="config green-planet">
+                                        <label for="planet-CaO">CaO</label>
+                                        <div class="range-slider">
+                                            <input id="planet-CaO" type="range" value="0" min="0" max="100" class="elm">
+                                            <span class="range-value">0</span><span class="unit">%</span>
+                                        </div>
+                                    </div>
+                                    <div class="config green-planet">
+                                        <label for="planet-MgO">MgO</label>
+                                        <div class="range-slider">
+                                            <input id="planet-MgO" type="range" value="0" min="0" max="100" class="elm">
+                                            <span class="range-value">0</span><span class="unit">%</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="config green-planet big-liquid">
+                        <label>液體</label>
+                        <div class="range-slider">
+                            <div class="dropdown">
+                                <button class="btn dropdown-toggle p-0" type="button" id="dropdownMenuButton"
+                                    data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    <span class="range-value" style="margin-left: 250px;">&nbsp;</span>
+                                </button>
+                                <div class="dropdown-menu" aria-labelledby="dropdownMenuButton"
+                                    style="height: auto; max-height: 200px; overflow-x: hidden; zoom: 0.8;">
+                                    <div class="config green-planet">
+                                        <label for="planet-water">H2O</label>
+                                        <div class="range-slider">
+                                            <input id="planet-water" type="range" value="0" min="0" max="100"
+                                                class="elm">
+                                            <span class="range-value">0</span><span class="unit">%</span>
+                                        </div>
+                                    </div>
+                                    <div class="config green-planet">
+                                        <label for="planet-H2O2">H2O2</label>
+                                        <div class="range-slider">
+                                            <input id="planet-H2O2" type="range" value="0" min="0" max="100"
+                                                class="elm">
+                                            <span class="range-value">0</span><span class="unit">%</span>
+                                        </div>
+                                    </div>
+                                    <div class="config green-planet">
+                                        <label for="planet-CuCl2">CuCl2</label>
+                                        <div class="range-slider">
+                                            <input id="planet-CuCl2" type="range" value="0" min="0" max="100"
+                                                class="elm">
+                                            <span class="range-value">0</span><span class="unit">%</span>
+                                        </div>
+                                    </div>
+                                    <div class="config green-planet">
+                                        <label for="planet-CuNO32">CuNO32</label>
+                                        <div class="range-slider">
+                                            <input id="planet-CuNO32" type="range" value="0" min="0" max="100"
+                                                class="elm">
+                                            <span class="range-value">0</span><span class="unit">%</span>
+                                        </div>
+                                    </div>
+                                    <div class="config green-planet">
+                                        <label for="planet-FeSO4">FeSO4</label>
+                                        <div class="range-slider">
+                                            <input id="planet-FeSO4" type="range" value="0" min="0" max="100"
+                                                class="elm">
+                                            <span class="range-value">0</span><span class="unit">%</span>
+                                        </div>
+                                    </div>
+                                    <div class="config green-planet">
+                                        <label for="planet-FeCl3">FeCl3</label>
+                                        <div class="range-slider">
+                                            <input id="planet-FeCl3" type="range" value="0" min="0" max="100"
+                                                class="elm">
+                                            <span class="range-value">0</span><span class="unit">%</span>
+                                        </div>
+                                    </div>
+                                    <div class="config green-planet">
+                                        <label for="planet-H2SO4">H2SO4</label>
+                                        <div class="range-slider">
+                                            <input id="planet-H2SO4" type="range" value="0" min="0" max="100"
+                                                class="elm">
+                                            <span class="range-value">0</span><span class="unit">%</span>
+                                        </div>
+                                    </div>
+                                    <div class="config green-planet">
+                                        <label for="planet-KMnO4">KMnO4</label>
+                                        <div class="range-slider">
+                                            <input id="planet-KMnO4" type="range" value="0" min="0" max="100"
+                                                class="elm">
+                                            <span class="range-value">0</span><span class="unit">%</span>
+                                        </div>
+                                    </div>
+                                    <div class="config green-planet">
+                                        <label for="planet-C7H7O4N">C7H7O4N</label>
+                                        <div class="range-slider">
+                                            <input id="planet-C7H7O4N" type="range" value="0" min="0" max="100"
+                                                class="elm">
+                                            <span class="range-value">0</span><span class="unit">%</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="config green-planet big-gas">
+                        <label>氣體</label>
+                        <div class="range-slider">
+                            <div class="dropdown">
+                                <button class="btn dropdown-toggle p-0" type="button" id="dropdownMenuButton"
+                                    data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    <span class="range-value" style="margin-left: 250px;">&nbsp;</span>
+                                </button>
+                                <div class="dropdown-menu" aria-labelledby="dropdownMenuButton"
+                                    style="height: auto; max-height: 200px; overflow-x: hidden; zoom: 0.8;">
+                                    <div class="config green-planet dropdown-item">
+                                        <label for="planet-oxygen">O2</label>
+                                        <div class="range-slider">
+                                            <input id="planet-oxygen" type="range" value="0" min="0" max="100"
+                                                class="elm">
+                                            <span class="range-value">0</span><span class="unit">%</span>
+                                        </div>
+                                    </div>
+                                    <div class="config green-planet dropdown-item">
+                                        <label for="planet-nitro">N2</label>
+                                        <div class="range-slider">
+                                            <input id="planet-nitro" type="range" value="0" min="0" max="100"
+                                                class="elm">
+                                            <span class="range-value">0</span><span class="unit">%</span>
+                                        </div>
+                                    </div>
+                                    <div class="config green-planet dropdown-item">
+                                        <label for="planet-hydrogen">H2</label>
+                                        <div class="range-slider">
+                                            <input id="planet-hydrogen" type="range" value="0" min="0" max="100"
+                                                class="elm">
+                                            <span class="range-value">0</span><span class="unit">%</span>
+                                        </div>
+                                    </div>
+                                    <div class="config green-planet dropdown-item">
+                                        <label for="planet-chlorine">Cl</label>
+                                        <div class="range-slider">
+                                            <input id="planet-chlorine" type="range" value="0" min="0" max="100"
+                                                class="elm">
+                                            <span class="range-value">0</span><span class="unit">%</span>
+                                        </div>
+                                    </div>
+                                    <div class="config green-planet dropdown-item">
+                                        <label for="planet-nto">NO2</label>
+                                        <div class="range-slider">
+                                            <input id="planet-nto" type="range" value="0" min="0" max="100" class="elm">
+                                            <span class="range-value">0</span><span class="unit">%</span>
+                                        </div>
+                                    </div>
+                                    <div class="config green-planet dropdown-item">
+                                        <label for="planet-cot">CO2</label>
+                                        <div class="range-slider">
+                                            <input id="planet-cot" type="range" value="0" min="0" max="100" class="elm">
+                                            <span class="range-value">0</span><span class="unit">%</span>
+                                        </div>
+                                    </div>
+                                    <div class="config green-planet dropdown-item">
+                                        <label for="planet-methane">CH4</label>
+                                        <div class="range-slider">
+                                            <input id="planet-methane" type="range" value="0" min="0" max="100"
+                                                class="elm">
+                                            <span class="range-value">0</span><span class="unit">%</span>
+                                        </div>
+                                    </div>
+                                    <div class="config green-planet dropdown-item">
+                                        <label for="planet-CO">CO</label>
+                                        <div class="range-slider">
+                                            <input id="planet-CO" type="range" value="0" min="0" max="100" class="elm">
+                                            <span class="range-value">0</span><span class="unit">%</span>
+                                        </div>
+                                    </div>
+                                    <div class="config green-planet dropdown-item">
+                                        <label for="planet-SO2">SO2</label>
+                                        <div class="range-slider">
+                                            <input id="planet-SO2" type="range" value="0" min="0" max="100" class="elm">
+                                            <span class="range-value">0</span><span class="unit">%</span>
+                                        </div>
+                                    </div>
+                                    <div class="config green-planet dropdown-item">
+                                        <label for="planet-HCl">HCl</label>
+                                        <div class="range-slider">
+                                            <input id="planet-HCl" type="range" value="0" min="0" max="100" class="elm">
+                                            <span class="range-value">0</span><span class="unit">%</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="config green-planet">
+                        <label for="planet-spin">自轉速度</label>
+                        <div class="range-slider">
+                            <input id="planet-spin" type="range" value="50" min="1" max="360">
+                            <span class="range-value">0</span><span class="unit">度/H</span>
+                        </div>
+                    </div>
+                    <div class="config green-planet">
+                        <label for="planet-angular">初速度</label>
+                        <div class="range-slider">
+                            <input id="planet-angular" type="range" value="30" min="1" max="360">
+                            <span class="range-value">0</span><span class="unit">度/H</span>
+                        </div>
+                    </div>
+                    <div class="config green-planet">
+                        <label for="planet-distance">與恆星的距離</label>
+                        <div class="range-slider">
+                            <input id="planet-distance" type="range" value="45" min="1" max="100">
+                            <span class="range-value">0</span><span class="unit">AU</span>
+                        </div>
+                    </div>
+                </div>
             </div>
             <div class="config-block">
               <div class="config green-planet">

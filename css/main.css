@@ -316,7 +316,6 @@ h2 {
   margin: 0 15px;
 }
 
-
 #div-loading, #loading-text, #loading-background
 {
 
@@ -410,16 +409,4 @@ h2 {
 @keyframes turningspaceship {
     from {transform: rotate(270deg);}
     to {transform: rotate(630deg);}
-}
-
-.keys {
-  width: 60px;
-  height: 60px;
-  background: #333;
-  border-radius: 15px;
-  color: white;
-  line-height: 60px;
-  text-align: center;
-  font-size: 24px;
-  font-weight: bold;
 }
