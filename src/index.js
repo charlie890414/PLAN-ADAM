@@ -81,36 +81,41 @@ $('.elm').each((idx, el) => {
     })
 })
 
+
+
 $('.range-slider').click(function(e) {
-  if($(this).hasClass('expand')) {
-    if($(this).hasClass('range-slider-even')) {
-      $(this).parent().prev().animate({
-        opacity: 1,
-        marginLeft: 0
-      });
+  if(!$(this).parent().hasClass('big-solid') && !$(this).parent().hasClass('big-liquid') && !$(this).parent().hasClass('big-gas') && !$(this).parent().parent().hasClass('dropdown-menu')) {
+    if($(this).hasClass('expand')) {
+      if($(this).hasClass('range-slider-even')) {
+        $(this).parent().prev().animate({
+          opacity: 1,
+          marginLeft: 0
+        }, 700);
+      } else {
+        $(this).parent().next().show().animate({
+          opacity: 1,
+          marginLeft: 0
+        }, 700);
+      }
+      $(this).removeClass('expand');
     } else {
-      $(this).parent().next().show().animate({
-        opacity: 1,
-        marginLeft: 0
-      });
-    }
-    $(this).removeClass('expand');
-  } else {
-    $(this).addClass('expand');
-    if($(this).hasClass('range-slider-even')) {
-      $(this).parent().prev().animate({
-        opacity: 0,
-        marginLeft: -$(this).parent().prev().width()
-      });
-    } else {
-      $(this).parent().next().animate({
-        opacity: 0,
-        marginLeft: -$(this).parent().next().width()
-      }, undefined, undefined, () => {
-        $(this).parent().next().hide();
-      });
+      $(this).addClass('expand');
+      if($(this).hasClass('range-slider-even')) {
+        $(this).parent().prev().animate({
+          opacity: 0,
+          marginLeft: -$(this).parent().prev().width()
+        });
+      } else {
+        $(this).parent().next().animate({
+          opacity: 0,
+          marginLeft: -$(this).parent().next().width()
+        }, undefined, undefined, () => {
+          $(this).parent().next().hide();
+        });
+      }
     }
   }
+
 })
 
 Welcome.welcome(startGame);
