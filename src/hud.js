@@ -50,8 +50,8 @@ export default class HUD extends PIXI.Container {
     this.degree = new Bar({
       x: -400,
       y: -100,
-      symbols: '度',
-      leftText: '仰角',
+      symbols: 'degree',
+      leftText: 'Angle',
       color: 0xd515a1
     });
     this.addChild(this.power.view, this.degree.view);
@@ -180,7 +180,7 @@ class Bar extends PIXI.Graphics {
       height = 30,
       color = 0x3498db,
       alpha = 0.7,
-      leftText = '蓄力',
+      leftText = 'Power',
       symbols = '%'
     } = param;
 
