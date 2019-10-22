@@ -112,7 +112,7 @@ export function MIX_COLOR(composition) {
     for (let key in composition) {
         if (SOLID_COLOR_MAP[key]) {
             console.log(key, (composition[key] / SOLID_percentage));
-            SOLID_COLOR += SOLID_COLOR_MAP[key] * (composition[key] / SOLID_percentage);
+            SOLID_COLOR += SOLID_COLOR_MAP[key] * parseInt((composition[key] / SOLID_percentage) * 100) / 100;
         }
     }
 
@@ -121,7 +121,7 @@ export function MIX_COLOR(composition) {
     for (let key in composition) {
         if (LIQUID_COLOR_MAP[key]) {
             console.log(key, (composition[key] / LIQUID_percentage));
-            LIQUID_COLOR += LIQUID_COLOR_MAP[key] * (composition[key] / LIQUID_percentage);
+            LIQUID_COLOR += LIQUID_COLOR_MAP[key] * parseInt((composition[key] / LIQUID_percentage) * 100) / 100;
         }
     }
 
@@ -130,7 +130,7 @@ export function MIX_COLOR(composition) {
     for (let key in composition) {
         if (GAS_COLOR_MAP[key]) {
             console.log(key, (composition[key] / GAS_percentage));
-            GAS_COLOR += GAS_COLOR_MAP[key] * (composition[key] / GAS_percentage);
+            GAS_COLOR += GAS_COLOR_MAP[key] * parseInt((composition[key] / GAS_percentage) * 100) / 100;
         }
     }
 
