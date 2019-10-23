@@ -72,9 +72,14 @@ body {
 h1 {
   width: 100%;
   text-align: center;
-  padding: 20px 0 0;
+  padding: 75px 0 0;
   letter-spacing: 5px;
   position: relative;
+  background-image: url(./../logo1.png);
+  background-position: center;
+  background-size: 720px;
+  background-repeat: no-repeat;
+
 }
 
 h1 .thin {
@@ -87,10 +92,10 @@ h1 .thin {
   background: #bdc3c7;
   border-radius: 15px;
   vertical-align: top;
-  padding: 30px 0 0 50px;
-  max-height: 75%;
+  padding: 20px 0 0 30px;
+  max-height: 85%;
   overflow-y: auto;
-  margin: 0 50px 50px 0;
+  margin: 0 50px 40px 0;
 }
 
 h2 {
@@ -105,11 +110,18 @@ h2 {
   color: var(--planet);
 }
 
+.model {
+  width: 250px;
+  height: 250px;
+}
+
 .configs {
-  max-height: 40%;
-  overflow-y: auto;
   margin-top: 20px;
   width: 550px;
+}
+
+#planet .configs {
+  width: 700px;
 }
 
 .config {
@@ -122,9 +134,16 @@ h2 {
 
 .config > label {
   font-size: 24px;
-  font-weight: 800;
+  font-weight: 500;
   color: #d63031;
   font-family: 'Noto Sans TC';
+}
+
+.buttons1 {
+  position: absolute;
+  left: 30px;
+  top: 50%;
+  transform: translateY(-40%);
 }
 
 .buttons {
@@ -139,7 +158,7 @@ h2 {
   bottom: 10px;
 }
 
-.buttons > button {
+.buttons > button, .buttons1 > button {
   font-size: 22px;
   padding: 5px 25px;
 }
@@ -153,12 +172,16 @@ h2 {
   color: var(--planet);
 }
 
+#star .range-slider {
+  margin: 40px 20px 0;
+}
+
 .range-slider {
   background-color: #fff;
   border-radius: 15px;
   display: inline-block;
   white-space: nowrap;
-  padding: 3px 20px;
+  padding: 3px 15px;
   margin: 10px 15px;
 }
 
@@ -230,8 +253,8 @@ h2 {
   font-weight: 600;
   text-align: left;
   line-height: 35px;
-  padding: 0 55px 0 10px;
-  margin-left: 5px;
+  padding: 0 20px 0 10px;
+  margin-right: -5px;
   border-radius: 15px;
   display: inline-block;
   position: relative;
@@ -244,10 +267,8 @@ h2 {
   font-size: 16px;
   font-weight: 600;
   line-height: 35px;
-  width: 60px;
   height: 35px;
-  padding: 0 0 0 25px;
-  margin-left: -75px;
+  margin-left: 5px;
   display: inline-block;
   position: relative;
 }
@@ -422,4 +443,40 @@ h2 {
   text-align: center;
   font-size: 24px;
   font-weight: bold;
+}
+
+.config-block {
+  position: relative;
+}
+
+.hint {
+  display: none;
+  background: var(--star);
+  position: absolute;
+  bottom: -35px;
+  left: 48%;
+  transform: translateX(-50%);
+  border-radius: 5px;
+  color: white;
+  white-space: nowrap;
+  padding: 3px 6px;
+}
+
+.hint::after {
+  content: '';
+  border-width: 0 30px 20px 30px;
+  width: 0;
+  height: 0;
+  position: absolute;
+  border-style: solid;
+  border-color: transparent transparent #d63031 transparent;
+  top: -15px;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.carousel-control-next,
+.carousel-control-prev,
+.carousel-indicators {
+    filter: invert(50%);
 }
