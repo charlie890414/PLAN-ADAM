@@ -84,7 +84,7 @@ $('.elm').each((idx, el) => {
 
 
 $('.range-slider').click(function(e) {
-  if(e.target.tagName !== 'INPUT' && !$(this).parent().hasClass('big-solid') && !$(this).parent().hasClass('big-liquid') && !$(this).parent().hasClass('big-gas')) {
+  if(($(this).parent().parent().parent().parent().attr('id') !== "star") && e.target.tagName !== 'INPUT' && !$(this).parent().hasClass('big-solid') && !$(this).parent().hasClass('big-liquid') && !$(this).parent().hasClass('big-gas')) {
     if($(this).hasClass('expand')) {
       if($(this).hasClass('range-slider-even')) {
         $(this).parent().prev().animate({
