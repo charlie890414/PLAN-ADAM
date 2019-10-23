@@ -20,6 +20,10 @@ export default class HUD extends PIXI.Container {
   show(resources) {
     const star = Star.fetch(), planet = Planet.fetch();
     this.resources = resources;
+    this.throwdistance = new PIXI.Text('', { fill: 0xFFFFFF });
+    this.throwdistance.x = app.screen.width - 431;
+    this.throwdistance.y = app.screen.height - 150;
+    this.throwdistance.text = "distance:0m"
     this.leftMeta = new PIXI.Text('', { fill: 0xFFFFFF });
     this.leftMeta.x = 5;
     this.leftMeta.y = 5;
@@ -31,14 +35,15 @@ export default class HUD extends PIXI.Container {
       "\nPlanet:\n" +
       "radius = " + planet.radius + "\n" +
       "mass = " + planet.mass + "\n" +
-      "spining speed = " + planet.spin + "\n";
+      "spining speed = " + planet.spin + "\n" +
+      "gravity = " + planet.g.toFixed(3) + "\n";
     this.addChild(this.leftMeta);
 
     this.rightMeta = new PIXI.Text('', { fill: 0XFFFFFF });
     this.rightMeta.x = app.screen.width - 305;
     this.rightMeta.y = 305;
     this.addChild(this.rightMeta);
-
+    this.addChild(this.throwdistance);
     this.map = new MiniMap(new PIXI.Point(0, planet.distance), new PIXI.Point(planet.angular, 0));
     this.addChild(this.map);
     this.map.show(resources);
@@ -49,8 +54,8 @@ export default class HUD extends PIXI.Container {
     this.degree = new Bar({
       x: -400,
       y: -100,
-      symbols: '度',
-      leftText: '仰角',
+      //symbols: 'degree',
+      leftText: 'Angle',
       color: 0xd515a1
     });
     this.addChild(this.power.view, this.degree.view);
@@ -179,7 +184,7 @@ class Bar extends PIXI.Graphics {
       height = 30,
       color = 0x3498db,
       alpha = 0.7,
-      leftText = '蓄力',
+      leftText = 'Power',
       symbols = '%'
     } = param;
 
