@@ -10,10 +10,10 @@ export default class welcome {
       slider.each(function () {
         value.each(function () {
           var value = $(this).prev().attr('value');
-          $(this).html(value);
+          $(this).find('.range-val').html(value);
         });
         range.on('input', function () {
-          $(this).next(value).html(this.value);
+          $(this).next(value).find('.range-val').html(this.value);
         });
       });
     };
@@ -24,76 +24,96 @@ export default class welcome {
       planet: new Planet({ w: 500, h: 250 })
     }
 
-    let config = (T, Mass, Radius) => {
-      let Color;
+    let calcPercent = (min, max, i) => Math.floor((i - min) / (max - min) * 100 * 1000) / 1000;
 
-      if (T >= 2200 && T < 3700) {
+    let config = (T, Mass, Radius, NT = 2200, MT = 15000, NMass = 0.08, MMass = 3, NRadius = 0.2, MRadius = 2.2) => {
+      let Color;
+      if (Mass < 0.45) {
         Color = 0xFF3333;
-        if (Mass < 0.08 || Mass > 0.45) {
-          Mass = 0.08;
-        }
-        if (Radius < 0.2 || Radius > 0.7) {
-          Radius = 0.2;
-        }
-      } else if (T >= 3700 && T < 5200) {
+        Radius = {
+          range: [0.2, 0.7],
+          background: `linear-gradient(90deg, #ddd 0%, #ddd ${calcPercent(NRadius, MRadius, 0.2)}%, var(--star) ${calcPercent(NRadius, MRadius, 0.2)}%, var(--star) ${calcPercent(NRadius, MRadius, 0.7)}%, #ddd ${calcPercent(NRadius, MRadius, 0.7)}%)`
+        };
+        T = {
+          range: [2200, 3700],
+          background: `linear-gradient(90deg, #ddd 0%, #ddd ${calcPercent(NT, MT, 2200)}%, var(--star) ${calcPercent(NT, MT, 2200)}%, var(--star) ${calcPercent(NT, MT, 3700)}%, #ddd ${calcPercent(NT, MT, 3700)}%)`
+        };
+      } else if (Mass >= 0.45 && Mass < 0.8) {
         Color = 0xFF5511;
-        if (Mass < 0.08 || Mass > 0.45) {
-          Mass = 0.08;
-        }
-        if (Radius < 0.7 || Radius > 0.96) {
-          Radius = 0.7;
-        }
-      } else if (T >= 5200 && T < 6000) {
+        Radius = {
+          range: [0.7, 0.96],
+          background:  `linear-gradient(90deg, #ddd 0%, #ddd ${calcPercent(NRadius, MRadius, 0.7)}%, var(--star) ${calcPercent(NRadius, MRadius, 0.7)}%, var(--star) ${calcPercent(NRadius, MRadius, 0.96)}%, #ddd ${calcPercent(NRadius, MRadius, 0.96)}%)`
+        };
+        T = {
+          range: [3700, 5200],
+          background: `linear-gradient(90deg, #ddd 0%, #ddd ${calcPercent(NT, MT, 3700)}%, var(--star) ${calcPercent(NT, MT, 3700)}%, var(--star) ${calcPercent(NT, MT, 5200)}%, #ddd ${calcPercent(NT, MT, 5200)}%)`
+        };
+      } else if (Mass >= 0.8 && Mass < 1.04) {
         Color = 0xFFFF00;
-        if (Mass < 0.45 || Mass > 0.8) {
-          Mass = 0.45;
-        }
-        if (Radius < 0.96 || Radius > 1.15) {
-          Radius = 0.96;
-        }
-      } else if (T >= 6000 && T < 7500) {
+        Radius = {
+          range: [0.96, 1.15],
+          background:  `linear-gradient(90deg, #ddd 0%, #ddd ${calcPercent(NRadius, MRadius, 0.96)}%, var(--star) ${calcPercent(NRadius, MRadius, 0.96)}%, var(--star) ${calcPercent(NRadius, MRadius, 1.15)}%, #ddd ${calcPercent(NRadius, MRadius, 1.15)}%)`
+        };
+        T = {
+          range: [5200, 6000],
+          background: `linear-gradient(90deg, #ddd 0%, #ddd ${calcPercent(NT, MT, 5200)}%, var(--star) ${calcPercent(NT, MT, 5200)}%, var(--star) ${calcPercent(NT, MT, 6000)}%, #ddd ${calcPercent(NT, MT, 6000)}%)`
+        };
+
+      } else if (Mass >= 1.04 && Mass < 1.4) {
         Color = 0xFFFFFF;
-        if (Mass < 0.8 || Mass > 1.4) {
-          Mass = 0.8;
-        }
-        if (Radius < 1.15 || Radius > 1.4) {
-          Radius = 1.15;
-        }
-      } else if (T >= 7500 && T < 10000) {
+        Radius = {
+          range: [1.15, 1.4],
+          background:  `linear-gradient(90deg, #ddd 0%, #ddd ${calcPercent(NRadius, MRadius, 1.15)}%, var(--star) ${calcPercent(NRadius, MRadius, 1.15)}%, var(--star) ${calcPercent(NRadius, MRadius, 1.4)}%, #ddd ${calcPercent(NRadius, MRadius, 1.4)}%)`
+        };
+        T = {
+          range: [6000, 7500],
+          background: `linear-gradient(90deg, #ddd 0%, #ddd ${calcPercent(NT, MT, 6000)}%, var(--star) ${calcPercent(NT, MT, 6000)}%, var(--star) ${calcPercent(NT, MT, 7500)}%, #ddd ${calcPercent(NT, MT, 7500)}%)`
+        };
+
+      } else if (Mass >= 1.4 && Mass < 2.1) {
         Color = 0xBBFFEE;
-        if (Mass < 1.4 || Mass > 2.1) {
-          Mass = 1.4;
-        }
-        if (Radius < 1.4 || Radius > 1.8) {
-          Radius = 1.4;
-        }
-      } else if (T >= 10000 && T < 30000) {
+        Radius = {
+          range: [1.4, 1.8],
+          background:  `linear-gradient(90deg, #ddd 0%, #ddd ${calcPercent(NRadius, MRadius, 1.4)}%, var(--star) ${calcPercent(NRadius, MRadius, 1.4)}%, var(--star) ${calcPercent(NRadius, MRadius, 1.8)}%, #ddd ${calcPercent(NRadius, MRadius, 1.8)}%)`
+        };
+        T = {
+          range: [7500, 10000],
+          background: `linear-gradient(90deg, #ddd 0%, #ddd ${calcPercent(NT, MT, 7500)}%, var(--star) ${calcPercent(NT, MT, 7500)}%, var(--star) ${calcPercent(NT, MT, 10000)}%, #ddd ${calcPercent(NT, MT, 10000)}%)`
+        };
+
+      } else if (Mass >= 2.1 && Mass <= 3) {
         Color = 0x00FFFF;
-        if (Mass < 2.1 || Mass > 16) {
-          Mass = 0.08;
-        }
-        if (Radius < 1.8 || Radius > 6.6) {
-          Radius = 1.8;
-        }
-      } else if (T >= 30000) {
-        Color = 0x0066FF;
-        if (Mass < 16) Mass = 16;
-        if (Radius < 6.6) Radius = 6.6;
+        Radius = {
+          range: [1.8, 2.2],
+          background:  `linear-gradient(90deg, #ddd 0%, #ddd ${calcPercent(NRadius, MRadius, 1.8)}%, var(--star) ${calcPercent(NRadius, MRadius, 1.8)}%, var(--star) ${calcPercent(NRadius, MRadius, 2.2)}%, #ddd ${calcPercent(NRadius, MRadius, 2.2)}%)`
+        };
+        T = {
+          range: [10000, 15000],
+          background: `linear-gradient(90deg, #ddd 0%, #ddd ${calcPercent(NT, MT, 10000)}%, var(--star) ${calcPercent(NT, MT, 10000)}%, var(--star) ${calcPercent(NT, MT, 15000)}%, #ddd ${calcPercent(NT, MT, 15000)}%)`
+        };
       }
 
-      return { color: Color, mass: Mass, radius: Radius };
+      return { color: Color, temperature: T, radius: Radius };
     }
 
     $('#star').on('change', 'input[type=range]', () => {
       let data = config(parseInt($('#star-temperature').val()), parseInt($('#star-mass').val()), parseInt($('#star-radius').val()));
-      if (parseInt($('#star-mass').val()) > data.mass) {
-        $('#star-mass').val(data.mass).trigger('input');
+      $('#star-temperature').attr('style', 'background: ' + data.temperature.background);
+      $('#star-radius').attr('style', 'background: ' + data.radius.background);
+      if (parseInt($('#star-temperature').val()) < data.temperature.range[0] || parseInt($('#star-temperature').val()) >= data.temperature.range[1]) {
+        $('#star-temperature').parent().tooltip({
+          placement: 'left',
+          container: '.range-slider',
+          title: `The mass is ${parseInt($('#star-mass').val())}, So temperature range must be ${data.temperature.range[0]} to ${data.temperature.range[1]}`
+        })
       }
-      if (parseInt($('#star-radius').val()) < data.radius) {
-        $('#star-radius').val(data.radius).trigger('input');
+      if (parseInt($('#star-radius').val()) < data.radius.range[0] || parseInt($('#star-radius').val()) >= data.radius.range[1]) {
       }
-      data.temperature = parseInt($('#star-temperature').val());
-      Star.update(data);
+      Star.update({
+        temperature: parseInt($('#star-temperature').val()),
+        mass: parseInt($('#star-mass').val()),
+        radius: parseInt($('#star-radius').val())
+      });
     })
 
     $('#planet input[type=range]').on('change', () => {
@@ -148,7 +168,7 @@ export default class welcome {
         angular: parseFloat($('#planet-angular').val())
       })
 
-      for(const item of ['solid', 'liquid', 'gas']) {
+      for (const item of ['solid', 'liquid', 'gas']) {
         let sum = 0;
         $(`.big-${item} input[type=range]`).each((idx, el) => sum += parseInt(el.value));
         $(`.big-${item} .range-value:eq(0)`).text(sum + '%');

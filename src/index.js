@@ -84,17 +84,17 @@ $('.elm').each((idx, el) => {
 
 
 $('.range-slider').click(function(e) {
-  if(!$(this).parent().hasClass('big-solid') && !$(this).parent().hasClass('big-liquid') && !$(this).parent().hasClass('big-gas') && !$(this).parent().parent().hasClass('dropdown-menu')) {
+  if(!$(this).parent().hasClass('big-solid') && !$(this).parent().hasClass('big-liquid') && !$(this).parent().hasClass('big-gas')) {
     if($(this).hasClass('expand')) {
       if($(this).hasClass('range-slider-even')) {
         $(this).parent().prev().animate({
           opacity: 1,
           marginLeft: 0
         }, 700);
-      } else {
+      } else if($(this).hasClass('range-slider-odd')) {
         $(this).parent().next().show().animate({
           opacity: 1,
-          marginLeft: 0
+          marginLeft: $(this).parent().next().data('marginleft')
         }, 700);
       }
       $(this).removeClass('expand');
@@ -105,7 +105,7 @@ $('.range-slider').click(function(e) {
           opacity: 0,
           marginLeft: -$(this).parent().prev().width()
         });
-      } else {
+      } else if($(this).hasClass('range-slider-odd')) {
         $(this).parent().next().animate({
           opacity: 0,
           marginLeft: -$(this).parent().next().width()
