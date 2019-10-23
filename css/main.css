@@ -474,9 +474,3 @@ h2 {
   left: 50%;
   transform: translateX(-50%);
 }
-
-.carousel-control-next,
-.carousel-control-prev,
-.carousel-indicators {
-    filter: invert(50%);
-}
