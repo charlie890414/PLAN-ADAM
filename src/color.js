@@ -34,7 +34,6 @@ let LIQUID_COLOR_MAP = {
     "FeSO4": 0x00FFFF,
     "FeCl3": 0x1F1F01,
     "H2SO4": 0xFFDD55,
-    "KMnO4": 0xC71585,
     "C7H7O4N": 0xFF00FF,
 };
 
