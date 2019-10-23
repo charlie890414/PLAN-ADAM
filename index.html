@@ -13,9 +13,9 @@
     <div id="welcome">
       <h1>
         <div class="buttons1">
-          <button class="btn btn-link" id="about" style="color: black;"><span class="thin">About</span>&nbsp;&nbsp; ADAM PLAN</button>
+          <button class="btn btn-link" id="about" style="color: black;"><span class="thin">About</span>&nbsp;&nbsp; ADAM
+            PLAN</button>
         </div>
-        <span class="thin">PLAN</span>&nbsp;ADAM
         <div class="buttons">
           <button class="btn btn-secondary" id="submit">Start</button>
         </div>
@@ -67,12 +67,12 @@
             <div class="config green-planet" data-marginleft="0">
               <label for="planet-mass">Mass</label>
               <div class="range-slider range-slider-odd">
-                <input id="planet-mass" type="range" value="60000" min="0.01" max="600000" step=0.01>
+                <input id="planet-mass" type="range" value="1" min="0.01" max="500" step=0.01>
                 <span class="range-value"><span class="range-val">0</span><span class="unit">M⊕</span></span>
               </div>
             </div>
-            <div class="config green-planet" data-marginleft="0">
-              <label for="planet-distance">Distance from the star</label>
+            <div class="config green-planet" style="margin-left: 140px;" data-marginleft="140">
+              <label for="planet-distance">Distance</label>
               <div class="range-slider range-slider-even">
                 <input id="planet-distance" type="range" value="45" min="1" max="100">
                 <span class="range-value"><span class="range-val">0</span><span class="unit">AU</span></span>
@@ -84,11 +84,11 @@
             <div class="config green-planet" data-marginleft="0">
               <label for="planet-radius">Radius</label>
               <div class="range-slider range-slider-odd">
-                <input id="planet-radius" type="range" value="6371" min="1" max="30000">
-                <span class="range-value"><span class="range-val">0</span><span class="unit">KM</span></span>
+                <input id="planet-radius" type="range" value="1" min="0.01" max="20" step=0.01>
+                <span class="range-value"><span class="range-val">0</span><span class="unit">R⊕</span></span>
               </div>
             </div>
-            <div class="config green-planet big-solid" style="margin-left: 98px;" data-marginleft="98">
+            <div class="config green-planet big-solid" style="margin-left: 122px;" data-marginleft="122">
               <label>Solid</label>
               <div class="range-slider range-slider-even">
                 <div class="dropdown">
@@ -459,6 +459,122 @@
               </div>
             </div>
           </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="modal fade" id="exampleModalCenter">
+    <div class="modal-dialog modal-dialog-centered" style="width: 960px;
+    height: 600px;
+    max-width: 960px;
+    max-height: 600px;">
+      <div class="modal-content" style="border-radius: 15px;">
+        <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
+          <ol class="carousel-indicators">
+            <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
+            <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
+            <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
+            <li data-target="#carouselExampleIndicators" data-slide-to="3"></li>
+            <li data-target="#carouselExampleIndicators" data-slide-to="4"></li>
+          </ol>
+          <div class="carousel-inner" style="border-radius: 15px;">
+            <div class="carousel-item active">
+              <img class="d-block" src="./ppt1.PNG" alt="Second slide">
+            </div>
+            <div class="carousel-item">
+              <img class="d-block" src="./ppt2.PNG" alt="Third slide">
+            </div>
+            <div class="carousel-item">
+              <img class="d-block" src="./ppt3.PNG" alt="Third slide">
+            </div>
+            <div class="carousel-item">
+              <img class="d-block" src="./ppt4.PNG" alt="Third slide">
+            </div>
+            <div class="carousel-item" data-dismiss="modal" aria-label="Close">
+              <img class="d-block" src="./ppt5.PNG" alt="Third slide">
+            </div>
+          </div>
+          <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="sr-only">Previous</span>
+          </a>
+          <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="sr-only">Next</span>
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="modal fade" id="exampleModalCenter1">
+    <div class="modal-dialog modal-dialog-centered" style="width: 900px;
+      height: 600px;
+      max-width: 900px;
+      max-height: 600px;">
+      <div class="modal-content" style="border-radius: 15px;">
+        <div id="carouselExampleIndicators1" class="carousel slide" data-ride="carousel">
+          <ol class="carousel-indicators">
+            <li data-target="#carouselExampleIndicators1" data-slide-to="0" class="active"></li>
+            <li data-target="#carouselExampleIndicators1" data-slide-to="1"></li>
+            <li data-target="#carouselExampleIndicators1" data-slide-to="2"></li>
+            <li data-target="#carouselExampleIndicators1" data-slide-to="3"></li>
+            <li data-target="#carouselExampleIndicators1" data-slide-to="4"></li>
+          </ol>
+          <div class="carousel-inner" style="border-radius: 15px;">
+            <div class="carousel-item active">
+              <img class="d-block" src="./pic1.PNG" alt="Second slide" width="900" height="600">
+            </div>
+            <div class="carousel-item">
+              <img class="d-block" src="./pic2.PNG" alt="Third slide" width="900" height="600">
+            </div>
+            <div class="carousel-item">
+              <img class="d-block" src="./pic3.PNG" alt="Third slide" width="900" height="600">
+            </div>
+            <div class="carousel-item">
+              <img class="d-block" src="./pic4.PNG" alt="Third slide" width="900" height="600">
+            </div>
+            <div class="carousel-item">
+              <img class="d-block" src="./pic5.PNG" alt="Third slide" width="900" height="600">
+            </div>
+          </div>
+          <a class="carousel-control-prev" href="#carouselExampleIndicators1" role="button" data-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="sr-only">Previous</span>
+          </a>
+          <a class="carousel-control-next" href="#carouselExampleIndicators1" role="button" data-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="sr-only">Next</span>
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="modal fade" id="exampleModalCenter-far" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel-far" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document" style="max-width: 630px;">
+      <div class="modal-content">
+        <div class="modal-header p-2">
+          <h5 class="modal-title" id="exampleModalLabel-far">Game Over!</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <img src="./Too_Far.png" alt="" width="600">
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="modal fade" id="exampleModalCenter-close" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel-close" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document" style="max-width: 630px;">
+      <div class="modal-content">
+        <div class="modal-header p-2">
+          <h5 class="modal-title" id="exampleModalLabel-close">Game Over!</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <img src="./Too_close.png" alt="" width="600">
         </div>
       </div>
     </div>
