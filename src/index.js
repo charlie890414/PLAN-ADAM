@@ -117,6 +117,10 @@ $('.range-slider').click(function(e) {
   }
 
 })
+$('#exampleModalCenter').modal();
+$('#about').click(function() {
+  $('#exampleModalCenter').modal();
+})
 
 Welcome.welcome(startGame);
 
