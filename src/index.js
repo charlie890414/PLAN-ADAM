@@ -51,7 +51,18 @@ function startGame() {
         }]
     }, drawPlanet.controls);
 
-
+    let open = true;
+    $(document).on('keydown', function(e) {
+      if(e.keyCode === 72) {
+        if(open) {
+          $('#exampleModalCenter1').modal();
+          $('#carouselExampleIndicators1').carousel(0);
+        } else {
+          $('#exampleModalCenter1').modal('hide');
+        }
+        open = !open;
+      }
+    })
 
 }
 
@@ -117,9 +128,21 @@ $('.range-slider').click(function(e) {
   }
 
 })
+
+$('#carouselExampleIndicators').carousel();
 $('#exampleModalCenter').modal();
+
 $('#about').click(function() {
   $('#exampleModalCenter').modal();
+  $('#carouselExampleIndicators').carousel(0);
+})
+
+$('#planet-mass').on('input', function () {
+  if(parseFloat(this.value) < 100) {
+    this.step = 0.01;
+  } else {
+    this.step = 1;
+  }
 })
 
 Welcome.welcome(startGame);

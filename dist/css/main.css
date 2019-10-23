@@ -72,9 +72,14 @@ body {
 h1 {
   width: 100%;
   text-align: center;
-  padding: 20px 0 0;
+  padding: 75px 0 0;
   letter-spacing: 5px;
   position: relative;
+  background-image: url(./../logo1.png);
+  background-position: center;
+  background-size: 720px;
+  background-repeat: no-repeat;
+
 }
 
 h1 .thin {
@@ -468,4 +473,10 @@ h2 {
   top: -15px;
   left: 50%;
   transform: translateX(-50%);
+}
+
+.carousel-control-next,
+.carousel-control-prev,
+.carousel-indicators {
+    filter: invert(50%);
 }
