@@ -62,6 +62,10 @@ export default class HUD extends PIXI.Container {
     app.ticker.add(() => {
       this.update();
     });
+
+    var Htip = new PIXI.Text('press H for help', { fill: 0xFFFFFF });
+    Htip.position.set(0, app.screen.height - 30);
+    this.addChild(Htip);
   }
   endgame() {
     this.boom = new PIXI.Sprite();
