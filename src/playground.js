@@ -58,14 +58,15 @@ export default class extends PIXI.Container {
             this.maskmove(delta);
         });
         ticker.add(() => {
-            const sunDistance = panel.map.getcurrentDistance();
-            if (sunDistance < 40) {
+            var sunDistance = panel.map.getcurrentDistance();
+            sunDistance = sunDistance * sunDistance;
+            if (sunDistance <= 1) {
                 this.lightmask.tint = 0xFFFFFF;
-                this.lightmask.alpha = 1 / Math.pow(sunDistance, 2);
+                this.lightmask.alpha = 1 - sunDistance;
             }
             else {
                 this.lightmask.tint = 0X000000;
-                this.lightmask.alpha = Math.pow(sunDistance, 2) / 1e5;
+                this.lightmask.alpha = 1 - 1 / sunDistance;
             }
         });
     }

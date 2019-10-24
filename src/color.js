@@ -83,7 +83,6 @@ function CHEMICAL(composition) {
 }
 
 export function MIX_COLOR(composition) {
-    console.log(composition);
     let SOLID_COLOR = null;
     let LIQUID_COLOR = null;
     let GAS_COLOR = null;

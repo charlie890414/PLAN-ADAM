@@ -36,7 +36,7 @@ export default class HUD extends PIXI.Container {
       "radius = " + planet.radius + "\n" +
       "mass = " + planet.mass + "\n" +
       "spining speed = " + planet.spin + "\n" +
-      "gravity = " + planet.g.toFixed(3) + "\n";
+      "gravity = " + planet.g.toFixed(3) * 10 + "\n";
     this.addChild(this.leftMeta);
 
     this.rightMeta = new PIXI.Text('', { fill: 0XFFFFFF });
@@ -62,6 +62,10 @@ export default class HUD extends PIXI.Container {
     app.ticker.add(() => {
       this.update();
     });
+
+    var Htip = new PIXI.Text('press H for help', { fill: 0xFFFFFF });
+    Htip.position.set(0, app.screen.height - 30);
+    this.addChild(Htip);
   }
   endgame() {
     this.boom = new PIXI.Sprite();
@@ -90,7 +94,7 @@ export default class HUD extends PIXI.Container {
 
 
   update() {
-    var speed = Math.sqrt(Math.pow(this.map.vec.x, 2) + Math.pow(this.map.vec.y, 2));
+    var speed = Math.sqrt(Math.pow(this.map.vec.x, 2) + Math.pow(this.map.vec.y, 2)) * this.map.au;
     var r = this.map.getcurrentDistance();
     r = Math.round(r * 1e3) / 1e3;
     speed = Math.round(speed * 1e3) / 1e3;
@@ -110,7 +114,8 @@ class MiniMap extends PIXI.Container {
     super();
 
     this.pos = pos;
-    this.vec = vec;
+    this.au = 1.496E8; // au in km
+    this.vec = new PIXI.Point(vec.x / this.au, vec.y / this.au);
   }
 
   /**
@@ -142,7 +147,7 @@ class MiniMap extends PIXI.Container {
     var star = new PIXI.Sprite(resources.starball.texture);
     star.anchor.set(0.5);
     star.position = center;
-    star.height = star.width = 20;
+    star.height = star.width = 15
 
     this.addChild(star);
 
@@ -150,25 +155,37 @@ class MiniMap extends PIXI.Container {
   }
 
   move(delta) {
-    const EPS = Planet.fetch().mass;
+    const speed = 1e4;
     const pos = this.pos;
     const vel = this.vec;
 
-    const r = Math.sqrt(Math.pow(pos.x, 2) + Math.pow(pos.y, 2));
-    let r3 = 1 / Math.pow(r, 3);
-    const acl = new PIXI.Point(pos.x * -r3, pos.y * -r3);
-    vel.x += acl.x * EPS / delta / 60;
-    vel.y += acl.y * EPS / delta / 60;
-    pos.x += vel.x / delta / 60;
-    pos.y += vel.y / delta / 60;
+    const solar_mass = 2E30;
+    const earth_mass = 6E24;
+    const au = 1.5E11;
+    const G = 6.67E-11;
 
-    this.planet.position.set(pos.x + this.center.x, pos.y + this.center.y);
+    const r = this.getcurrentDistance() * au;
+    const star = Star.fetch().mass * solar_mass;
+    const planet = Planet.fetch().mass * earth_mass;
+    var d = G * planet * star / Math.pow(r, 2) / planet;
+    d /= au; //convert from m/s^2 to au
+    const sum = Math.abs(pos.x) + Math.abs(pos.y);
+    const acl = new PIXI.Point(pos.x / sum * -d, pos.y / sum * -d);
+    vel.x += acl.x * delta * speed;
+    vel.y += acl.y * delta * speed;
+    pos.x += vel.x * delta * speed;
+    pos.y += vel.y * delta * speed;
+
+    console.log(acl, vel , delta);
+
+    const zoom = 20;
+    this.planet.position.set(pos.x * zoom + this.center.x, pos.y * zoom + this.center.y);
 
     var follow = new PIXI.Sprite(this.pathdot);
     follow.position = this.planet.position;
     this.addChildAt(follow, 1);
 
-    if (panel.map.getcurrentDistance() < 13) {
+    if (this.getcurrentDistance() < 0.1) {
       panel.endgame();
     }
   }

@@ -44,6 +44,8 @@ function startGame() {
                 panel.show(resources);
                 ground.show(resources);
                 $('#loading').remove();
+                $('#exampleModalCenter1').modal();
+                $('#carouselExampleIndicators1').carousel(0);
             });
 
 
@@ -51,8 +53,16 @@ function startGame() {
         }]
     }, drawPlanet.controls);
 
-
-
+    $(document).on('keydown', function(e) {
+      if(e.keyCode === 72) {
+        if($('#exampleModalCenter1').hasClass('show')) {
+          $('#exampleModalCenter1').modal('hide');
+        } else {
+          $('#exampleModalCenter1').modal();
+          $('#carouselExampleIndicators1').carousel(0);
+        }
+      }
+    })
 }
 
 global.drawPlanet = new DrawPlanet({
@@ -84,7 +94,7 @@ $('.elm').each((idx, el) => {
 
 
 $('.range-slider').click(function(e) {
-  if(!$(this).parent().hasClass('big-solid') && !$(this).parent().hasClass('big-liquid') && !$(this).parent().hasClass('big-gas')) {
+  if(($(this).parent().parent().parent().parent().attr('id') !== "star") && e.target.tagName !== 'INPUT' && !$(this).parent().hasClass('big-solid') && !$(this).parent().hasClass('big-liquid') && !$(this).parent().hasClass('big-gas')) {
     if($(this).hasClass('expand')) {
       if($(this).hasClass('range-slider-even')) {
         $(this).parent().prev().animate({
@@ -94,7 +104,7 @@ $('.range-slider').click(function(e) {
       } else if($(this).hasClass('range-slider-odd')) {
         $(this).parent().next().show().animate({
           opacity: 1,
-          marginLeft: $(this).parent().next().data('marginleft')
+          marginLeft: 540 - $(this).parent().width()
         }, 700);
       }
       $(this).removeClass('expand');
@@ -116,6 +126,24 @@ $('.range-slider').click(function(e) {
     }
   }
 
+})
+
+$('#carouselExampleIndicators').carousel();
+$('#exampleModalCenter').modal();
+
+$('#about').click(function() {
+  $('#exampleModalCenter').modal();
+  $('#carouselExampleIndicators').carousel(0);
+})
+
+$('#planet-mass').on('input', function () {
+  if(parseFloat(this.value) < 100) {
+    this.step = 0.01;
+    this.min = 0.1;
+  } else {
+    this.step = 1;
+    this.min = 0;
+  }
 })
 
 Welcome.welcome(startGame);

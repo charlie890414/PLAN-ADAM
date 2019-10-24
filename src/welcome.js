@@ -95,24 +95,45 @@ export default class welcome {
 
       return { color: Color, temperature: T, radius: Radius };
     }
-
-    $('#star').on('change', 'input[type=range]', () => {
-      let data = config(parseInt($('#star-temperature').val()), parseInt($('#star-mass').val()), parseInt($('#star-radius').val()));
+    let ttime, rtime;
+    $('#star').on('change input', 'input[type=range]', () => {
+      let data = config(parseFloat($('#star-temperature').val()), parseFloat($('#star-mass').val()), parseFloat($('#star-radius').val()));
       $('#star-temperature').attr('style', 'background: ' + data.temperature.background);
       $('#star-radius').attr('style', 'background: ' + data.radius.background);
-      if (parseInt($('#star-temperature').val()) < data.temperature.range[0] || parseInt($('#star-temperature').val()) >= data.temperature.range[1]) {
-        $('#star-temperature').parent().tooltip({
-          placement: 'left',
-          container: '.range-slider',
-          title: `The mass is ${parseInt($('#star-mass').val())}, So temperature range must be ${data.temperature.range[0]} to ${data.temperature.range[1]}`
-        })
+
+      if (parseFloat($('#star-temperature').val()) < data.temperature.range[0] || parseFloat($('#star-temperature').val()) > data.temperature.range[1]) {
+        if(parseFloat($('#star-temperature').val()) < data.temperature.range[0]) {
+          $('#star-temperature').val(data.temperature.range[0]);
+          $('#star-temperature').next().find('.range-val').text(data.temperature.range[0])
+        } else {
+          $('#star-temperature').val(data.temperature.range[1]);
+          $('#star-temperature').next().find('.range-val').text(data.temperature.range[1])
+        }
+        clearTimeout(ttime);
+        $('#st-hint')
+        .text(`The mass is ${parseFloat($('#star-mass').val())}, So temperature range must be ${data.temperature.range[0]} to ${data.temperature.range[1]}`)
+        .fadeIn(200, undefined, () => ttime = setTimeout(() => $('#st-hint').fadeOut(300), 3000));
       }
-      if (parseInt($('#star-radius').val()) < data.radius.range[0] || parseInt($('#star-radius').val()) >= data.radius.range[1]) {
+
+      if (parseFloat($('#star-radius').val()) < data.radius.range[0] || parseFloat($('#star-radius').val()) > data.radius.range[1]) {
+        if(parseFloat($('#star-radius').val()) < data.radius.range[0]) {
+          $('#star-radius').val(data.radius.range[0]);
+          $('#star-radius').next().find('.range-val').text(data.radius.range[0])
+        } else {
+          $('#star-radius').val(data.radius.range[1]);
+          $('#star-radius').next().find('.range-val').text(data.radius.range[1])
+        }
+
+        clearTimeout(rtime);
+        $('#sr-hint')
+        .text(`The mass is ${parseFloat($('#star-mass').val())}, So radius range must be ${data.radius.range[0]} to ${data.radius.range[1]}`)
+        .fadeIn(200, undefined, () => rtime = setTimeout(() => $('#sr-hint').fadeOut(300), 3000));
       }
       Star.update({
-        temperature: parseInt($('#star-temperature').val()),
-        mass: parseInt($('#star-mass').val()),
-        radius: parseInt($('#star-radius').val())
+        temperature: parseFloat($('#star-temperature').val()),
+        mass: parseFloat($('#star-mass').val()),
+        radius: parseFloat($('#star-radius').val()),
+        color: data.color
       });
     })
 

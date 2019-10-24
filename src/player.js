@@ -9,7 +9,7 @@ class Ball extends PIXI.Sprite {
         this.scale.x = this.scale.y = 0.3;
         this.x = x - 50;
         this.y = y + 50;
-        this.g = g * 100 / 4;
+        this.g = g * 100;
         this.v = v;//初速度
         this.theta = theta;
         this.alltime = 2 * this.v * Math.sin(Math.PI * this.theta / 180) / this.g;
@@ -46,7 +46,6 @@ class Ball extends PIXI.Sprite {
 export default class extends PIXI.Sprite {
     constructor() {
         super();
-
         for (var i = 0; i <= 36; i++) {
             PIXI.Loader.shared.add(`astronaut_${i}`, `animate/astronaut-${i}.png`);
         }
@@ -58,14 +57,14 @@ export default class extends PIXI.Sprite {
         this.vx = this.vy = 0;
         this.f = 0;
         this.v = 1.1;
-        this.g = this.Planet_param.g * 4;
+        this.g = this.Planet_param.g;
         this.g_scale = 1000;
         this.up = true;
         this.t = this.v / (3.0 * this.g);
         //this.maxf = this.v ^ 2 / 2 * this.Planet_param.g;
-        this.maxf = (this.v * this.v / (2.0 * this.g));
+        this.maxf = (this.v * this.v / (2.0 * this.g)) / 4;
         this.mf = this.maxf / (this.t * 30)
-        this.ms = (Math.abs((1.05 * (this.maxf) / 10))) / (this.t * 30) / 10;
+        this.ms = (Math.abs((1.3 * (this.maxf) / 10))) / (this.t * 30) / 10;
         this.nowscale = 0.2;
     }
 
