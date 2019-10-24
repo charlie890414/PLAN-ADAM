@@ -98,10 +98,13 @@ export function MIX_COLOR(composition) {
 
     for (let key in composition) {
         if (SOLID_COLOR_MAP[key]) {
+            console.log(key);
             SOLID_percentage += parseInt(composition[key]);
         } else if (LIQUID_COLOR_MAP[key]) {
+            console.log(key);
             LIQUID_percentage += parseInt(composition[key]);
         } else if (GAS_COLOR_MAP[key]) {
+            console.log(key);
             GAS_percentage += parseInt(composition[key]);
         }
     }
