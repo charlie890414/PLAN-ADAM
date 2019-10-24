@@ -114,7 +114,7 @@ class MiniMap extends PIXI.Container {
     super();
 
     this.pos = pos;
-    this.au = 1.496E12;
+    this.au = 1.496E8; // au in km
     this.vec = new PIXI.Point(vec.x / this.au, vec.y / this.au);
   }
 
@@ -159,12 +159,9 @@ class MiniMap extends PIXI.Container {
     const pos = this.pos;
     const vel = this.vec;
 
-    pos.x += vel.x * delta * speed;
-    pos.y += vel.y * delta * speed;
-
-    const solar_mass = 1.989E30;
-    const earth_mass = 5.972E24;
-    const au = 1.496E12;
+    const solar_mass = 2E30;
+    const earth_mass = 6E24;
+    const au = 1.5E11;
     const G = 6.67E-11;
 
     const r = this.getcurrentDistance() * au;
@@ -176,8 +173,10 @@ class MiniMap extends PIXI.Container {
     const acl = new PIXI.Point(pos.x / sum * -d, pos.y / sum * -d);
     vel.x += acl.x * delta * speed;
     vel.y += acl.y * delta * speed;
+    pos.x += vel.x * delta * speed;
+    pos.y += vel.y * delta * speed;
 
-    console.log(acl, vel, pos);
+    console.log(acl, vel , delta);
 
     const zoom = 20;
     this.planet.position.set(pos.x * zoom + this.center.x, pos.y * zoom + this.center.y);
