@@ -53,16 +53,14 @@ function startGame() {
         }]
     }, drawPlanet.controls);
 
-    let open = false;
     $(document).on('keydown', function(e) {
       if(e.keyCode === 72) {
-        if(open) {
+        if($('#exampleModalCenter1').hasClass('show')) {
+          $('#exampleModalCenter1').modal('hide');
+        } else {
           $('#exampleModalCenter1').modal();
           $('#carouselExampleIndicators1').carousel(0);
-        } else {
-          $('#exampleModalCenter1').modal('hide');
         }
-        open = !open;
       }
     })
 }
