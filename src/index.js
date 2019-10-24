@@ -141,8 +141,10 @@ $('#about').click(function() {
 $('#planet-mass').on('input', function () {
   if(parseFloat(this.value) < 100) {
     this.step = 0.01;
+    this.min = 0.1;
   } else {
     this.step = 1;
+    this.min = 0;
   }
 })
 
