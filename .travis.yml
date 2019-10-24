@@ -8,7 +8,7 @@ deploy:
   provider: pages
   local_dir: dist
   skip_cleanup: true
-  github_token: a697590671bb52c5f734051d6de1e57c4acadb18
+  github_token: 95da35f83e9bf7909666bc65e0370a6c9f5ac781
   keep_history: true
   on:
     branch: master
