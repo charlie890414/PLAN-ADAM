@@ -44,6 +44,8 @@ function startGame() {
                 panel.show(resources);
                 ground.show(resources);
                 $('#loading').remove();
+                $('#exampleModalCenter1').modal();
+                $('#carouselExampleIndicators1').carousel(0);
             });
 
 
@@ -51,7 +53,7 @@ function startGame() {
         }]
     }, drawPlanet.controls);
 
-    let open = true;
+    let open = false;
     $(document).on('keydown', function(e) {
       if(e.keyCode === 72) {
         if(open) {
@@ -63,7 +65,6 @@ function startGame() {
         open = !open;
       }
     })
-
 }
 
 global.drawPlanet = new DrawPlanet({
@@ -105,7 +106,7 @@ $('.range-slider').click(function(e) {
       } else if($(this).hasClass('range-slider-odd')) {
         $(this).parent().next().show().animate({
           opacity: 1,
-          marginLeft: $(this).parent().next().data('marginleft')
+          marginLeft: 540 - $(this).parent().width()
         }, 700);
       }
       $(this).removeClass('expand');
