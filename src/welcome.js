@@ -3,6 +3,7 @@ import { Star, Planet } from './planet';
 
 export default class welcome {
   static welcome(app) {
+    console.log("Test CI");
     var rangeSlider = function () {
       var slider = $('.range-slider'),
         range = $('.range-slider input[type="range"]'),
