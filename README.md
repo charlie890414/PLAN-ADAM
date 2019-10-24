@@ -24,3 +24,8 @@ To compile webpack:
 ```
 npm run build
 ```
+
+# Awards
+
+2019 NASA Space App Challenge Taipei , second place
+![2019 NASA Space App Challenge Taipei](https://static.accupass.com/eventbanner/1909191525151001161500.jpg)
