@@ -31,14 +31,14 @@ export default class HUD extends PIXI.Container {
     this.leftMeta.y = 5;
     this.leftMeta.text =
       "Star:\n" +
-      "radius = " + star.radius + "\n" +
-      "mass = " + star.mass + "\n" +
-      "temperature = " + star.temperature + "\n" +
+      "mass = " + star.mass + "M☉\n" +
+      "radius = " + star.radius + "R☉\n" +
+      "temperature = " + star.temperature + "K\n" +
       "\nPlanet:\n" +
-      "radius = " + planet.radius + "\n" +
-      "mass = " + planet.mass + "\n" +
-      "spining speed = " + planet.spin + "\n" +
-      "gravity = " + planet.g.toFixed(3) * 10 + "\n";
+      "mass = " + planet.mass + "M⊕\n" +
+      "radius = " + planet.radius + "R⊕\n" +
+      "spining speed = " + planet.spin + "Deg/H\n" +
+      "gravitational acceleration = " + planet.g.toFixed(3) * 10 + "m/s^2\n";
     this.addChild(this.leftMeta);
 
     this.rightMeta = new PIXI.Text('', { fill: 0XFFFFFF });
@@ -113,8 +113,8 @@ export default class HUD extends PIXI.Container {
     r = Math.round(r * 1e3) / 1e3;
     speed = Math.round(speed * 1e3) / 1e3;
     this.rightMeta.text =
-      "distance = " + r + "\n" +
-      "speed = " + speed + "\n";
+      "distance = " + r + "AU\n" +
+      "speed = " + speed + "km/s\n";
   }
 }
 
