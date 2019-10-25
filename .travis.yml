@@ -5,12 +5,30 @@ node_js:
   - "8"
 before_script:
   - npm install
-script: npm run-script build
-deploy:
-  provider: pages
-  local_dir: dist
-  skip_cleanup: true
-  github_token: ${GH_TOKEN}
-  keep_history: true
-  on:
-    branch: master
+
+jobs:
+  include:
+  - stage : Test Version
+    name : Test 12
+    node_js: "12"
+    script: npm run-script build
+  - stage : Test Version
+    name : Test 10
+    node_js: "10"
+    script: npm run-script build
+  - stage : Test Version
+    name : Test 8
+    node_js: "8"
+    script: npm run-script build
+  - stage: Deploy
+    name: Deploy
+    node_js: "10"
+    script: npm run-script build
+    deploy:
+      provider: pages
+      local_dir: dist
+      skip_cleanup: true
+      github_token: ${GH_TOKEN}
+      keep_history: true
+      on:
+        branch: master
