@@ -190,8 +190,6 @@ class MiniMap extends PIXI.Container {
     pos.x += vel.x * delta * speed;
     pos.y += vel.y * delta * speed;
 
-    console.log(acl, vel , delta);
-
     const zoom = 20;
     this.planet.position.set(pos.x * zoom + this.center.x, pos.y * zoom + this.center.y);
 
