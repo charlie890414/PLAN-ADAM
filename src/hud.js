@@ -5,6 +5,8 @@ import {
 import {
   Planet, Star
 } from './planet'
+import * as $ from 'jquery';
+import 'bootstrap';
 
 export default class HUD extends PIXI.Container {
   constructor() {
@@ -67,29 +69,41 @@ export default class HUD extends PIXI.Container {
     Htip.position.set(0, app.screen.height - 30);
     this.addChild(Htip);
   }
-  endgame() {
-    this.boom = new PIXI.Sprite();
-    this.boom.texture = this.resources.boom.texture;
-    this.boom.x = app.screen.width / 2 - this.boom.width * 2 / 2;
-    this.boom.y = app.screen.height / 2 - this.boom.height * 2 / 2;
-    this.boom.alpha = 0;
-    this.boom.scale.x = 2;
-    this.boom.scale.y = 2;
-    this.boom.interactive = true;
-    this.boom.cursor = "pointer";
-    this.boom.on('click', (event) => {
-      window.location.reload("index.html")
-      console.log("cl");
-    });
-    this.addChild(this.boom);
-    var sh = setInterval(() => {
-      this.boom.alpha += 0.008;
-      // this.boom.scale.x += 0.03;
-      // this.boom.scale.y += 0.03;
-      // this.boom.x = app.screen.width / 2 - this.boom.width * this.boom.scale.x / 2;
-      // this.boom.y = app.screen.height / 2 - this.boom.height * this.boom.scale.y / 2;
-      if (this.boom.alpha >= 1) clearInterval(sh);
-    }, 1)
+  endgame(type = 'close') {
+    if(type === 'close') {
+      this.boom = new PIXI.Sprite();
+      this.boom.texture = this.resources.boom.texture;
+      this.boom.x = app.screen.width / 2 - this.boom.width * 2 / 2;
+      this.boom.y = app.screen.height / 2 - this.boom.height * 2 / 2;
+      this.boom.alpha = 0;
+      this.boom.scale.x = 2;
+      this.boom.scale.y = 2;
+      this.boom.interactive = true;
+      this.boom.cursor = "pointer";
+      this.boom.on('click', (event) => {
+        window.location.reload("index.html")
+        console.log("cl");
+      });
+      this.addChild(this.boom);
+      var sh = setInterval(() => {
+        this.boom.alpha += 0.05;
+        if (this.boom.alpha >= 1) {
+          app.ticker.destroy();
+          setTimeout(() => {
+            $(`#exampleModalCenter-${type}`).modal({
+              keyboard: false,
+              backdrop: 'static'
+            });
+          }, 1000);
+          clearInterval(sh);
+        }
+      }, 100);
+    } else {
+      $(`#exampleModalCenter-${type}`).modal({
+        keyboard: false,
+        backdrop: 'static'
+      });
+    }
   }
 
 
@@ -151,7 +165,7 @@ class MiniMap extends PIXI.Container {
 
     this.addChild(star);
 
-    app.ticker.add((delta) => this.move(delta));
+    this.endgameticker =  app.ticker.add((delta) => this.move(delta));
   }
 
   move(delta) {
@@ -184,6 +198,12 @@ class MiniMap extends PIXI.Container {
     var follow = new PIXI.Sprite(this.pathdot);
     follow.position = this.planet.position;
     this.addChildAt(follow, 1);
+
+    if(this.getcurrentDistance() < 0.5) {
+      if($('#exampleModalCenter1').hasClass('show')) {
+        $('#exampleModalCenter1').modal('hide');
+      }
+    }
 
     if (this.getcurrentDistance() < 0.1) {
       panel.endgame();
