@@ -199,6 +199,12 @@ class MiniMap extends PIXI.Container {
     follow.position = this.planet.position;
     this.addChildAt(follow, 1);
 
+    if(this.getcurrentDistance() < 0.5) {
+      if($('#exampleModalCenter1').hasClass('show')) {
+        $('#exampleModalCenter1').modal('hide');
+      }
+    }
+
     if (this.getcurrentDistance() < 0.1) {
       panel.endgame();
     }
