@@ -153,11 +153,6 @@ h2 {
   transform: translateY(-40%);
 }
 
-.help {
-  position: absolute;
-  bottom: 10px;
-}
-
 .buttons > button, .buttons1 > button {
   font-size: 22px;
   padding: 5px 25px;
@@ -181,7 +176,7 @@ h2 {
   border-radius: 15px;
   display: inline-block;
   white-space: nowrap;
-  padding: 3px 15px;
+  padding: 3px 10px 3px 15px;
   margin: 10px 15px;
 }
 
@@ -434,15 +429,16 @@ h2 {
 }
 
 .keys {
-  width: 60px;
-  height: 60px;
+  width: 50px;
+  height: 50px;
   background: #333;
-  border-radius: 15px;
+  border-radius: 12px;
   color: white;
-  line-height: 60px;
+  line-height: 50px;
   text-align: center;
   font-size: 24px;
   font-weight: bold;
+  display: inline-block;
 }
 
 .config-block {
@@ -479,4 +475,61 @@ h2 {
 .carousel-control-prev,
 .carousel-indicators {
     filter: invert(50%);
+}
+
+#about {
+  color: black;
+  letter-spacing: 5px;
+  text-decoration-line: underline;
+  font-size: 24px;
+  transition: all .5s;
+}
+
+#about:hover {
+  text-decoration-line: none;
+  color: #333;
+  transition: all .5s;
+}
+
+.help {
+  position: absolute;
+  bottom: 5px;
+  left: 30px;
+  transform: scale(.7);
+  transform-origin: left bottom;
+}
+
+.help > p {
+  display: inline-block;
+  font-size: 26px;
+  margin-left: 10px;
+}
+
+.reset-elem {
+  border: none;
+  background-color: var(--planet);
+  border-radius: 50%;
+  width: 35px;
+  height: 35px;
+  color: white;
+  vertical-align: middle;
+  margin-right: 3px;
+}
+
+#star .range-val {
+  background-color: #a30214;
+  border-radius: 6px;
+  padding: 0 5px;
+  white-space: nowrap;
+}
+
+#planet .range-val {
+  background-color: #1f865f;
+  border-radius: 6px;
+  padding: 0 5px;
+  white-space: nowrap;
+}
+
+h2 .reset-elem {
+  font-size: 18px;
 }

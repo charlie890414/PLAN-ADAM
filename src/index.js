@@ -7,6 +7,7 @@ import * as $ from 'jquery';
 import 'bootstrap';
 
 function startGame() {
+    $(document).unbind('keydown');
     loading(document.body)
 
     global.drawPlanet = new DrawPlanet({
@@ -92,7 +93,6 @@ $('.elm').each((idx, el) => {
 })
 
 
-
 $('.range-slider').click(function(e) {
   if(($(this).parent().parent().parent().parent().attr('id') !== "star") && e.target.tagName !== 'INPUT' && !$(this).parent().hasClass('big-solid') && !$(this).parent().hasClass('big-liquid') && !$(this).parent().hasClass('big-gas')) {
     if($(this).hasClass('expand')) {
@@ -104,7 +104,7 @@ $('.range-slider').click(function(e) {
       } else if($(this).hasClass('range-slider-odd')) {
         $(this).parent().next().show().animate({
           opacity: 1,
-          marginLeft: 540 - $(this).parent().width()
+          marginLeft: 550 - $(this).parent().width()
         }, 700);
       }
       $(this).removeClass('expand');
@@ -131,6 +131,17 @@ $('.range-slider').click(function(e) {
 $('#carouselExampleIndicators').carousel();
 $('#exampleModalCenter').modal();
 
+$(document).on('keydown', function (e) {
+  if(e.keyCode === 72) {
+    if($('#exampleModalCenter2').hasClass('show')) {
+      $('#exampleModalCenter2').modal('hide');
+    } else {
+      $('#carouselExampleIndicators2').carousel(0);
+      $('#exampleModalCenter2').modal();
+    }
+  }
+})
+
 $('#about').click(function() {
   $('#exampleModalCenter').modal();
   $('#carouselExampleIndicators').carousel(0);
@@ -144,6 +155,33 @@ $('#planet-mass').on('input', function () {
     this.step = 1;
     this.min = 0;
   }
+})
+
+$('.range-val').on('keydown', function (e) {
+  if((e.keyCode >= 48 && e.keyCode <= 57) || e.keyCode === 46 || e.keyCode === 8 || (e.keyCode >= 37 && e.keyCode <= 40) || e.keyCode === 110 || e.keyCode === 190 || (e.keyCode >= 96 && e.keyCode <= 105)) {
+  } else {
+    return false;
+  }
+})
+
+$('.range-val').on('input', function (params) {
+  $(this).parent().prev().val(parseFloat($(this).text())).change();
+})
+
+$('.range-val').on('focus focusout', function () {
+  $(this).text($(this).parent().prev().val());
+})
+
+$('.reset-elem').on('click', function () {
+  if(this.id !== '#planet-reset' || this.id !== '#star-reset') {
+    $(this).siblings('.dropdown-menu').find('input[type=range]').val(0).change();
+  }
+})
+
+$('#star-reset, #planet-reset').on('click', function () {
+  $(this).parent().siblings('.configs').find('input[type=range]').each((idx, el) => {
+    $(el).val($(el).attr('value')).change();
+  })
 })
 
 Welcome.welcome(startGame);

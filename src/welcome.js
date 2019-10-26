@@ -193,7 +193,7 @@ export default class welcome {
       for (const item of ['solid', 'liquid', 'gas']) {
         let sum = 0;
         $(`.big-${item} input[type=range]`).each((idx, el) => sum += parseInt(el.value));
-        $(`.big-${item} .range-value:eq(0)`).text(sum + '%');
+        $(`.big-${item} .range-value:eq(0)`).text(sum + ' %');
       }
     })
 
