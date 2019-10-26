@@ -105,7 +105,7 @@ export default class extends PIXI.Sprite {
     }
     walk(delta) {
         if (Keyboard.isKeyDown('Space')) {
-            if (panel.power.value >= 100) {
+            if (panel.power.value >= 50) {
                 this.step2 = true;
             }
 
@@ -118,14 +118,14 @@ export default class extends PIXI.Sprite {
             if (this.step2) {
                 panel.degree.value += 1;
             } else {
-                panel.power.value += 1;
+                panel.power.value += 0.5;
             }
         }
 
         if (Keyboard.isKeyReleased('Space')) {
             if (this.step2 || panel.degree.value >= 90) {
-                this.throw(panel.power.value, panel.degree.value);
                 panel.degree.value = panel.power.value = 0;
+                this.throw(panel.power.value, panel.degree.value);
                 this.step2 = false;
             } else {
                 this.step2 = true;

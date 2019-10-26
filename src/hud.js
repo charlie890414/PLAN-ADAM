@@ -1,8 +1,5 @@
 import * as PIXI from 'pixi.js'
 import {
-  DropShadowFilter
-} from 'pixi-filters'
-import {
   Planet, Star
 } from './planet'
 import * as $ from 'jquery';
@@ -51,14 +48,17 @@ export default class HUD extends PIXI.Container {
     this.map.show(resources);
     this.power = new Bar({
       x: -400,
-      y: -50
+      y: -50,
+      symbols: 'N',
+      max: 50
     });
     this.degree = new Bar({
       x: -400,
       y: -100,
-      //symbols: 'degree',
+      symbols: 'Deg',
       leftText: 'Angle',
-      color: 0xd515a1
+      color: 0xd515a1,
+      max: 90
     });
     this.addChild(this.power.view, this.degree.view);
     app.ticker.add(() => {
@@ -220,7 +220,8 @@ class Bar extends PIXI.Graphics {
       color = 0x3498db,
       alpha = 0.7,
       leftText = 'Power',
-      symbols = '%'
+      symbols = '%',
+      max
     } = param;
 
     return new (function () {
@@ -239,11 +240,6 @@ class Bar extends PIXI.Graphics {
           fill: '#ecf0f1',
           stroke: `#${color.toString(16)}`,
           strokeThickness: 5,
-          dropShadow: true,
-          dropShadowColor: '#000000',
-          dropShadowBlur: 8,
-          dropShadowAngle: Math.PI / 3,
-          dropShadowDistance: 6,
           wordWrap: true,
           wordWrapWidth: 440,
         });
@@ -254,11 +250,6 @@ class Bar extends PIXI.Graphics {
           fill: '#ecf0f1',
           stroke: `#${color.toString(16)}`,
           strokeThickness: 5,
-          dropShadow: true,
-          dropShadowColor: '#000000',
-          dropShadowBlur: 8,
-          dropShadowAngle: Math.PI / 3,
-          dropShadowDistance: 6,
           wordWrap: true,
           wordWrapWidth: 440,
         });
@@ -271,12 +262,11 @@ class Bar extends PIXI.Graphics {
         this.bar.back.beginFill(0xecf0f1);
         this.bar.back.drawRoundedRect(60, 0, width, height, 5);
         this.bar.back.endFill();
-        this.bar.back.filters = [new DropShadowFilter()];
 
         this.rightText.x = width + 80;
         this.rightText.y = -5;
 
-        this.leftText.x = -30;
+        this.leftText.x = -40;
         this.leftText.y = -5;
 
         this.view.addChild(this.bar.back, this.bar.front, this.rightText, this.leftText);
@@ -290,8 +280,8 @@ class Bar extends PIXI.Graphics {
 
             this.bar.front.clear();
             this.bar.front.beginFill(color);
-            this.bar.front.drawRoundedRect(60, 0, width * val / 100, 30, 5);
-            this.rightText.text = `${val} %`;
+            this.bar.front.drawRoundedRect(60, 0, width * val / max, 30, 5);
+            this.rightText.text = `${val} ${symbols}`;
           },
         });
       };

@@ -35,6 +35,7 @@ export default class extends PIXI.Container {
         this.addChild(this.sunmask);
 
         this.lightmask = new PIXI.Sprite(PIXI.Texture.WHITE);
+        this.lightmask.alpha = 0;
         this.lightmask.width = this.width;
         this.lightmask.height = this.height;
         this.addChild(this.lightmask);
@@ -62,11 +63,11 @@ export default class extends PIXI.Container {
             sunDistance = sunDistance * sunDistance;
             if (sunDistance <= 1) {
                 this.lightmask.tint = 0xFFFFFF;
-                this.lightmask.alpha = 1 - sunDistance;
+                this.lightmask.alpha = Math.min(1 - sunDistance, 0.8);
             }
-            else {
+            else if(sunDistance > 36){
                 this.lightmask.tint = 0X000000;
-                this.lightmask.alpha = 1 - 1 / sunDistance;
+                this.lightmask.alpha = Math.min(1 - 1 / (sunDistance - 35), 0.8);
             }
         });
     }
