@@ -124,8 +124,8 @@ export default class extends PIXI.Sprite {
 
         if (Keyboard.isKeyReleased('Space')) {
             if (this.step2 || panel.degree.value >= 90) {
-                panel.degree.value = panel.power.value = 0;
                 this.throw(panel.power.value, panel.degree.value);
+                panel.degree.value = panel.power.value = 0;
                 this.step2 = false;
             } else {
                 this.step2 = true;
