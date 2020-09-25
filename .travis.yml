@@ -23,7 +23,8 @@ jobs:
     node_js: "10"
     before_script:
       - npm install
-    script: npm run-script build
+    script: 
+      - npm run-script build
     deploy:
       provider: pages
       local_dir: dist
