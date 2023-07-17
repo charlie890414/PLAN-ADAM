@@ -1,6 +1,6 @@
 import * as THREE from 'three';
 import * as Alea from 'alea';
-import 'sylvester';
+import * as Sylvester from 'sylvester-es6';
 
 export default class Application {
     constructor(param, controls = false) {
@@ -439,7 +439,9 @@ class PlanetTexture {
             let py = Application.sphereMap(next.x / (this.width - 1), (next.y + dr) / (this.height - 1));
             let cx = this.surfaceHeight(px.x, px.y, px.z);
             let cy = this.surfaceHeight(py.x, py.y, py.z);
-            let n = $V([dr / (this.width - 1), 0, (cx - c0)]).cross($V([0, dr / (this.height - 1), (cy - c0)])).toUnitVector();
+            let v1 = new Sylvester.Vector([dr / (this.width - 1), 0, (cx - c0)]);
+            let v2 = new Sylvester.Vector([0, dr / (this.height - 1), (cy - c0)]);
+            let n = v1.cross(v2).toUnitVector();
             let rgb = Application.normalRGBA(n.elements[0], -n.elements[1], n.elements[2]);
             this.normal.setPixel(next.x, next.y, rgb.r, rgb.g, rgb.b, 1);
         } else {
