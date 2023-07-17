@@ -343,8 +343,7 @@ class PlanetRenderer {
             specularMap: this.specular,
             normalScale: new THREE.Vector2(8, 8),
             specular: 0x777777,
-            shininess: 16,
-            metal: false
+            shininess: 16
         });
         this.planetMesh.material = material;
 
@@ -642,7 +641,7 @@ class PixelSurface {
         this.canvas = document.createElement('canvas');
         this.canvas.width = this.width;
         this.canvas.height = this.height;
-        this.context = this.canvas.getContext('2d');
+        this.context = this.canvas.getContext('2d', { willReadFrequently: true });
         this.imageData = this.context.getImageData(0, 0, this.width, this.height);
         this.pixels = this.imageData.data;
     }
