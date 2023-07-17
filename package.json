@@ -28,8 +28,8 @@
     "popper.js": "^1.16.1",
     "sylvester-es6": "0.0.2",
     "three": "^0.154.0",
-    "webpack": "^4.46.0",
+    "webpack": "^5.88.1",
     "webpack-cli": "^3.3.12",
-    "webpack-dev-server": "^3.11.3"
+    "webpack-dev-server": "^4.15.1"
   }
 }
