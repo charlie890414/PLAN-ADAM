@@ -1,6 +1,5 @@
 # PLAN-ADAM
 
-![dependencies badge](https://david-dm.org/charlie890414/PLAN-ADAM.svg)
 [![Build Status](https://travis-ci.com/charlie890414/PLAN-ADAM.svg?branch=master)](https://travis-ci.com/charlie890414/PLAN-ADAM)
 
 This is a IO game with *very realistic simulation*.
